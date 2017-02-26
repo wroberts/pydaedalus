@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 '''
-Wrapper for the daedalus maze functionality.
+Wrapper for the daedalus monochrome maze functionality.
 
 maze = Maze(63, 63)
 maze.CreateMazePerfect()
@@ -11,6 +11,10 @@ maze.CreateMazePerfect()
 maze.SaveBitmap("test.bmp")
 maze.SaveText("test.txt")
 '''
+
+class MazeError(Exception):
+    '''An error while performing an action on a Maze object.'''
+    pass
 
 class Maze(object):
     '''A daedalus Maze object.'''
@@ -57,11 +61,13 @@ class Maze(object):
             raise MazeError('Unknown save command.')
         elif rv == SAVE_SUCCESS:
             pass
+        else:
+            raise MazeError('Unknown return value from Maze save function.')
 
-    def SaveBitmap(self, filename):
-        retval = cpp_SaveBitmap(self._maze, filename)
+    def SaveBitmap(self, filename, kvOn=kvWhite, kvOff=kvBlack):
+        retval = cpp_SaveBitmap(self._maze, filename, kvOn, kvOff)
         self._HandleSaveRetval(retval)
 
-    def SaveText(self, filename):
-        retval =  cpp_SaveText(self._maze, filename)
+    def SaveText(self, filename, fTextClip=True, fLineChar=False, fTextTab=False):
+        retval =  cpp_SaveText(self._maze, filename, fTextClip, fLineChar, fTextTab)
         self._HandleSaveRetval(retval)

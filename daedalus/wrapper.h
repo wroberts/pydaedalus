@@ -34,7 +34,14 @@ int wrapper_FFileSave(CMaz *maze,
                       bool fTextClip,
                       bool fLineChar,
                       bool fTextTab);
-int cpp_SaveBitmap(CMaz *maze, const char *filename);
-int cpp_SaveText(CMaz *maze, const char *filename);
+int cpp_SaveBitmap(CMaz *maze,
+                   const char *filename,
+                   KV kvOn,
+                   KV kvOff);
+int cpp_SaveText(CMaz *maze,
+                 const char *filename,
+                 bool fTextClip,
+                 bool fLineChar,
+                 bool fTextTab);
 
 #endif /* _WRAPPER_H_ */

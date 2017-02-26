@@ -30,8 +30,8 @@ int main(int argc, char *argv[])
     cpp_CreateMazePerfect(maze);
 
     // save the maze to bitmap
-    cpp_SaveBitmap(maze, "test.bmp");
-    cpp_SaveText(maze, "test.txt");
+    cpp_SaveBitmap(maze, "test.bmp", kvWhite, kvBlack);
+    cpp_SaveText(maze, "test.txt", true, false, false);
 
     // free memory
     cpp_Destructor(maze);

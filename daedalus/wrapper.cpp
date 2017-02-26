@@ -2,8 +2,7 @@
 
 CMaz *cpp_Constructor(unsigned width, unsigned height)
 {
-    CMon inst;
-    CMaz *maze = new CMaz(); //inst.Create();
+    CMaz *maze = new CMaz();
     if (maze)
     {
         if (!maze->FAllocate(width, height, NULL))
@@ -17,7 +16,6 @@ CMaz *cpp_Constructor(unsigned width, unsigned height)
 
 void cpp_Destructor(CMaz *maze)
 {
-    //maze->Destroy();
     if (maze)
         delete maze;
 }
@@ -94,14 +92,21 @@ int wrapper_FFileSave(CMaz *maze,
     return SAVE_SUCCESS;
 }
 
-int cpp_SaveBitmap(CMaz *maze, const char *filename)
+int cpp_SaveBitmap(CMaz *maze,
+                   const char *filename,
+                   KV kvOn,
+                   KV kvOff)
 {
     if (!maze) return SAVE_NO_MAZE_ERROR;
-    return wrapper_FFileSave(maze, cmdSaveBitmap, filename, kvWhite, kvBlack, true, false, false);
+    return wrapper_FFileSave(maze, cmdSaveBitmap, filename, kvOn, kvOff, true, false, false);
 }
 
-int cpp_SaveText(CMaz *maze, const char *filename)
+int cpp_SaveText(CMaz *maze,
+                 const char *filename,
+                 bool fTextClip,
+                 bool fLineChar,
+                 bool fTextTab)
 {
     if (!maze) return SAVE_NO_MAZE_ERROR;
-    return wrapper_FFileSave(maze, cmdSaveText, filename, kvWhite, kvBlack, true, false, false);
+    return wrapper_FFileSave(maze, cmdSaveText, filename, kvWhite, kvBlack, fTextClip, fLineChar, fTextTab);
 }
