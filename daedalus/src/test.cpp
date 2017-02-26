@@ -19,6 +19,14 @@ int main(int argc, char *argv[])
     InitRndL(109);
     bm.b.CreateMazePerfect();
 
+    // resize to given shape (width, height)
+    // this truncates the maze
+    // maze dimensions must be odd
+    // entrance is top left and exit is bottom right
+    BFocus().FBitmapResizeTo(31, 61);
+    // rebuild the maze
+    bm.b.CreateMazePerfect();
+
     // save the maze to bitmap
     FFileSave(cmdSaveBitmap, "test.bmp");
     FFileSave(cmdSaveText, "test.txt");
