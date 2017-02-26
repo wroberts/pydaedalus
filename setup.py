@@ -15,7 +15,7 @@ with open(path.join(HERE, 'daedalus', 'VERSION'), encoding='utf-8') as f:
 with open(path.join(HERE, 'README.rst'), encoding='utf-8') as f:
     LONG_DESCRIPTION = f.read()
 
-with open(path.join(HERE, 'daedalus', 'prbconfig.h'), 'w') as f:
+with open(path.join(HERE, 'daedalus', 'pdconfig.h'), 'w') as f:
     f.write('int PYTHON_VERSION2 = {};\n'.format(int(sys.version_info[0] == 2)))
 
 USE_CYTHON = False
@@ -27,7 +27,28 @@ except ImportError:
 
 PYDAEDALUS_EXTENSIONS = [Extension(
     "daedalus._maze",
-    ['daedalus/_maze' + ('.pyx' if USE_CYTHON else '.cpp')],
+    [
+        'daedalus/_maze' + ('.pyx' if USE_CYTHON else '.cpp'),
+        'daedalus/wrapper.cpp',
+        'daedalus/src/daedalus.cpp',
+        'daedalus/src/maze.cpp',
+        'daedalus/src/solve.cpp',
+        'daedalus/src/util.cpp',
+        'daedalus/src/graphics.cpp',
+        'daedalus/src/color.cpp',
+        'daedalus/src/create.cpp',
+        'daedalus/src/create2.cpp',
+        'daedalus/src/create3.cpp',
+        'daedalus/src/labyrnth.cpp',
+        'daedalus/src/threed.cpp',
+        'daedalus/src/draw.cpp',
+        'daedalus/src/inside.cpp',
+        'daedalus/src/command.cpp',
+        'daedalus/src/solids.cpp',
+        'daedalus/src/draw2.cpp',
+    ],
+    include_dirs=['daedalus/src'],
+    extra_compile_args=['-std=c++11'],
     language="c++")]
 if USE_CYTHON:
     PYDAEDALUS_EXTENSIONS = cythonize(PYDAEDALUS_EXTENSIONS)

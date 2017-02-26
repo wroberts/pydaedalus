@@ -12,14 +12,75 @@ maze.SaveBitmap("test.bmp")
 maze.SaveText("test.txt")
 '''
 
+from libcpp cimport bool
+
+cdef extern from "pdconfig.h":
+    cdef int PYTHON_VERSION2
+
+cdef extern from "wrapper.h":
+    cdef cppclass CMaz:
+        pass
+    cdef cppclass CCol:
+        pass
+    ctypedef long KV
+    cdef int SAVE_NO_MAZE_ERROR
+    cdef int SAVE_NO_FILENAME_GIVEN_ERROR
+    cdef int SAVE_FILE_OPEN_ERROR
+    cdef int SAVE_UNKNOWN_CMD_ERROR
+    cdef int SAVE_SUCCESS
+    cdef KV kvWhite
+    cdef KV kvBlack
+    CMaz *cpp_Constructor(unsigned width, unsigned height)
+    void cpp_Destructor(CMaz *maze)
+    bool cpp_Get(CMaz *maze, unsigned x, unsigned y)
+    bool cpp_CreateMazePerfect(CMaz *maze)
+    bool cpp_CreateMazePerfect2(CMaz *maze)
+    bool cpp_CreateMazeBraid(CMaz *maze)
+    bool cpp_CreateMazeBraidTilt(CMaz *maze)
+    bool cpp_CreateMazeSpiral(CMaz *maze)
+    bool cpp_CreateMazeDiagonal(CMaz *maze)
+    bool cpp_CreateMazeRecursive(CMaz *maze)
+    bool cpp_CreateMazePrim(CMaz *maze)
+    bool cpp_CreateMazePrim2(CMaz *maze)
+    bool cpp_CreateMazeKruskal(CMaz *maze, bool fClear, CCol *c2, CCol *c3)
+    bool cpp_CreateMazeTree(CMaz *maze)
+    bool cpp_CreateMazeForest(CMaz *maze, bool fWall)
+    bool cpp_CreateMazeAldousBroder(CMaz *maze)
+    bool cpp_CreateMazeWilson(CMaz *maze)
+    bool cpp_CreateMazeEller(CMaz *maze)
+    bool cpp_CreateMazeBraidEller(CMaz *maze)
+    bool cpp_CreateMazeDivision(CMaz *maze)
+    bool cpp_CreateMazeBinary(CMaz *maze)
+    bool cpp_CreateMazeSidewinder(CMaz *maze)
+    bool cpp_Resize(CMaz *maze, unsigned width, unsigned height)
+    int wrapper_FFileSave(CMaz *maze,
+                          int wCmd,
+                          const char *filename,
+                          KV kvOn,
+                          KV kvOff,
+                          bool fTextClip,
+                          bool fLineChar,
+                          bool fTextTab)
+    int cpp_SaveBitmap(CMaz *maze,
+                       const char *filename,
+                       KV kvOn,
+                       KV kvOff)
+    int cpp_SaveText(CMaz *maze,
+                     const char *filename,
+                     bool fTextClip,
+                     bool fLineChar,
+                     bool fTextTab)
+    
 class MazeError(Exception):
     '''An error while performing an action on a Maze object.'''
     pass
 
-class Maze(object):
+cdef class Maze(object):
     '''A monochrome daedalus Maze object.'''
 
     cdef CMaz *_maze
+    cdef unsigned _width
+    cdef unsigned _height
 
     def __cinit__(self, width, height):
         '''
@@ -32,8 +93,8 @@ class Maze(object):
         self._maze = cpp_Constructor(width, height)
         if self._maze is NULL:
             raise MazeError('Could not construct Maze object.')
-        self.width = width
-        self.height = height
+        self._width = width
+        self._height = height
 
     def __dealloc__(self):
         '''Destructor.'''
@@ -49,9 +110,9 @@ class Maze(object):
         - `x`:
         - `y`:
         '''
-        if x < 0 or self.width <= x:
+        if x < 0 or self._width <= x:
             raise IndexError('x coordinate out of range')
-        if y < 0 or self.width <= y:
+        if y < 0 or self._height <= y:
             raise IndexError('y coordinate out of range')
         return cpp_Get(self._maze, x, y)
 
@@ -67,126 +128,129 @@ class Maze(object):
         '''
         Overwrites the contents of this Maze to create a Perfect2 maze.
         '''
-        if not cpp_CreateMazePerfect2(self._maze);
+        if not cpp_CreateMazePerfect2(self._maze):
             raise MazeError('Could not create Perfect2 Maze.')
 
     def CreateMazeBraid(self):
         '''
         Overwrites the contents of this Maze to create a Braid maze.
         '''
-        if not cpp_CreateMazeBraid(self._maze);
+        if not cpp_CreateMazeBraid(self._maze):
             raise MazeError('Could not create Braid Maze.')
 
     def CreateMazeBraidTilt(self):
         '''
         Overwrites the contents of this Maze to create a BraidTilt maze.
         '''
-        if not cpp_CreateMazeBraidTilt(self._maze);
+        if not cpp_CreateMazeBraidTilt(self._maze):
             raise MazeError('Could not create BraidTilt Maze.')
 
     def CreateMazeSpiral(self):
         '''
         Overwrites the contents of this Maze to create a Spiral maze.
         '''
-        if not cpp_CreateMazeSpiral(self._maze);
+        if not cpp_CreateMazeSpiral(self._maze):
             raise MazeError('Could not create Spiral Maze.')
 
     def CreateMazeDiagonal(self):
         '''
         Overwrites the contents of this Maze to create a Diagonal maze.
         '''
-        if not cpp_CreateMazeDiagonal(self._maze);
+        if not cpp_CreateMazeDiagonal(self._maze):
             raise MazeError('Could not create Diagonal Maze.')
 
     def CreateMazeRecursive(self):
         '''
         Overwrites the contents of this Maze to create a Recursive maze.
         '''
-        if not cpp_CreateMazeRecursive(self._maze);
+        if not cpp_CreateMazeRecursive(self._maze):
             raise MazeError('Could not create Recursive Maze.')
 
     def CreateMazePrim(self):
         '''
         Overwrites the contents of this Maze to create a Prim maze.
         '''
-        if not cpp_CreateMazePrim(self._maze);
+        if not cpp_CreateMazePrim(self._maze):
             raise MazeError('Could not create Prim Maze.')
 
     def CreateMazePrim2(self):
         '''
         Overwrites the contents of this Maze to create a Prim2 maze.
         '''
-        if not cpp_CreateMazePrim2(self._maze);
+        if not cpp_CreateMazePrim2(self._maze):
             raise MazeError('Could not create Prim2 Maze.')
 
     def CreateMazeKruskal(self, fClear, c2, c3):
         '''
         Overwrites the contents of this Maze to create a Kruskal maze.
         '''
-        if not cpp_CreateMazeKruskal(self._maze, fClear, c2, c3);
+        # TODO
+        cdef CCol *cpp_c2 = NULL
+        cdef CCol *cpp_c3 = NULL
+        if not cpp_CreateMazeKruskal(self._maze, fClear, cpp_c2, cpp_c3):
             raise MazeError('Could not create Kruskal Maze.')
 
     def CreateMazeTree(self):
         '''
         Overwrites the contents of this Maze to create a Tree maze.
         '''
-        if not cpp_CreateMazeTree(self._maze);
+        if not cpp_CreateMazeTree(self._maze):
             raise MazeError('Could not create Tree Maze.')
 
     def CreateMazeForest(self, fWall):
         '''
         Overwrites the contents of this Maze to create a Forest maze.
         '''
-        if not cpp_CreateMazeForest(self._maze, fWall);
+        if not cpp_CreateMazeForest(self._maze, fWall):
             raise MazeError('Could not create Forest Maze.')
 
     def CreateMazeAldousBroder(self):
         '''
         Overwrites the contents of this Maze to create a AldousBroder maze.
         '''
-        if not cpp_CreateMazeAldousBroder(self._maze);
+        if not cpp_CreateMazeAldousBroder(self._maze):
             raise MazeError('Could not create AldousBroder Maze.')
 
     def CreateMazeWilson(self):
         '''
         Overwrites the contents of this Maze to create a Wilson maze.
         '''
-        if not cpp_CreateMazeWilson(self._maze);
+        if not cpp_CreateMazeWilson(self._maze):
             raise MazeError('Could not create Wilson Maze.')
 
     def CreateMazeEller(self):
         '''
         Overwrites the contents of this Maze to create a Eller maze.
         '''
-        if not cpp_CreateMazeEller(self._maze);
+        if not cpp_CreateMazeEller(self._maze):
             raise MazeError('Could not create Eller Maze.')
 
     def CreateMazeBraidEller(self):
         '''
         Overwrites the contents of this Maze to create a BraidEller maze.
         '''
-        if not cpp_CreateMazeBraidEller(self._maze);
+        if not cpp_CreateMazeBraidEller(self._maze):
             raise MazeError('Could not create BraidEller Maze.')
 
     def CreateMazeDivision(self):
         '''
         Overwrites the contents of this Maze to create a Division maze.
         '''
-        if not cpp_CreateMazeDivision(self._maze);
+        if not cpp_CreateMazeDivision(self._maze):
             raise MazeError('Could not create Division Maze.')
 
     def CreateMazeBinary(self):
         '''
         Overwrites the contents of this Maze to create a Binary maze.
         '''
-        if not cpp_CreateMazeBinary(self._maze);
+        if not cpp_CreateMazeBinary(self._maze):
             raise MazeError('Could not create Binary Maze.')
 
     def CreateMazeSidewinder(self):
         '''
         Overwrites the contents of this Maze to create a Sidewinder maze.
         '''
-        if not cpp_CreateMazeSidewinder(self._maze);
+        if not cpp_CreateMazeSidewinder(self._maze):
             raise MazeError('Could not create Sidewinder Maze.')
 
     def Resize(self, width, height):
@@ -199,8 +263,8 @@ class Maze(object):
         '''
         if not cpp_Resize(self._maze, width, height):
             raise MazeError('Could not resize the Maze.')
-        self.width = width
-        self.height = height
+        self._width = width
+        self._height = height
 
     @staticmethod
     def _HandleSaveRetval(rv):
