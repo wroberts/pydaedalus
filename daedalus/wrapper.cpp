@@ -20,10 +20,124 @@ void cpp_Destructor(CMaz *maze)
         delete maze;
 }
 
+bool cpp_Get(CMaz *maze, unsigned x, unsigned y)
+{
+    if (!maze) return false;
+    return maze->Get(x, y);
+}
+
 bool cpp_CreateMazePerfect(CMaz *maze)
 {
     if (!maze) return false;
-    maze->CreateMazePerfect();
+    return maze->CreateMazePerfect();
+}
+
+bool cpp_CreateMazePerfect2(CMaz *maze)
+{
+    if (!maze) return false;
+    return maze->CreateMazePerfect2();
+}
+
+bool cpp_CreateMazeBraid(CMaz *maze)
+{
+    if (!maze) return false;
+    return maze->CreateMazeBraid();
+}
+
+bool cpp_CreateMazeBraidTilt(CMaz *maze)
+{
+    if (!maze) return false;
+    return maze->CreateMazeBraidTilt();
+}
+
+bool cpp_CreateMazeSpiral(CMaz *maze)
+{
+    if (!maze) return false;
+    return maze->CreateMazeSpiral();
+}
+
+bool cpp_CreateMazeDiagonal(CMaz *maze)
+{
+    if (!maze) return false;
+    return maze->CreateMazeDiagonal();
+}
+
+bool cpp_CreateMazeRecursive(CMaz *maze)
+{
+    if (!maze) return false;
+    return maze->CreateMazeRecursive();
+}
+
+bool cpp_CreateMazePrim(CMaz *maze)
+{
+    if (!maze) return false;
+    return maze->CreateMazePrim();
+}
+
+bool cpp_CreateMazePrim2(CMaz *maze)
+{
+    if (!maze) return false;
+    return maze->CreateMazePrim2();
+}
+
+bool cpp_CreateMazeKruskal(CMaz *maze, bool fClear, CCol *c2, CCol *c3)
+{
+    if (!maze) return false;
+    return maze->CreateMazeKruskal(fClear, c2, c3);
+}
+
+bool cpp_CreateMazeTree(CMaz *maze)
+{
+    if (!maze) return false;
+    return maze->CreateMazeTree();
+}
+
+bool cpp_CreateMazeForest(CMaz *maze, bool fWall)
+{
+    if (!maze) return false;
+    return maze->CreateMazeForest(fWall);
+}
+
+bool cpp_CreateMazeAldousBroder(CMaz *maze)
+{
+    if (!maze) return false;
+    return maze->CreateMazeAldousBroder();
+}
+
+bool cpp_CreateMazeWilson(CMaz *maze)
+{
+    if (!maze) return false;
+    return maze->CreateMazeWilson();
+}
+
+bool cpp_CreateMazeEller(CMaz *maze)
+{
+    if (!maze) return false;
+    return maze->CreateMazeEller();
+}
+
+bool cpp_CreateMazeBraidEller(CMaz *maze)
+{
+    if (!maze) return false;
+    return maze->CreateMazeBraidEller();
+}
+
+bool cpp_CreateMazeDivision(CMaz *maze)
+{
+    if (!maze) return false;
+    return maze->CreateMazeDivision();
+}
+
+bool cpp_CreateMazeBinary(CMaz *maze)
+{
+    if (!maze) return false;
+    return maze->CreateMazeBinary();
+}
+
+bool cpp_CreateMazeSidewinder(CMaz *maze)
+{
+    if (!maze) return false;
+    return maze->CreateMazeSidewinder();
 }
 
 bool cpp_Resize(CMaz *maze, unsigned width, unsigned height)
