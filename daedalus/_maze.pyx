@@ -94,10 +94,10 @@ cdef class Maze(object):
             raise ValueError('negative width')
         if height < 0:
             raise ValueError('negative height')
-        if width % 2 != 1:
-            raise ValueError('width must be odd')
-        if height % 2 != 1:
-            raise ValueError('height must be odd')
+        # if width % 2 != 1:
+        #     raise ValueError('width must be odd')
+        # if height % 2 != 1:
+        #     raise ValueError('height must be odd')
         self._width = 0
         self._height = 0
         self._maze = cpp_Constructor(width, height)
@@ -289,10 +289,10 @@ cdef class Maze(object):
             raise ValueError('negative width')
         if height < 0:
             raise ValueError('negative height')
-        if width % 2 != 1:
-            raise ValueError('width must be odd')
-        if height % 2 != 1:
-            raise ValueError('height must be odd')
+        # if width % 2 != 1:
+        #     raise ValueError('width must be odd')
+        # if height % 2 != 1:
+        #     raise ValueError('height must be odd')
         if not cpp_Resize(self._maze, width, height):
             raise MazeError('Could not resize the Maze.')
         self._width = width
