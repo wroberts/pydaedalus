@@ -1,0 +1,54 @@
+#+STARTUP: content hidestars odd
+
+* Source Files
+
+  |--------------+------------------------------------------------------|
+  |              | GENERIC MAZE CODE                                    |
+  |--------------+------------------------------------------------------|
+  | maze.cpp     | maze class CMaz                                      |
+  | maze.h       |                                                      |
+  | solve.cpp    | maze solving routines                                |
+  | util.cpp     | utility funcs                                        |
+  | util.h       |                                                      |
+  | graphics.cpp | monochrome bitmap class (CMib) and base class (CMap) |
+  | graphics.h   |                                                      |
+  | color.cpp    | color bitmap class (CCol)                            |
+  | color.h      |                                                      |
+  | create.cpp   | create core maze types                               |
+  | create2.cpp  | create fractal mazes                                 |
+  | create3.cpp  | create gamma, delta, sigma, etc. mazes               |
+  | labyrnth.cpp | create labyrinths (unicursal, etc.)                  |
+  |--------------+------------------------------------------------------|
+  |              | UNCLEAR                                              |
+  |--------------+------------------------------------------------------|
+  | solids.cpp   | polygon, pentagon, pyramid, etc.                     |
+  | threed.cpp   | 3D bitmaps, rendering                                |
+  | threed.h     |                                                      |
+  |--------------+------------------------------------------------------|
+  |              | WINDOWS AND APP                                      |
+  |--------------+------------------------------------------------------|
+  | command.cpp  | GUI app bindings and command line interpretation     |
+  | daedalus.cpp | application-level function                           |
+  | daedalus.h   |                                                      |
+  | inside.cpp   | draw sun, moon, rainbow, perspective, etc.           |
+  | resource.h   | #defines for GUI app                                 |
+  | draw.cpp     | drawing routines (3D, etc.)                          |
+  | draw.h       |                                                      |
+  | draw2.cpp    |                                                      |
+  | wdialog.cpp  | windows dialogs                                      |
+  | wdriver.cpp  | windows main app: WinMain, WndProc, etc.             |
+  | wdriver.h    |                                                      |
+  | wutil.cpp    | windows utility functions                            |
+  |--------------+------------------------------------------------------|
+
+* Program State
+
+  Instantiated in daedalus.cpp (defined in daedalus.h):
+  - =BM bm= : bitmap struct
+    - =bm.b= is the main maze object for the app
+  - =WS ws=: window state struct
+  - =DR dr=: "dot rendering"
+
+  Instantiated in maze.cpp (defined in maze.h):
+  - =MS ms=: maze settings
+    - CMaz member functions reference elements of this struct
