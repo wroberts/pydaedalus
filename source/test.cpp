@@ -15,13 +15,13 @@ int main(int argc, char *argv[])
     cout << "hello world" << endl;
 
     // create a maze
-    CMaz b;
-    b.FAllocate(xStart, yStart, NULL);
+    bm.b.FAllocate(xStart, yStart, NULL);
     InitRndL(109);
-    b.CreateMazePerfect();
+    bm.b.CreateMazePerfect();
 
     // save the maze to bitmap
-    FFileSave(cmdSaveBitmap, NULL);
+    FFileSave(cmdSaveBitmap, "test.bmp");
+    FFileSave(cmdSaveText, "test.txt");
 
     return 0;
 }
