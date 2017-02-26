@@ -28,114 +28,171 @@ bool cpp_Get(CMaz *maze, unsigned x, unsigned y)
 
 bool cpp_CreateMazePerfect(CMaz *maze)
 {
+    // ms.nEntrancePos
+    // ms.fTreeWall
+    // ms.fRiver
+    // ms.fRiverEdge
+    // ms.fRiverFlow
     if (!maze) return false;
     return maze->CreateMazePerfect();
 }
 
 bool cpp_CreateMazePerfect2(CMaz *maze)
 {
+    // ms.nEntrancePos
+    // ms.fRiver
     if (!maze) return false;
     return maze->CreateMazePerfect2();
 }
 
 bool cpp_CreateMazeBraid(CMaz *maze)
 {
+    // ms.nEntrancePos
     if (!maze) return false;
     return maze->CreateMazeBraid();
 }
 
 bool cpp_CreateMazeBraidTilt(CMaz *maze)
 {
+    // ms.nEntrancePos
+    // ms.fTiltDiamond
     if (!maze) return false;
     return maze->CreateMazeBraidTilt();
 }
 
 bool cpp_CreateMazeSpiral(CMaz *maze)
 {
+    // ms.nEntrancePos
+    // ms.iSpiralIndex
+    // ms.cSpiral
+    // ms.cSpiralWall
+    // ms.cRandomAdd
     if (!maze) return false;
     return maze->CreateMazeSpiral();
 }
 
 bool cpp_CreateMazeDiagonal(CMaz *maze)
 {
+    // ms.nEntrancePos
+    // ms.cRandomAdd
     if (!maze) return false;
     return maze->CreateMazeDiagonal();
 }
 
 bool cpp_CreateMazeRecursive(CMaz *maze)
 {
+    // ms.nEntrancePos
+    // ms.nRndRun
+    // ms.nRndBias
     if (!maze) return false;
     return maze->CreateMazeRecursive();
 }
 
 bool cpp_CreateMazePrim(CMaz *maze)
 {
+    // ms.nEntrancePos
+    // ms.fTreeWall
     if (!maze) return false;
     return maze->CreateMazePrim();
 }
 
 bool cpp_CreateMazePrim2(CMaz *maze)
 {
+    // ms.nEntrancePos
+    // ms.fTreeWall
+    // ms.fTreeRandom
     if (!maze) return false;
     return maze->CreateMazePrim2();
 }
 
 bool cpp_CreateMazeKruskal(CMaz *maze, bool fClear, CCol *c2, CCol *c3)
 {
+    // ms.nEntrancePos
+    // ms.fTreeWall
+    // ms.fKruskalPic
     if (!maze) return false;
     return maze->CreateMazeKruskal(fClear, c2, c3);
 }
 
 bool cpp_CreateMazeTree(CMaz *maze)
 {
+    // ms.nEntrancePos
+    // ms.fTreeWall
+    // ms.fTreeRandom
+    // ms.nTreeRiver
     if (!maze) return false;
     return maze->CreateMazeTree();
 }
 
 bool cpp_CreateMazeForest(CMaz *maze, bool fWall)
 {
+    // ms.nEntrancePos
+    // ms.fTreeWall
+    // ms.nForsInit
+    // ms.nForsAdd
+    // ms.fRiverFlow
+    // ms.fTreeRandom
+    // ms.nTreeRiver
     if (!maze) return false;
     return maze->CreateMazeForest(fWall);
 }
 
 bool cpp_CreateMazeAldousBroder(CMaz *maze)
 {
+    // ms.nEntrancePos
+    // ms.fTreeWall
     if (!maze) return false;
     return maze->CreateMazeAldousBroder();
 }
 
 bool cpp_CreateMazeWilson(CMaz *maze)
 {
+    // ms.nEntrancePos
+    // ms.fTreeWall
     if (!maze) return false;
     return maze->CreateMazeWilson();
 }
 
 bool cpp_CreateMazeEller(CMaz *maze)
 {
+    // ms.nEntrancePos
+    // ms.fTreeWall
     if (!maze) return false;
     return maze->CreateMazeEller();
 }
 
 bool cpp_CreateMazeBraidEller(CMaz *maze)
 {
+    // ms.nEntrancePos
     if (!maze) return false;
     return maze->CreateMazeBraidEller();
 }
 
 bool cpp_CreateMazeDivision(CMaz *maze)
 {
+    // ms.nEntrancePos
+    // ms.nRndRun
+    // ms.nRndBias
     if (!maze) return false;
     return maze->CreateMazeDivision();
 }
 
 bool cpp_CreateMazeBinary(CMaz *maze)
 {
+    // ms.nEntrancePos
+    // ms.nRndBias
+    // ms.cRandomAdd
+    // ms.nRndRun
+    // ms.fTreeWall
     if (!maze) return false;
     return maze->CreateMazeBinary();
 }
 
 bool cpp_CreateMazeSidewinder(CMaz *maze)
 {
+    // ms.nEntrancePos
+    // ms.nRndBias
+    // ms.fTreeWall
     if (!maze) return false;
     return maze->CreateMazeSidewinder();
 }
