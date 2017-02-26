@@ -70,7 +70,7 @@ cdef extern from "wrapper.h":
                      bool fTextClip,
                      bool fLineChar,
                      bool fTextTab)
-    
+
 class MazeError(Exception):
     '''An error while performing an action on a Maze object.'''
     pass
@@ -90,6 +90,8 @@ cdef class Maze(object):
         - `width`: odd integer, 3 or greater
         - `height`: odd integer, 3 or greater
         '''
+        self._width = 0
+        self._height = 0
         self._maze = cpp_Constructor(width, height)
         if self._maze is NULL:
             raise MazeError('Could not construct Maze object.')
@@ -100,6 +102,20 @@ cdef class Maze(object):
         '''Destructor.'''
         if self._maze is not NULL:
             cpp_Destructor(self._maze)
+
+    @property
+    def width(self):
+        '''
+        Returns this Maze's width.
+        '''
+        return self._width
+
+    @property
+    def height(self):
+        '''
+        Returns this Maze's height.
+        '''
+        return self._height
 
     def Get(self, x, y):
         '''

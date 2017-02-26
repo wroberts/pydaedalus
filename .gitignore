@@ -2,6 +2,7 @@
 *.pyc
 *~
 .DS_Store
+/.cache/
 /.eggs/
 /build/
 /daedalus/_maze.cpp
@@ -15,3 +16,4 @@
 /daedalus/src/test.txt
 /daedalus/test.bmp
 /daedalus/test.txt
+/pydaedalus.egg-info/
