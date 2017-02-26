@@ -18,10 +18,10 @@ def test_maze():
     maze = Maze(63, 63)
     assert maze.width == 63
     assert maze.height == 63
-    maze.CreateMazePerfect()
-    maze.Resize(31, 61)
+    maze.create_perfect()
+    maze.resize(31, 61)
     assert maze.width == 31
     assert maze.height == 61
-    maze.CreateMazePerfect()
-    #maze.SaveBitmap("test.bmp")
-    #maze.SaveText("test.txt")
+    maze.create_perfect()
+    #maze.save_bitmap("test.bmp")
+    #maze.save_text("test.txt")
