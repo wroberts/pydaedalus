@@ -1,11 +1,8 @@
 *.o
 *~
 .DS_Store
-/daedalus.exe
-/daedalus.url
-/source/daedalus
-/source/deps.dot
-/source/deps.dot.pdf
-/source/test
-/source/test.bmp
-/source/test.txt
+/daedalus/src/deps.dot
+/daedalus/src/deps.dot.pdf
+/daedalus/src/test
+/daedalus/src/test.bmp
+/daedalus/src/test.txt
