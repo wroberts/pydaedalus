@@ -19,13 +19,7 @@
   | create3.cpp  | create gamma, delta, sigma, etc. mazes               |
   | labyrnth.cpp | create labyrinths (unicursal, etc.)                  |
   |--------------+------------------------------------------------------|
-  |              | UNCLEAR                                              |
-  |--------------+------------------------------------------------------|
-  | solids.cpp   | polygon, pentagon, pyramid, etc.                     |
-  | threed.cpp   | 3D bitmaps, rendering                                |
-  | threed.h     |                                                      |
-  |--------------+------------------------------------------------------|
-  |              | WINDOWS AND APP                                      |
+  |              | ALSO NEEDED FOR COMPILE                              |
   |--------------+------------------------------------------------------|
   | command.cpp  | GUI app bindings and command line interpretation     |
   | daedalus.cpp | application-level function                           |
@@ -35,6 +29,12 @@
   | draw.cpp     | drawing routines (3D, etc.)                          |
   | draw.h       |                                                      |
   | draw2.cpp    |                                                      |
+  | solids.cpp   | polygon, pentagon, pyramid, etc.                     |
+  | threed.cpp   | 3D bitmaps, rendering                                |
+  | threed.h     |                                                      |
+  |--------------+------------------------------------------------------|
+  |              | WINDOWS AND APP                                      |
+  |--------------+------------------------------------------------------|
   | wdialog.cpp  | windows dialogs                                      |
   | wdriver.cpp  | windows main app: WinMain, WndProc, etc.             |
   | wdriver.h    |                                                      |
