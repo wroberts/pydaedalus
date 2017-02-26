@@ -2905,7 +2905,7 @@ LDone:
 */
 
 // Starting point for the command line version of the program.
-
+/*
 int main(int argc, char *argv[])
 {
   char szLine[cchSzOpr], *pch = szLine;
@@ -2940,7 +2940,7 @@ LLoop:
     DoCommandW(cmdCommand);
     goto LLoop;
   }
-}
+  }*/
 
 
 // Display a line of text on the screen.
