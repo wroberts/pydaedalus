@@ -1,0 +1,692 @@
+<html>
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<title>Daedalus 3.2 Changes</title>
+
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman";}
+h1
+	{margin-top:12.0pt;
+	margin-right:0in;
+	margin-bottom:3.0pt;
+	margin-left:0in;
+	page-break-after:avoid;
+	font-size:16.0pt;
+	font-family:Arial;}
+a:link, span.MsoHyperlink
+	{color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{color:purple;
+	text-decoration:underline;}
+p.MsoPlainText, li.MsoPlainText, div.MsoPlainText
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:10.0pt;
+	font-family:"Courier New";}
+p.A, li.A, div.A
+	{margin-top:10.0pt;
+	margin-right:0in;
+	margin-bottom:10.0pt;
+	margin-left:0in;
+	font-size:12.0pt;
+	font-family:"Times New Roman";}
+p.Fixed, li.Fixed, div.Fixed
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Courier New";}
+p.Section, li.Section, div.Section
+	{margin-top:12.0pt;
+	margin-right:0in;
+	margin-bottom:3.0pt;
+	margin-left:0in;
+	text-align:center;
+	page-break-after:avoid;
+	border:none;
+	padding:0in;
+	font-size:16.0pt;
+	font-family:Arial;
+	font-weight:bold;}
+p.Item, li.Item, div.Item
+	{margin-top:10.0pt;
+	margin-right:0in;
+	margin-bottom:10.0pt;
+	margin-left:.5in;
+	text-indent:-.25in;
+	font-size:12.0pt;
+	font-family:"Times New Roman";}
+p.B, li.B, div.B
+	{margin-top:10.0pt;
+	margin-right:0in;
+	margin-bottom:10.0pt;
+	margin-left:.5in;
+	font-size:12.0pt;
+	font-family:"Times New Roman";}
+span.N
+	{color:blue;
+	font-weight:bold;}
+p.Section2, li.Section2, div.Section2
+	{margin-top:10.0pt;
+	margin-right:0in;
+	margin-bottom:10.0pt;
+	margin-left:0in;
+	font-size:12.0pt;
+	font-family:"Courier New";
+	color:red;
+	font-weight:bold;}
+span.O
+	{color:green;
+	font-weight:bold;}
+span.P
+	{color:olive;
+	font-weight:bold;}
+@page Section1
+	{size:8.5in 11.0in;
+	margin:1.0in 65.95pt 1.0in 65.95pt;}
+div.Section1
+	{page:Section1;}
+ /* List Definitions */
+ ol
+	{margin-bottom:0in;}
+ul
+	{margin-bottom:0in;}
+-->
+</style>
+
+</head>
+
+<body lang=EN-US link=blue vlink=purple>
+
+<div class=Section1>
+
+<p class=Fixed><span style='background:silver'>DDDDD</span>     <span
+style='background:silver'>AAAAA</span>   <span style='background:silver'>EEEEEEE</span> 
+<span style='background:silver'>DDDDD</span>     <span style='background:silver'>AAAAA</span>  
+<span style='background:silver'>L</span>        <span style='background:silver'>U</span>    
+<span style='background:silver'>U</span>   <span style='background:silver'>SSSSS</span></p>
+
+<p class=Fixed><span style='background:silver'>D</span><span lang=ES-CR>    </span><span
+style='background:silver'>D</span><span lang=ES-CR>   </span><span
+style='background:silver'>A</span><span lang=ES-CR>     </span><span
+style='background:silver'>A</span><span lang=ES-CR>  </span><span
+style='background:silver'>E</span><span lang=ES-CR>        </span><span
+style='background:silver'>D</span><span lang=ES-CR>    </span><span
+style='background:silver'>D</span><span lang=ES-CR>   </span><span
+style='background:silver'>A</span><span lang=ES-CR>     </span><span
+style='background:silver'>A</span><span lang=ES-CR>  </span><span
+style='background:silver'>L</span><span lang=ES-CR>        </span><span
+style='background:silver'>U</span><span lang=ES-CR>     </span><span
+style='background:silver'>U</span><span lang=ES-CR>  </span><span
+style='background:silver'>S</span><span lang=ES-CR>     </span><span
+style='background:silver'>S</span></p>
+
+<p class=Fixed><span style='background:silver'>D</span><span lang=ES-CR>     </span><span
+style='background:silver'>D</span><span lang=ES-CR>  </span><span
+style='background:silver'>A</span><span lang=ES-CR>     </span><span
+style='background:silver'>A</span><span lang=ES-CR>  </span><span
+style='background:silver'>E</span><span lang=ES-CR>        </span><span
+style='background:silver'>D</span><span lang=ES-CR>     </span><span
+style='background:silver'>D</span><span lang=ES-CR>  </span><span
+style='background:silver'>A</span><span lang=ES-CR>     </span><span
+style='background:silver'>A</span><span lang=ES-CR>  </span><span
+style='background:silver'>L</span><span lang=ES-CR>        </span><span
+style='background:silver'>U</span><span lang=ES-CR>     </span><span
+style='background:silver'>U</span><span lang=ES-CR>  </span><span
+style='background:silver'>S</span></p>
+
+<p class=Fixed><span lang=ES-CR style='background:silver'>D</span><span
+lang=ES-CR>     <span style='background:silver'>D</span>  <span
+style='background:silver'>AAAAAAA</span>  <span style='background:silver'>EEEEEE</span>  
+</span><span style='background:silver'>D</span><span lang=ES-CR>     </span><span
+style='background:silver'>D</span><span lang=ES-CR>  </span><span
+style='background:silver'>AAAAAAA</span><span lang=ES-CR>  </span><span
+style='background:silver'>L</span><span lang=ES-CR>        </span><span
+style='background:silver'>U</span><span lang=ES-CR>     </span><span
+style='background:silver'>U</span><span lang=ES-CR>   </span><span
+style='background:silver'>SSSSS</span></p>
+
+<p class=Fixed><span style='background:silver'>D</span><span lang=ES-CR>     </span><span
+style='background:silver'>D</span><span lang=ES-CR>  </span><span
+style='background:silver'>A</span><span lang=ES-CR>     </span><span
+style='background:silver'>A</span><span lang=ES-CR>  </span><span
+style='background:silver'>E</span><span lang=ES-CR>        </span><span
+style='background:silver'>D</span><span lang=ES-CR>     </span><span
+style='background:silver'>D</span><span lang=ES-CR>  </span><span
+style='background:silver'>A</span><span lang=ES-CR>     </span><span
+style='background:silver'>A</span><span lang=ES-CR>  </span><span
+style='background:silver'>L</span><span lang=ES-CR>        </span><span
+style='background:silver'>U</span><span lang=ES-CR>     </span><span
+style='background:silver'>U</span><span lang=ES-CR>        </span><span
+style='background:silver'>S</span></p>
+
+<p class=Fixed><span style='background:silver'>D</span><span lang=ES-CR>    </span><span
+style='background:silver'>D</span><span lang=ES-CR>   </span><span
+style='background:silver'>A</span><span lang=ES-CR>     </span><span
+style='background:silver'>A</span><span lang=ES-CR>  </span><span
+style='background:silver'>E</span><span lang=ES-CR>        </span><span
+style='background:silver'>D</span><span lang=ES-CR>    </span><span
+style='background:silver'>D</span><span lang=ES-CR>   </span><span
+style='background:silver'>A</span><span lang=ES-CR>     </span><span
+style='background:silver'>A</span><span lang=ES-CR>  </span><span
+style='background:silver'>L</span><span lang=ES-CR>        </span><span
+style='background:silver'>U</span><span lang=ES-CR>     </span><span
+style='background:silver'>U</span><span lang=ES-CR>  </span><span
+style='background:silver'>S</span><span lang=ES-CR>     </span><span
+style='background:silver'>S</span></p>
+
+<p class=Fixed><span style='background:silver'>DDDDD</span>    <span
+style='background:silver'>A</span>     <span style='background:silver'>A</span> 
+<span style='background:silver'>EEEEEEE</span>  <span style='background:silver'>DDDDD</span>   
+<span style='background:silver'>A</span>     <span style='background:silver'>A</span> 
+<span style='background:silver'>LLLLLLL</span>   <span style='background:silver'>UUUUU</span>   
+<span style='background:silver'>SSSSS</span></p>
+
+<p class=Fixed>&nbsp;</p>
+
+<p class=Fixed>                         **  VERSION  3.2  **</p>
+
+<p class=Fixed>&nbsp;</p>
+
+<p class=A>This file describes the new features, changes, and bug fixes in
+Daedalus 3.2, that weren’t in the previous version. It is only useful if you’re
+already familiar with Daedalus 3.1 or before and want to know what the newest
+version offers. The file is divided into four sections:</p>
+
+<p class=Item style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:.5in;margin-bottom:.0001pt'><span style='font-family:Symbol'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><b>1) <a href="#feature">New Features</a>:</b> A list of new
+features.</p>
+
+<p class=Item style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:.5in;margin-bottom:.0001pt'><span style='font-family:Symbol'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><b>2) <a href="#extend">Extended &amp; Improved Features</a>:</b>
+A list of improvements or changes to existing features.</p>
+
+<p class=Item style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:.5in;margin-bottom:.0001pt'><span style='font-family:Symbol'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><b>3) <a href="#bug">Bug Fixes</a>:</b> Bugs and other problems
+that have been fixed.</p>
+
+<p class=Item style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:.5in;margin-bottom:.0001pt'><span style='font-family:Symbol'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><b>4) <a href="#script">Scripting Additions</a>:</b> New keywords
+added to the Daedalus scripting language.</p>
+
+<p class=A>For a quick demonstration of some things Daedalus 3.2 can do, start
+the program, press Alt+1 to start the “Daedalus demos” script, then press F2 to
+animate yourself running through a Maze.</p>
+
+<p class=A>&nbsp;</p>
+
+<div style='border:none;border-top:solid windowtext 4.5pt;padding:1.0pt 0in 0in 0in'>
+
+<p class=Section><a name=feature>NEW FEATURES</a></p>
+
+</div>
+
+<p class=A>A list of new features in Daedalus 3.2, which means new commands and
+settings that weren’t present in the previous version:</p>
+
+<p class=A><span class=N>1. Growing Forest algorithm Mazes:</span> Daedalus can
+create Mazes using the Growing Forest algorithm, with the new Create / Perfect
+/ Growing Forest command. The Growing Forest algorithm is basically multiple
+instances of the Growing Tree algorithm running at the same time. In the Create
+Settings dialog, the new “Forest Initial” field indicates the number of
+instances to begin with: If positive the field indicates the exact number of
+instances, and if negative the field indicates that one in X cells should start
+out as instances. The new “Forest Addition” field indicates the number of
+instances to add each time a cell is added to the Maze: If positive the field
+indicates the exact number of instances to add, and if negative indicates that
+one instance should be added every X cells. If “Forest Initial” is one and
+“Forest Addition” is zero, then this behaves like the Growing Tree algorithm.</p>
+
+<p class=A><span class=N>2. Metafile output:</span> Daedalus may output images
+in Windows metafile format, a vector format that uses lines instead of pixels. The
+Daedalus wireframe in memory may be saved to a Windows metafile with the new
+Draw / Picture File / Save Wireframe Picture command. The file may also be
+copied to the clipboard with the new Draw / Picture File / Copy Wireframe
+Picture command. The Windows metafile format may be opened or pasted into
+programs such as Microsoft Word, in order to produce printouts that aren’t
+pixelated.</p>
+
+<p class=A><span class=N>3. Wireframe Omega Mazes:</span> The Omega Mazes can
+automatically generate Daedalus wireframe and patch scenes. There’s a new radio
+button group in the “Omega (Shapes)” section of the Create Settings dialog.
+When set to “Screen Only”, Omega Mazes will only be drawn in the main bitmap.
+If set to “Make Wireframe Also”, creating the Maze (in addition to drawing in
+the bitmap) will also generate a Daedalus wireframe scene, which can be
+rendered, saved as a Windows metafile, and so on using commands on the Draw
+menu. If set to “Make Patches Also”, creating the Maze will also generate a
+Daedalus patch scene, that can be rendered and such using commands on the Draw
+menu.</p>
+
+<p class=A><span class=N>4. Stereoscopic 3D view:</span> The perspective inside
+view supports stereoscopic 3D graphics. There’s a new “Stereo Width” field in
+the Dot / Inside Settings dialog. When non-zero, the window will be split into
+two displays, showing the scene from slightly different viewpoints. When the
+two images are looked at together, with one image for each eye, the result in a
+true 3D effect. Classic 3D glasses, modern 3D movies, Google Cardboard, and
+random dot stereograms work the same way. The value indicates the distance in
+cell size units that the two views are from each other. If the value is
+negative, the leftmost image will be on the right half instead of on the left.</p>
+
+<p class=A><span class=N>5. Tilt Maze cell size:</span> There’s a new “Tilt
+Cell Size” field in the Create / Create Settings dialog. This setting affects
+the size in pixels of each cell of tilt Mazes created with the “Create / Tilt”
+command. If this value is positive, then every cell will have its own separate
+grid of pixels. If this value is negative, then there will be boundary rows and
+columns of pixels that contain shared vertexes between cells. This should be at
+least 3 for the passages to be apparent and wide enough to be followed.</p>
+
+<p class=A><span class=N>6. Sound disable:</span> There’s a new “Allow Sound
+Playing” checkbox in the Edit / Display Settings dialog. When off, all sound
+playing will be disabled. This setting is used by the “Hunger Games” script
+which plays sounds, allowing all sound playback to be turned off at once.</p>
+
+<p class=A><span class=N>7. Rainbow UI:</span> There’s a new “Rainbow” checkbox
+in the Dot / Inside Settings dialog. When on, it displays a rainbow to the north
+in the perspective inside view. This feature already existed in previous
+versions, but wasn’t in the user interface and could only be turned on with the
+macro language.</p>
+
+<p class=A>&nbsp;</p>
+
+<div style='border:none;border-top:solid windowtext 4.5pt;padding:1.0pt 0in 0in 0in'>
+
+<p class=Section><a name=extend>EXTENDED &amp; IMPROVED FEATURES</a></p>
+
+</div>
+
+<p class=A>A list of improvements to existing features, which means new things
+you can now do with old features that you couldn’t do before, or ways existing
+features work better than before. Note that some change existing behavior in
+ways users of previous versions should be aware of:</p>
+
+<p class=A><span class=O>1. 3D nested fractal Mazes:</span> The “Nested
+Fractal” command on the Create / Pattern submenu will generate a 3D nested
+fractal Maze when the “Bitmap Is 3D” setting is on. A 3D nested fractal Maze is
+a 3D cube Maze, with smaller cube Mazes within each cell. The “Fractal X” field
+in the Create Settings dialog determines the X and Y cell dimensions of the
+cubes at each nesting level, and the “Fractal Y” field determines the Z cell
+dimension.</p>
+
+<p class=A><span class=O>2. 3D passage analyze:</span> The “Analyze Passages”
+command will analyze the current 3D Maze when the “Bitmap Is 3D” setting is on.
+It will display the number of types of each cell (in which each cell has 0-6
+passages leading from it) along with the number of dead ends of each cell
+length.</p>
+
+<p class=A><span class=O>3. Unicursal binary tree Mazes:</span> Unicursal Mazes
+generated with the “Create / Unicursal” command are normally made by bisecting
+the passages of a smaller Maze created with the Hunt and Kill algorithm. If Use
+Eller’s Algorithm in File Settings is on, and the Maze has odd horizontal and
+vertical cell dimensions, then the unicursal Maze will instead be based on the
+smaller Maze created with the Binary Tree algorithm. This runs much faster due
+to the quick speed of the Binary Tree algorithm.</p>
+
+<p class=A><span class=O>4. Classical Labyrinth variation:</span> A special
+unicursal Labyrinth will be drawn in the main bitmap if the Create Labyrinth
+command is run, when the Labyrinth Settings dialog fields are set to
+“Classical”, “Square”, and “Merged”. The Labyrinth will be a variation of the
+classical Labyrinth with the number of circuits defined by the “Classical”
+fields. This Labyrinth always has walls and passages one pixel wide, and the
+bitmap won’t be resized. That means depending on the size of the Labyrinth and
+bitmap, the Labyrinth will be in the upper left corner of the bitmap, or
+clipped on the bottom right. This is basically a way to access the virtual
+Labyrinth drawn in the “World’s Largest Maze” script.</p>
+
+<p class=A><span class=O>5. 3D gigamaze:</span> The “World’s Largest Maze” script
+has been updated. You can now explore virtual 3D Mazes of a billion x billion x
+billion passages wide (for one octillion or
+1,000,000,000,000,000,000,000,000,000 or 10^27 cells total) in addition to 2D
+Mazes of a billion x billion passages (for one quintillion or
+1,000,000,000,000,000,000 or 10^18 cells total).</p>
+
+<p class=A><span class=O>6. Windows shell edit:</span> Daedalus setup will assign
+it so Daedalus scripts, wireframe, and patch files (.ds, .d3, and .dp
+extensions) can be opened in Notepad from the Windows shell if you right click
+the icon and select “Edit” on the dropdown. This is similar to how right
+clicking on the icon and selecting the “Open” verb will have Daedalus launch
+and open the file.</p>
+
+<p class=A><span class=O>7. Command line version:</span> The Daedalus source
+code will compile a command line only version, if the #define WIN line in
+util.h is commented out. Without a menu interface, the program can only be run
+in the console and interacted with using the command line and scripting
+language. However this does allow Daedalus Mazes to be generated on non-Windows
+systems.</p>
+
+<p class=A><span class=O>8. Hunger Games additions:</span> The “Hunger Games”
+script has a number of additions, including:</p>
+
+<p class=Item style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:.5in;margin-bottom:.0001pt'><span style='font-family:Symbol'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>1: Sound effects are played for events such as cannon firings.
+Press “-“ to toggle sound off or on. Sounds are Windows .wav files in the
+“hunger” subdirectory and easily changed.</p>
+
+<p class=Item style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:.5in;margin-bottom:.0001pt'><span style='font-family:Symbol'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>2: Textures are photorealistic bitmaps for objects on the ground,
+and things in the environment such as trees. Press “_“ to toggle improved
+textures off or on. Textures are Windows .bmp files in the “hunger”
+subdirectory and easily changed.</p>
+
+<p class=Item style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:.5in;margin-bottom:.0001pt'><span style='font-family:Symbol'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>3: Display the most recent 12 event messages that were on the top
+of the screen (with the double quote “ key).</p>
+
+<p class=Item style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:.5in;margin-bottom:.0001pt'><span style='font-family:Symbol'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>4: Define leadership (or who tends to follow who). Do this by
+using the come here command (“C” key) on an ally next to you.</p>
+
+<p class=Item style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:.5in;margin-bottom:.0001pt'><span style='font-family:Symbol'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>5: Define alliance behavior with “alt+c”. Choose how to respond to
+alliance requests (accept all, reject all, or interactively prompt). Choose how
+to change leadership (always be leader, always be follower, or toggle with
+whoever you use “C” command on). Can turn on stereoscopic 3D graphics with this
+command too.</p>
+
+<p class=Item style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:.5in;margin-bottom:.0001pt'><span style='font-family:Symbol'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>6: Tributes have different and customizable heights, that can be
+changed in the customize tribute command (single quote ‘ key).</p>
+
+<p class=Item style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:.5in;margin-bottom:.0001pt'><span style='font-family:Symbol'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>7: Option to end an alliance without attacking, by using the
+propose alliance command (“ctrl+c” key) on an existing ally.</p>
+
+<p class=Item style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:.5in;margin-bottom:.0001pt'><span style='font-family:Symbol'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>8: AI tributes may occasionally backstab allies, especially if
+the ally is weak and effectively dead weight. Beware, as before AI tributes
+would only turn on allies once all enemies were dead.</p>
+
+<p class=Item style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:.5in;margin-bottom:.0001pt'><span style='font-family:Symbol'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>9: Fourteen new game settings available in the all settings
+command (“;” key).</p>
+
+<p class=Item style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:.5in;margin-bottom:.0001pt'><span style='font-family:Symbol'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>10: The 12 districts arena with the arena divided into 12 wedges
+of different terrains is now embedded in the script, instead of in an external
+bitmap file. This arena may be manually selected by entering “X” in the arena
+landscape command (“Ctrl+Del” key), and may be automatically selected when
+showing random arenas.</p>
+
+<p class=A>&nbsp;</p>
+
+<div style='border:none;border-top:solid windowtext 4.5pt;padding:1.0pt 0in 0in 0in'>
+
+<p class=Section><a name=bug>BUG FIXES</a></p>
+
+</div>
+
+<p class=A>A list of bugs and other problems in Daedalus 3.1, all of which have
+been fixed in Daedalus 3.2:</p>
+
+<p class=A><span class=P>1. Eller’s algorithm crash:</span> Creating an Eller’s
+algorithm Maze when the horizontal passage size was more than 32768 cells
+across would corrupt memory and often crash.</p>
+
+<p class=A><span class=P>2. Nested fractal bug:</span> Creating a nested
+fractal Maze with the Maze Settings Nesting Level set to 1, wouldn’t set the
+lower left and upper right wall corners of the Maze.</p>
+
+<p class=A><span class=P>3. Tweak passage bug:</span> The Tweak Passages
+command would fail to adjust all the cells it could, if the Maze had a
+horizontal passage cell size of exactly 4142982 (or a multiple of it). Yes,
+this is extremely minor and shows how subtle software bugs can be! :-)</p>
+
+<p class=A><span class=P>4. Full screen error:</span> Some versions of Windows
+don’t support entering full screen mode, at least not unless the program is
+running as Administrator or with elevated privileges. That’s not a bug, however
+what was a bug was that when the Size Window Full Screen command failed, the
+program wouldn’t display an error message. Now an error is displayed, with the
+suggestion of running Daedalus with higher permissions.</p>
+
+<p class=A><span class=P>5. Inside fog display:</span> In the perspective
+inside view, fog would occasionally fail to be applied to the top of a block
+that’s being viewed edge on so it’s one pixel high, causing it to show up as a
+bright line as if the fog weren’t present.</p>
+
+<p class=A><span class=P>6. Inside colored fog display:</span> If the inside
+Fog Color was set to something other than black and white, then monochrome mask
+bitmaps would display incorrectly, since they would only apply black or white
+etching, and would therefore show up even in the distance when they should have
+been fully obscured by the fog color.</p>
+
+<p class=A><span class=P>7. Inside elevated texture display:</span> In the
+perspective inside view, solid color textures wouldn’t be applied to the sides
+of elevated ground cells. Only monochrome etchings would display on them.</p>
+
+<p class=A><span class=P>8. Hunger Games fixes:</span> The “Hunger Games”
+script has a number of fixes, including:</p>
+
+<p class=Item style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:.5in;margin-bottom:.0001pt'><span style='font-family:Symbol'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>1: Computer tributes would sometimes get in a loop continually
+switching between a Club (needed for swimming) and a better damage launcher
+(such as a Slingshot) in deep water.</p>
+
+<p class=Item style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:.5in;margin-bottom:.0001pt'><span style='font-family:Symbol'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>2: Moving while wearing a parachute would descend a bit as
+expected, but would also display an incorrect message about falling all the way
+to the ground.</p>
+
+<p class=Item style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:.5in;margin-bottom:.0001pt'><span style='font-family:Symbol'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>3: Replacing parachute in midair with a different worn item
+(instead of just removing the parachute) wouldn’t cause your tribute fall to
+the ground.</p>
+
+<p class=Item style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:.5in;margin-bottom:.0001pt'><span style='font-family:Symbol'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>4: When a computer tribute is entangled in a Net, frees another
+from a Net, or attempts to free themselves from a Net, those events would be
+displayed in black text. Instead they should be gray text since they’re minor
+tribute activities that don’t involve the player.</p>
+
+<p class=Item style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:.5in;margin-bottom:.0001pt'><span style='font-family:Symbol'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>5: Replacing a worn item with a different worn item will now
+display that the original item was removed. The old text could make players
+incorrectly think that they can wear more than one item at a time.</p>
+
+<p class=Item style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:.5in;margin-bottom:.0001pt'><span style='font-family:Symbol'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>6: Messages about other tributes taking starvation damage would
+sometimes be broadcast across the entire arena, instead of just within your
+listen radius.</p>
+
+<p class=Item style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:.5in;margin-bottom:.0001pt'><span style='font-family:Symbol'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>7: You can now receive sponsor gifts if you have any inventory
+slot free. Before you would only receive sponsor gifts if your bottom inventory
+slot was free, requiring inventory shuffling if you wanted to receive
+something.</p>
+
+<p class=Item style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:.5in;margin-bottom:.0001pt'><span style='font-family:Symbol'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>8: When entangled in a Net, wielding a Net would do 5 damage the
+ropes. Nets now only do 1 damage to ropes, the same as if you were barehanded.</p>
+
+<p class=A>&nbsp;</p>
+
+<div style='border:none;border-top:solid windowtext 4.5pt;padding:1.0pt 0in 0in 0in'>
+
+<p class=Section><a name=script>SCRIPTING ADDITIONS</a></p>
+
+</div>
+
+<p class=A>A list of new operations, variables, and functions added to the
+Daedalus scripting language. This only affects those who write their own macros
+or scripts, and should be ignored by everybody else:</p>
+
+<p class=Section2>********************  Operations  ********************</p>
+
+<p class=A><span class=N>SavePicture &lt;file&gt;:</span> Saves the wireframe
+image in memory to a Windows metafile in the string &lt;file&gt;. This accesses
+the functionality of the “Draw / Picture File / Save Wireframe Picture...”
+command without bringing up a dialog.</p>
+
+<p class=A><span class=N>SaveSolids &lt;file&gt;:</span> Generates the “solids.dp”
+file that’s part of the Daedalus distribution, and saves it to a file. In
+earlier versions of the program, the source file to generate this file needed
+to be compiled separately.</p>
+
+<p class=A><span class=N>Embed:</span> Similar to EmbedMacro, this allows a
+command line to be spread over multiple lines. The actual command line will be embedded
+in the current Daedalus script file in the following lines, up until the next
+blank line. That allows a long command line be spread across multiple lines,
+which is more readable. Within each line, leading spaces will be removed, so
+indenting can be applied without making the macro itself any longer. This
+should only be run inside a script, and will do nothing outside that context.</p>
+
+<p class=A><span class=N>Sound &lt;file&gt;:</span> Plays a Windows wave format
+sound file (which usually has a .wav extension). The nSoundDelay variable controls
+how the sound is played.</p>
+
+<p class=A><span class=N>TextDraw &lt;string&gt; &lt;x&gt; &lt;y&gt;:</span>
+Draws a string of text on the main monochrome bitmap. The coordinates specify
+the upper left corner of the text’s bounding box. The font used is specified by
+the TextFont operation.</p>
+
+<p class=A><span class=N>TextFont &lt;font&gt; &lt;size&gt; &lt;weight&gt;:</span>
+Specifies the font to use in the TextDraw operation, along with its size and
+weight. The size indicates the height in pixels, and the weight is the
+boldness, in which 0 is default, 400 is normal, and higher numbers like 700 are
+bold. Unlike the text abilities in the Turtle operation, this allows access to installed
+system fonts.</p>
+
+<p class=A><span class=N>FractalPart3 &lt;x&gt; &lt;y&gt; &lt;z&gt; &lt;w&gt;
+&lt;num&gt;:</span> Like the Fractal Maze creation command for 3D Mazes,
+however this creates just a subsection of the 3D fractal Maze instead of the
+whole thing, allowing viewing of Mazes too large to fit in a bitmap. This
+creates the section at coordinates &lt;x&gt;, &lt;y&gt;, &lt;z&gt; at depth
+&lt;w&gt;, with the fractal Maze itself defined by random number seed
+&lt;num&gt;. This actually creates a 2x2x2 grid of sections surrounding the
+coordinates. Afterward @x will be set to the horizontal cell location of the
+entrance, and @y the horizontal location of the exit. This is used by the
+“World’s Largest Maze” script to create the section of the giant 3D virtual
+Maze nearest your location.</p>
+
+<p class=Section2>********************  Variables  ********************</p>
+
+<p class=A><span class=P>fTextureBlend:</span> When set, solid color textures
+in the perspective inside view (whether opaque or semitransparent) will be
+blended with the color of the block behind the texture. This is used in the
+“Hunger Games” script to for example have trees of many different colorings,
+without having to have a separate tree texture for each color.</p>
+
+<p class=A><span class=P>nSoundDelay:</span> Controls the behavior of sounds
+played with the Sound operation. If negative, sounds are played synchronously,
+and the program will pause until the sound finishes. Otherwise, sounds are
+played asynchronously, and the program will continue running while the sound
+plays. If a sound is already playing when the Sound operation is called again,
+then the old sound will be interrupted and stopped when the new sound begins.
+If positive, this variable indicates how long in milliseconds the old sound
+should be allowed to play before the new sound interrupts it. For example, if
+set to 3000, and a sound was started one second ago, then the program will
+pause for two seconds before interrupting the old sound. This ensures a sound
+can play for a minimum length of time before the next sound starts.</p>
+
+<p class=A><span class=P>fNoExit:</span> When set, the program won’t exit. Attempting
+to exit will display a warning message. In the command line only version of the
+program, after running the initial command line, the program will continually
+prompt in the console for additional command lines to run.</p>
+
+<p class=A>&nbsp;</p>
+
+<div style='border:none;border-top:solid windowtext 4.5pt;padding:1.0pt 0in 0in 0in'>
+
+<p class=Section><a name=license>LICENSE</a></p>
+
+</div>
+
+<p class=A>IMPORTANT NOTICE: Daedalus and all Maze generation and general
+graphics routines used in this program are Copyright (C) 1998-2016 by Walter D.
+Pullen. Permission is granted to freely use, modify, and distribute these
+routines provided these credits and notices remain unmodified with any altered
+or distributed versions of the program. The user does have all rights to Mazes
+and other graphic output they make in Daedalus, like a novel created in a word
+processor.</p>
+
+<p class=A>More formally: This program is free software; you can redistribute
+it and/or modify it under the terms of the GNU General Public License as
+published by the Free Software Foundation; either version 2 of the License, or
+(at your option) any later version. This program is distributed in the hope
+that it will be useful and inspiring, but WITHOUT ANY WARRANTY; without even
+the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+See the GNU General Public License for more details, a copy of which is in the
+LICENSE.HTM included with Daedalus, and at <a href="http://www.gnu.org/">http://www.gnu.org</a></p>
+
+<p class=Fixed><span style='background:silver'>O*O*O*O*O*O*O*O*O*O*O*O*O*O*O*O*O*O*O*O*O*O*O*O*O*O*O*O*O*O*O*O*O*O*O*O*O*O</span></p>
+
+<p class=Fixed><span style='background:silver'>*</span>       Walter D.
+&quot;Cruiser1&quot; Pullen :)       !       <a href="mailto:Astara@msn.com">Astara@msn.com</a>
+      <span style='background:silver'>*</span></p>
+
+<p class=Fixed><span style='background:silver'>O</span> Find your way through
+life's Maze: <a href="http://www.astrolog.org/labyrnth.htm">http://www.astrolog.org/labyrnth.htm</a>
+<span style='background:silver'>O</span></p>
+
+<p class=Fixed><span style='background:silver'>*</span> &quot;Who am I, What am
+I?  As I am, I am not.  But as we are, I AM.  And to <span style='background:
+silver'>*</span></p>
+
+<p class=Fixed><span style='background:silver'>O</span> you my creation, My
+Perfect Love is your Perfect Freedom. And I will be <span style='background:
+silver'>O</span></p>
+
+<p class=Fixed><span style='background:silver'>*</span> with you forever and
+ever, until the End, and then forever more.&quot; - GOD <span style='background:
+silver'>*</span></p>
+
+<p class=Fixed><span style='background:silver'>O*O*O*O*O*O*O*O*O*O*O*O*O*O*O*O*O*O*O*O*O*O*O*O*O*O*O*O*O*O*O*O*O*O*O*O*O*O</span></p>
+
+</div>
+
+</body>
+
+</html>
