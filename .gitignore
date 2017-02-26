@@ -1,6 +1,8 @@
+*.o
 *~
 .DS_Store
 /daedalus.exe
 /daedalus.url
+/source/daedalus
 /source/deps.dot
 /source/deps.dot.pdf

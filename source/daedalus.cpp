@@ -680,7 +680,7 @@ CMaz *BitmapGetMask(int ib)
     if (pbT == NULL)
       return NULL;
     for (iT = ws.cbMask; iT <= ib; iT++)
-      pbT[iT].CMaz::CMaz();
+      new (&pbT[iT]) CMaz();
     if (ws.rgbMask != NULL)
       DeallocateP(ws.rgbMask);
     ws.rgbMask = pbT;
@@ -717,7 +717,7 @@ CMazK *ColmapGetTexture(int ic)
     if (pcT == NULL)
       return NULL;
     for (iT = ws.ccTexture; iT <= ic; iT++)
-      pcT[iT].CMazK::CMazK();
+      new (&pcT[iT]) CMazK();
     if (ws.rgcTexture != NULL)
       DeallocateP(ws.rgcTexture);
     ws.rgcTexture = pcT;
@@ -2906,7 +2906,7 @@ LDone:
 
 // Starting point for the command line version of the program.
 
-void main(int argc, char *argv[])
+int main(int argc, char *argv[])
 {
   char szLine[cchSzOpr], *pch = szLine;
   int iarg = 1;

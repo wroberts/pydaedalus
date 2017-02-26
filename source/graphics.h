@@ -27,6 +27,8 @@
 ** Last code change: 8/31/2016.
 */
 
+#include <new>
+
 /*
 ******************************************************************************
 ** Constants
@@ -120,9 +122,9 @@ public:
   int m_z3;    // 3D bitmap Z size
   byte *m_rgb; // Bytes of bitmap bits
 
-  INLINE CMap::CMap()
+  INLINE CMap()
     { Init(); }
-  INLINE CMap::~CMap()
+  INLINE ~CMap()
     { Free(); }
   INLINE void Init()
     { m_x = m_y = 0; m_rgb = NULL; }
@@ -266,7 +268,7 @@ public:
   // Core methods each bitmap type implements
   virtual CMap *Create() OVERRIDE
     { CMon *b; b = (CMon *)PAllocate(sizeof(CMon));
-    if (b == NULL) return NULL; (*b).CMon::CMon(); return (CMap *)b; }
+    if (b == NULL) return NULL; new (b) CMon(); return (CMap *)b; }
   virtual void Destroy() OVERRIDE
     { DeallocateP(this); }
   virtual flag FTriangle(int x1, int y1, int x2, int y2, int x3, int y3,

@@ -27,12 +27,19 @@
 ** Last code change: 8/31/2016.
 */
 
+#include <cstdlib>
+#include <cstdint>
+using namespace std;
+#define __int64 long long
+//#define sprintf_s snprintf
+//#define fscanf_s vfscanf
+
 // Compile options
 
 #pragma warning(disable:4250) // class inherits member via dominance
-#define WIN
+//#define WIN
 #define ASSERT
-#define SECURECRT
+//#define SECURECRT
 #ifdef _DEBUG
 #define DEBUG
 #endif
@@ -209,7 +216,7 @@ enum _printmode {
 
 #define CONST const
 #define OVERRIDE override
-#define INLINE __forceinline
+#define INLINE inline
 
 typedef unsigned char byte;
 typedef unsigned short word;

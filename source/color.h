@@ -27,6 +27,8 @@
 ** Last code change: 8/31/2016.
 */
 
+#include <new>
+
 /*
 ******************************************************************************
 ** Constants
@@ -166,7 +168,7 @@ public:
   // Core methods each bitmap type implements
   virtual CMap *Create() OVERRIDE
     { CCol *c; c = (CCol *)PAllocate(sizeof(CCol));
-    if (c == NULL) return NULL; (*c).CCol::CCol(); return (CMap *)c; }
+    if (c == NULL) return NULL; new (c) CCol(); return (CMap *)c; }
   virtual void Destroy() OVERRIDE
     { DeallocateP(this); };
   virtual void Set0(int x, int y) OVERRIDE

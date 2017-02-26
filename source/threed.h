@@ -27,6 +27,8 @@
 ** Last code change: 8/31/2016.
 */
 
+#include <new>
+
 /*
 ******************************************************************************
 ** Constants
@@ -128,7 +130,7 @@ class CMon3 : virtual public CMap3, virtual public CMon // 3D mono bitmap
 public:
   virtual CMap3 *Create3() OVERRIDE
     { CMon3 *b; b = (CMon3 *)PAllocate(sizeof(CMon3));
-    if (b == NULL) return NULL; (*b).CMon3::CMon3(); return (CMap3 *)b; }
+    if (b == NULL) return NULL; new (b) CMon3(); return (CMap3 *)b; }
   virtual void Destroy3() OVERRIDE
     { DeallocateP(this); };
 
@@ -141,7 +143,7 @@ class CCol3 : virtual public CMap3, virtual public CCol // 3D color bitmap
 public:
   virtual CMap3 *Create3() OVERRIDE
     { CCol3 *c; c = (CCol3 *)PAllocate(sizeof(CCol3));
-    if (c == NULL) return NULL; (*c).CCol3::CCol3(); return (CMap3 *)c; }
+    if (c == NULL) return NULL; new (c) CCol3(); return (CMap3 *)c; }
   virtual void Destroy3() OVERRIDE
     { DeallocateP(this); };
 
