@@ -191,6 +191,7 @@ cdef class Maze(object):
         '''Destructor.'''
         if self._maze is not NULL:
             cpp_Destructor(self._maze)
+            self._maze = NULL
 
     def __len__(self):
         return self.height
