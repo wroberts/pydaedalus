@@ -168,9 +168,8 @@ cdef class Maze(object):
         '''
         Maze constructor.
 
-        Arguments:
-        - `width`: odd integer, 3 or greater
-        - `height`: odd integer, 3 or greater
+        :param int width: Odd integer, 3 or greater
+        :param int height: Odd integer, 3 or greater
         '''
         if width < 0:
             raise ValueError('negative width')
@@ -232,6 +231,11 @@ cdef class Maze(object):
         '''
         S.index(value) -> integer -- return first index of value.  Raises
         ValueError if the value is not present.
+
+        :param value: A value to search for in this Maze
+        :return: The index of the location in this Maze where `value` is first found
+        :rtype: int
+        :raises ValueError: If `value` is not found in this Maze
         '''
         for i, v in enumerate(self):
             if v == value:
@@ -242,6 +246,10 @@ cdef class Maze(object):
         '''
         S.count(value) -> integer -- return number of occurrences of
         value.
+
+        :param value: A value to count in this Maze
+        :return: The number of times `value` is found in this Maze.
+        :rtype: int
         '''
         return sum(1 for v in self if v == value)
 
@@ -264,9 +272,10 @@ cdef class Maze(object):
         Gets the monochrome pixel value at the coordinate (x,y) on this
         Maze.
 
-        Arguments:
-        - `x`:
-        - `y`:
+        :param int x: The x-coordinate of the pixel to get
+        :param int y: The y-coordinate of the pixel to get
+        :return: True if the given pixel is on, False if it is off.
+        :rtype: bool
         '''
         if x < 0 or self._width <= x:
             raise IndexError('x coordinate out of range')
@@ -287,6 +296,14 @@ cdef class Maze(object):
 
         Create a new perfect Maze in the bitmap using the Hunt and
         Kill algorithm, by carving passages.
+
+        :param bool fRiver: defaults to True
+        :param bool fRiverEdge: defaults to True
+        :param bool fRiverFlow: defaults to True
+        :param bool fSection: defaults to False
+        :param bool fTreeWall: defaults to False
+        :param int nEntrancePos: defaults to ENTRANCE_RANDOM
+        :rtype: None
         '''
         if not cpp_CreateMazePerfect(self._maze,
                                      fRiver,
@@ -306,6 +323,11 @@ cdef class Maze(object):
 
         Create a new perfect Maze in the bitmap using the Hunt and
         Kill algorithm, by adding walls.
+
+        :param bool fRiver: defaults to True
+        :param bool fSection: defaults to False
+        :param int nEntrancePos: defaults to ENTRANCE_RANDOM
+        :rtype: None
         '''
         if not cpp_CreateMazePerfect2(self._maze,
                                       fRiver,
@@ -321,6 +343,10 @@ cdef class Maze(object):
 
         Create a new braid Maze in the bitmap, i.e. a Maze without any
         dead ends, using a wall adding algorithm.
+
+        :param bool fSection: defaults to False
+        :param int nEntrancePos: defaults to ENTRANCE_RANDOM
+        :rtype: None
         '''
         if not cpp_CreateMazeBraid(self._maze,
                                    fSection,
@@ -337,6 +363,11 @@ cdef class Maze(object):
         Create a new braid Maze in the bitmap using a binary
         algorithm, i.e.  starting with a template based on the Tilt
         Maze pattern.
+
+        :param bool fSection: defaults to False
+        :param bool fTiltDiamond: defaults to False
+        :param int nEntrancePos: defaults to ENTRANCE_RANDOM
+        :rtype: None
         '''
         if not cpp_CreateMazeBraidTilt(self._maze,
                                        fSection,
@@ -355,6 +386,13 @@ cdef class Maze(object):
 
         Create a new spiral Maze in the bitmap, formed of interlocking
         spirals.
+
+        :param int cRandomAdd: defaults to 0
+        :param int cSpiral: defaults to 15
+        :param int cSpiralWall: defaults to 15
+        :param bool fSection: defaults to False
+        :param int nEntrancePos: defaults to ENTRANCE_RANDOM
+        :rtype: None
         '''
         if not cpp_CreateMazeSpiral(self._maze,
                                     cRandomAdd,
@@ -373,6 +411,11 @@ cdef class Maze(object):
 
         Create a Maze with a diagonal bias, where many walls look like
         stairs.
+
+        :param int cRandomAdd: defaults to 0
+        :param bool fSection: defaults to False
+        :param int nEntrancePos: defaults to ENTRANCE_RANDOM
+        :rtype: None
         '''
         if not cpp_CreateMazeDiagonal(self._maze,
                                       cRandomAdd,
@@ -388,6 +431,10 @@ cdef class Maze(object):
 
         Create a new perfect Maze in the bitmap using the Recursive
         Backtracking algorithm. This carves passages.
+
+        :param bool fSection: defaults to False
+        :param int nEntrancePos: defaults to ENTRANCE_RANDOM
+        :rtype: None
         '''
         if not cpp_CreateMazeRecursive(self._maze,
                                        fSection,
@@ -404,6 +451,11 @@ cdef class Maze(object):
         Create a new perfect Maze in the bitmap using a modified
         version of Prim's algorithm. This can carve passages or add
         walls.
+
+        :param bool fSection: defaults to False
+        :param bool fTreeWall: defaults to False
+        :param int nEntrancePos: defaults to ENTRANCE_RANDOM
+        :rtype: None
         '''
         if not cpp_CreateMazePrim(self._maze,
                                   fSection,
@@ -422,6 +474,12 @@ cdef class Maze(object):
         Create a new perfect Maze in the bitmap using full or
         simplified versions of Prim's algorithm. This can carve
         passages or add walls.
+
+        :param bool fSection: defaults to False
+        :param bool fTreeRandom: defaults to True
+        :param bool fTreeWall: defaults to False
+        :param int nEntrancePos: defaults to ENTRANCE_RANDOM
+        :rtype: None
         '''
         if not cpp_CreateMazePrim2(self._maze,
                                    fSection,
@@ -440,6 +498,12 @@ cdef class Maze(object):
 
         Create a new perfect Maze in the bitmap using Kruskal's
         algorithm. This can carve passages or add walls.
+
+        :param bool fKruskalPic: defaults to False
+        :param bool fSection: defaults to False
+        :param bool fTreeWall: defaults to False
+        :param int nEntrancePos: defaults to ENTRANCE_RANDOM
+        :rtype: None
         '''
         # TODO
         cdef CCol *cpp_c2 = NULL
@@ -462,6 +526,13 @@ cdef class Maze(object):
 
         Create a new perfect Maze in the bitmap using the Growing Tree
         algorithm.  This can carve passages or add walls.
+
+        :param bool fSection: defaults to False
+        :param bool fTreeRandom: defaults to True
+        :param bool fTreeWall: defaults to False
+        :param int nEntrancePos: defaults to ENTRANCE_RANDOM
+        :param int nTreeRiver: defaults to 10
+        :rtype: None
         '''
         if not cpp_CreateMazeTree(self._maze,
                                   fSection,
@@ -485,6 +556,16 @@ cdef class Maze(object):
 
         Create a new perfect Maze in the bitmap using the Growing
         Forest algorithm.  This can carve passages or add walls.
+
+        :param bool fRiverFlow: defaults to True
+        :param bool fSection: defaults to False
+        :param bool fTreeRandom: defaults to True
+        :param bool fTreeWall: defaults to False
+        :param int nEntrancePos: defaults to ENTRANCE_RANDOM
+        :param int nForsAdd: defaults to -100
+        :param int nForsInit: defaults to 1
+        :param int nTreeRiver: defaults to 10
+        :rtype: None
         '''
         if not cpp_CreateMazeForest(self._maze, fWall,
                                     fRiverFlow,
@@ -508,6 +589,11 @@ cdef class Maze(object):
         Aldous-Broder algorithm.  This can carve passages or add
         walls. This is the simplest unbiased algorithm for creating
         perfect Mazes.
+
+        :param bool fSection: defaults to False
+        :param bool fTreeWall: defaults to False
+        :param int nEntrancePos: defaults to ENTRANCE_RANDOM
+        :rtype: None
         '''
         if not cpp_CreateMazeAldousBroder(self._maze,
                                           fSection,
@@ -527,6 +613,11 @@ cdef class Maze(object):
         Aldous-Broder algorithm, this generates all possible Mazes
         with equal probability, however this runs about five times
         faster on average.
+
+        :param bool fSection: defaults to False
+        :param bool fTreeWall: defaults to False
+        :param int nEntrancePos: defaults to ENTRANCE_RANDOM
+        :rtype: None
         '''
         if not cpp_CreateMazeWilson(self._maze,
                                     fSection,
@@ -545,6 +636,11 @@ cdef class Maze(object):
         algorithm. This can carve passages or add walls. This is the
         fastest algorithm for creating general perfect Mazes, and runs
         over twice as fast as any of the others.
+
+        :param bool fSection: defaults to False
+        :param bool fTreeWall: defaults to False
+        :param int nEntrancePos: defaults to ENTRANCE_RANDOM
+        :rtype: None
         '''
         if not cpp_CreateMazeEller(self._maze,
                                    fSection,
@@ -560,6 +656,10 @@ cdef class Maze(object):
 
         Create a new braid Maze in a bitmap using a variation of
         Eller's Algorithm.
+
+        :param bool fSection: defaults to False
+        :param int nEntrancePos: defaults to ENTRANCE_RANDOM
+        :rtype: None
         '''
         if not cpp_CreateMazeBraidEller(self._maze,
                                         fSection,
@@ -575,6 +675,10 @@ cdef class Maze(object):
         Create a new perfect Maze in the bitmap using recursive
         division. This always adds walls, recursively dividing the
         Maze into smaller rectangles.
+
+        :param bool fSection: defaults to False
+        :param int nEntrancePos: defaults to ENTRANCE_RANDOM
+        :rtype: None
         '''
         if not cpp_CreateMazeDivision(self._maze,
                                       fSection,
@@ -593,6 +697,12 @@ cdef class Maze(object):
         algorithm.  This can carve passages or add walls. This is the
         simplest algorithm of any type for creating perfect
         Mazes.
+
+        :param int cRandomAdd: defaults to 0
+        :param bool fSection: defaults to False
+        :param bool fTreeWall: defaults to False
+        :param int nEntrancePos: defaults to ENTRANCE_RANDOM
+        :rtype: None
         '''
         if not cpp_CreateMazeBinary(self._maze,
                                     cRandomAdd,
@@ -610,6 +720,11 @@ cdef class Maze(object):
 
         Create a new perfect Maze in the bitmap using the Sidewinder
         algorithm.  This can carve passages or add walls.
+
+        :param bool fSection: defaults to False
+        :param bool fTreeWall: defaults to False
+        :param int nEntrancePos: defaults to ENTRANCE_RANDOM
+        :rtype: None
         '''
         if not cpp_CreateMazeSidewinder(self._maze,
                                         fSection,
@@ -621,9 +736,9 @@ cdef class Maze(object):
         '''
         Truncates or pads out this Maze to attain the given size.
 
-        Arguments:
-        - `width`: odd integer, 3 or greater
-        - `height`: odd integer, 3 or greater
+        :param int width: Odd integer, 3 or greater
+        :param int height: Odd integer, 3 or greater
+        :rtype: None
         '''
         if width < 0:
             raise ValueError('negative width')
@@ -643,8 +758,8 @@ cdef class Maze(object):
         '''
         Helper method to handle return values from the Save* methods.
 
-        Arguments:
-        - `rv`: return value
+        :param int rv: the value returned from the Save* method.
+        :rtype: None
         '''
         if rv == SAVE_NO_MAZE_ERROR:
             raise MazeError('Maze not properly constructed.')
@@ -663,10 +778,10 @@ cdef class Maze(object):
         '''
         Saves this Maze object as a bitmap to the given path.
 
-        Arguments:
-        - `filename`:
-        - `kvOn`: defaults to white
-        - `kvOff`: defaults to black
+        :param str filename: the name of the file to write the bitmap to
+        :param int kvOn: defaults to white (COLOR_WHITE)
+        :param int kvOff: defaults to black (COLOR_BLACK)
+        :rtype: None
         '''
         retval = cpp_SaveBitmap(self._maze, filename, kvOn, kvOff)
         self._handle_save_retval(retval)
@@ -676,10 +791,11 @@ cdef class Maze(object):
         Saves this Maze object formatted in ASCII text to the given path.
 
         Arguments:
-        - `filename`:
-        - `fTextClip`: defaults to True
-        - `fLineChar`: defaults to False
-        - `fTextTab`: defaults to False
+        :param filename: the name of the file to write the ASCII representation to
+        :param bool fTextClip: defaults to True
+        :param bool fLineChar: defaults to False
+        :param bool fTextTab: defaults to False
+        :rtype: None
         '''
         retval =  cpp_SaveText(self._maze, filename, fTextClip, fLineChar, fTextTab)
         self._handle_save_retval(retval)
