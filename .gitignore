@@ -9,11 +9,11 @@
 /daedalus/_maze.so
 /daedalus/main
 /daedalus/pdconfig.h
-/daedalus/src/deps.dot
-/daedalus/src/deps.dot.pdf
 /daedalus/src/test
 /daedalus/src/test.bmp
 /daedalus/src/test.txt
 /daedalus/test.bmp
 /daedalus/test.txt
 /pydaedalus.egg-info/
+/tools/deps.dot
+/tools/deps.dot.pdf

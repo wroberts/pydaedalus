@@ -12,7 +12,7 @@ file.
 import os
 import glob
 
-filenames = glob.glob('*.cpp') + glob.glob('*.h')
+full_paths = glob.glob('../daedalus/src/*.cpp') + glob.glob('../daedalus/src/*.h')
 
 def get_includes(filename):
     with open(filename) as input_file:
@@ -24,8 +24,9 @@ def get_includes(filename):
 
 # make graph
 graph = {}
-for filename in filenames:
-    graph[filename] = list(get_includes(filename))
+for full_path in full_paths:
+    filename = os.path.basename(full_path)
+    graph[filename] = list(get_includes(full_path))
 
 # write to DOT file
 # https://pypi.python.org/pypi/graphviz
