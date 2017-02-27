@@ -222,6 +222,9 @@ cdef class Maze(object):
         '''
         Overwrites the contents of this Maze to create a perfect maze
         using the Hunt and Kill algorithm.
+
+        Create a new perfect Maze in the bitmap using the Hunt and
+        Kill algorithm, by carving passages.
         '''
         if not cpp_CreateMazePerfect(self._maze,
                                      fRiver,
@@ -238,6 +241,9 @@ cdef class Maze(object):
                         nEntrancePos=epRandom):
         '''
         Overwrites the contents of this Maze to create a Perfect2 maze.
+
+        Create a new perfect Maze in the bitmap using the Hunt and
+        Kill algorithm, by adding walls.
         '''
         if not cpp_CreateMazePerfect2(self._maze,
                                       fRiver,
@@ -250,6 +256,9 @@ cdef class Maze(object):
                      nEntrancePos=epRandom):
         '''
         Overwrites the contents of this Maze to create a Braid maze.
+
+        Create a new braid Maze in the bitmap, i.e. a Maze without any
+        dead ends, using a wall adding algorithm.
         '''
         if not cpp_CreateMazeBraid(self._maze,
                                    fSection,
@@ -262,11 +271,15 @@ cdef class Maze(object):
                           nEntrancePos=epRandom):
         '''
         Overwrites the contents of this Maze to create a BraidTilt maze.
+
+        Create a new braid Maze in the bitmap using a binary
+        algorithm, i.e.  starting with a template based on the Tilt
+        Maze pattern.
         '''
         if not cpp_CreateMazeBraidTilt(self._maze,
-                                    fSection,
-                                    fTiltDiamond,
-                                    nEntrancePos):
+                                       fSection,
+                                       fTiltDiamond,
+                                       nEntrancePos):
             raise MazeError('Could not create BraidTilt Maze.')
 
     def create_spiral(self,
@@ -277,6 +290,9 @@ cdef class Maze(object):
                       nEntrancePos=epRandom):
         '''
         Overwrites the contents of this Maze to create a Spiral maze.
+
+        Create a new spiral Maze in the bitmap, formed of interlocking
+        spirals.
         '''
         if not cpp_CreateMazeSpiral(self._maze,
                                     cRandomAdd,
@@ -292,6 +308,9 @@ cdef class Maze(object):
                         nEntrancePos=epRandom):
         '''
         Overwrites the contents of this Maze to create a Diagonal maze.
+
+        Create a Maze with a diagonal bias, where many walls look like
+        stairs.
         '''
         if not cpp_CreateMazeDiagonal(self._maze,
                                       cRandomAdd,
@@ -304,6 +323,9 @@ cdef class Maze(object):
                          nEntrancePos=epRandom):
         '''
         Overwrites the contents of this Maze to create a Recursive maze.
+
+        Create a new perfect Maze in the bitmap using the Recursive
+        Backtracking algorithm. This carves passages.
         '''
         if not cpp_CreateMazeRecursive(self._maze,
                                        fSection,
@@ -316,6 +338,10 @@ cdef class Maze(object):
                     nEntrancePos=epRandom):
         '''
         Overwrites the contents of this Maze to create a Prim maze.
+
+        Create a new perfect Maze in the bitmap using a modified
+        version of Prim's algorithm. This can carve passages or add
+        walls.
         '''
         if not cpp_CreateMazePrim(self._maze,
                                   fSection,
@@ -330,6 +356,10 @@ cdef class Maze(object):
                      nEntrancePos=epRandom):
         '''
         Overwrites the contents of this Maze to create a Prim2 maze.
+
+        Create a new perfect Maze in the bitmap using full or
+        simplified versions of Prim's algorithm. This can carve
+        passages or add walls.
         '''
         if not cpp_CreateMazePrim2(self._maze,
                                    fSection,
@@ -345,6 +375,9 @@ cdef class Maze(object):
                        nEntrancePos=epRandom):
         '''
         Overwrites the contents of this Maze to create a Kruskal maze.
+
+        Create a new perfect Maze in the bitmap using Kruskal's
+        algorithm. This can carve passages or add walls.
         '''
         # TODO
         cdef CCol *cpp_c2 = NULL
@@ -364,6 +397,9 @@ cdef class Maze(object):
                     nTreeRiver=10):
         '''
         Overwrites the contents of this Maze to create a Tree maze.
+
+        Create a new perfect Maze in the bitmap using the Growing Tree
+        algorithm.  This can carve passages or add walls.
         '''
         if not cpp_CreateMazeTree(self._maze,
                                   fSection,
@@ -384,6 +420,9 @@ cdef class Maze(object):
                       nTreeRiver=10):
         '''
         Overwrites the contents of this Maze to create a Forest maze.
+
+        Create a new perfect Maze in the bitmap using the Growing
+        Forest algorithm.  This can carve passages or add walls.
         '''
         if not cpp_CreateMazeForest(self._maze, fWall,
                                     fRiverFlow,
@@ -402,6 +441,11 @@ cdef class Maze(object):
                              nEntrancePos=epRandom):
         '''
         Overwrites the contents of this Maze to create a AldousBroder maze.
+
+        Create a new perfect Maze in the bitmap using the
+        Aldous-Broder algorithm.  This can carve passages or add
+        walls. This is the simplest unbiased algorithm for creating
+        perfect Mazes.
         '''
         if not cpp_CreateMazeAldousBroder(self._maze,
                                           fSection,
@@ -415,6 +459,12 @@ cdef class Maze(object):
                       nEntrancePos=epRandom):
         '''
         Overwrites the contents of this Maze to create a Wilson maze.
+
+        Create a new perfect Maze in the bitmap using Wilson's
+        algorithm. This can carve passages or add walls. Like the
+        Aldous-Broder algorithm, this generates all possible Mazes
+        with equal probability, however this runs about five times
+        faster on average.
         '''
         if not cpp_CreateMazeWilson(self._maze,
                                     fSection,
@@ -428,6 +478,11 @@ cdef class Maze(object):
                      nEntrancePos=epRandom):
         '''
         Overwrites the contents of this Maze to create a Eller maze.
+
+        Create a new perfect Maze in the bitmap using Eller's
+        algorithm. This can carve passages or add walls. This is the
+        fastest algorithm for creating general perfect Mazes, and runs
+        over twice as fast as any of the others.
         '''
         if not cpp_CreateMazeEller(self._maze,
                                    fSection,
@@ -440,6 +495,9 @@ cdef class Maze(object):
                            nEntrancePos=epRandom):
         '''
         Overwrites the contents of this Maze to create a BraidEller maze.
+
+        Create a new braid Maze in a bitmap using a variation of
+        Eller's Algorithm.
         '''
         if not cpp_CreateMazeBraidEller(self._maze,
                                         fSection,
@@ -451,6 +509,10 @@ cdef class Maze(object):
                         nEntrancePos=epRandom):
         '''
         Overwrites the contents of this Maze to create a Division maze.
+
+        Create a new perfect Maze in the bitmap using recursive
+        division. This always adds walls, recursively dividing the
+        Maze into smaller rectangles.
         '''
         if not cpp_CreateMazeDivision(self._maze,
                                       fSection,
@@ -464,6 +526,11 @@ cdef class Maze(object):
                       nEntrancePos=epRandom):
         '''
         Overwrites the contents of this Maze to create a Binary maze.
+
+        Create a new perfect Maze in the bitmap using the Binary Tree
+        algorithm.  This can carve passages or add walls. This is the
+        simplest algorithm of any type for creating perfect
+        Mazes.
         '''
         if not cpp_CreateMazeBinary(self._maze,
                                     cRandomAdd,
@@ -478,6 +545,9 @@ cdef class Maze(object):
                           nEntrancePos=epRandom):
         '''
         Overwrites the contents of this Maze to create a Sidewinder maze.
+
+        Create a new perfect Maze in the bitmap using the Sidewinder
+        algorithm.  This can carve passages or add walls.
         '''
         if not cpp_CreateMazeSidewinder(self._maze,
                                         fSection,
