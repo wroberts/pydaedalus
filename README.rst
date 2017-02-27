@@ -18,13 +18,13 @@ Quickstart
 
 ::
 
-    from daedalus import Maze
-    maze = Maze(63, 63)
-    maze.create_perfect()
-    maze.resize(31, 61)
-    maze.create_perfect()
-    maze.save_bitmap('test.bmp')
-    maze.save_text('test.txt')
+    >>> from daedalus import Maze
+    >>> maze = Maze(63, 63)
+    >>> maze.create_perfect()
+    >>> maze.resize(31, 61)
+    >>> maze.create_perfect()
+    >>> maze.save_bitmap('test.bmp')
+    >>> maze.save_text('test.txt')
 
 Notes
 =====
