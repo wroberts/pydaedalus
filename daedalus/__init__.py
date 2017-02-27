@@ -9,4 +9,6 @@ daedalus module.
 '''
 
 from __future__ import absolute_import
-from ._maze import Maze
+from ._maze import (Maze,
+                    COLOR_WHITE, COLOR_BLACK,
+                    ENTRANCE_CORNER, ENTRANCE_MIDDLE, ENTRANCE_BALANCED, ENTRANCE_RANDOM)

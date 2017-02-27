@@ -143,6 +143,16 @@ cdef extern from "wrapper.h":
                      bool fLineChar,
                      bool fTextTab)
 
+# color value constants
+COLOR_WHITE = kvWhite
+COLOR_BLACK = kvBlack
+
+# nEntrancePos enum constants
+ENTRANCE_CORNER   = epCorner
+ENTRANCE_MIDDLE   = epMiddle
+ENTRANCE_BALANCED = epBalanced
+ENTRANCE_RANDOM   = epRandom
+
 class MazeError(Exception):
     '''An error while performing an action on a Maze object.'''
     pass
@@ -270,7 +280,7 @@ cdef class Maze(object):
                        fRiverFlow=True,
                        fSection=False,
                        fTreeWall=False,
-                       nEntrancePos=epRandom):
+                       nEntrancePos=ENTRANCE_RANDOM):
         '''
         Overwrites the contents of this Maze to create a perfect maze
         using the Hunt and Kill algorithm.
@@ -290,7 +300,7 @@ cdef class Maze(object):
     def create_perfect2(self,
                         fRiver=True,
                         fSection=False,
-                        nEntrancePos=epRandom):
+                        nEntrancePos=ENTRANCE_RANDOM):
         '''
         Overwrites the contents of this Maze to create a Perfect2 maze.
 
@@ -305,7 +315,7 @@ cdef class Maze(object):
 
     def create_braid(self,
                      fSection=False,
-                     nEntrancePos=epRandom):
+                     nEntrancePos=ENTRANCE_RANDOM):
         '''
         Overwrites the contents of this Maze to create a Braid maze.
 
@@ -320,7 +330,7 @@ cdef class Maze(object):
     def create_braid_tilt(self,
                           fSection=False,
                           fTiltDiamond=False,
-                          nEntrancePos=epRandom):
+                          nEntrancePos=ENTRANCE_RANDOM):
         '''
         Overwrites the contents of this Maze to create a BraidTilt maze.
 
@@ -339,7 +349,7 @@ cdef class Maze(object):
                       cSpiral=15,
                       cSpiralWall=15,
                       fSection=False,
-                      nEntrancePos=epRandom):
+                      nEntrancePos=ENTRANCE_RANDOM):
         '''
         Overwrites the contents of this Maze to create a Spiral maze.
 
@@ -357,7 +367,7 @@ cdef class Maze(object):
     def create_diagonal(self,
                         cRandomAdd=0,
                         fSection=False,
-                        nEntrancePos=epRandom):
+                        nEntrancePos=ENTRANCE_RANDOM):
         '''
         Overwrites the contents of this Maze to create a Diagonal maze.
 
@@ -372,7 +382,7 @@ cdef class Maze(object):
 
     def create_recursive(self,
                          fSection=False,
-                         nEntrancePos=epRandom):
+                         nEntrancePos=ENTRANCE_RANDOM):
         '''
         Overwrites the contents of this Maze to create a Recursive maze.
 
@@ -387,7 +397,7 @@ cdef class Maze(object):
     def create_prim(self,
                     fSection=False,
                     fTreeWall=False,
-                    nEntrancePos=epRandom):
+                    nEntrancePos=ENTRANCE_RANDOM):
         '''
         Overwrites the contents of this Maze to create a Prim maze.
 
@@ -405,7 +415,7 @@ cdef class Maze(object):
                      fSection=False,
                      fTreeRandom=True,
                      fTreeWall=False,
-                     nEntrancePos=epRandom):
+                     nEntrancePos=ENTRANCE_RANDOM):
         '''
         Overwrites the contents of this Maze to create a Prim2 maze.
 
@@ -424,7 +434,7 @@ cdef class Maze(object):
                        fKruskalPic=False,
                        fSection=False,
                        fTreeWall=False,
-                       nEntrancePos=epRandom):
+                       nEntrancePos=ENTRANCE_RANDOM):
         '''
         Overwrites the contents of this Maze to create a Kruskal maze.
 
@@ -445,7 +455,7 @@ cdef class Maze(object):
                     fSection=False,
                     fTreeRandom=True,
                     fTreeWall=False,
-                    nEntrancePos=epRandom,
+                    nEntrancePos=ENTRANCE_RANDOM,
                     nTreeRiver=10):
         '''
         Overwrites the contents of this Maze to create a Tree maze.
@@ -466,7 +476,7 @@ cdef class Maze(object):
                       fSection=False,
                       fTreeRandom=True,
                       fTreeWall=False,
-                      nEntrancePos=epRandom,
+                      nEntrancePos=ENTRANCE_RANDOM,
                       nForsAdd=-100,
                       nForsInit=1,
                       nTreeRiver=10):
@@ -490,7 +500,7 @@ cdef class Maze(object):
     def create_aldous_broder(self,
                              fSection=False,
                              fTreeWall=False,
-                             nEntrancePos=epRandom):
+                             nEntrancePos=ENTRANCE_RANDOM):
         '''
         Overwrites the contents of this Maze to create a AldousBroder maze.
 
@@ -508,7 +518,7 @@ cdef class Maze(object):
     def create_wilson(self,
                       fSection=False,
                       fTreeWall=False,
-                      nEntrancePos=epRandom):
+                      nEntrancePos=ENTRANCE_RANDOM):
         '''
         Overwrites the contents of this Maze to create a Wilson maze.
 
@@ -527,7 +537,7 @@ cdef class Maze(object):
     def create_eller(self,
                      fSection=False,
                      fTreeWall=False,
-                     nEntrancePos=epRandom):
+                     nEntrancePos=ENTRANCE_RANDOM):
         '''
         Overwrites the contents of this Maze to create a Eller maze.
 
@@ -544,7 +554,7 @@ cdef class Maze(object):
 
     def create_braid_eller(self,
                            fSection=False,
-                           nEntrancePos=epRandom):
+                           nEntrancePos=ENTRANCE_RANDOM):
         '''
         Overwrites the contents of this Maze to create a BraidEller maze.
 
@@ -558,7 +568,7 @@ cdef class Maze(object):
 
     def create_division(self,
                         fSection=False,
-                        nEntrancePos=epRandom):
+                        nEntrancePos=ENTRANCE_RANDOM):
         '''
         Overwrites the contents of this Maze to create a Division maze.
 
@@ -575,7 +585,7 @@ cdef class Maze(object):
                       cRandomAdd=0,
                       fSection=False,
                       fTreeWall=False,
-                      nEntrancePos=epRandom):
+                      nEntrancePos=ENTRANCE_RANDOM):
         '''
         Overwrites the contents of this Maze to create a Binary maze.
 
@@ -594,7 +604,7 @@ cdef class Maze(object):
     def create_sidewinder(self,
                           fSection=False,
                           fTreeWall=False,
-                          nEntrancePos=epRandom):
+                          nEntrancePos=ENTRANCE_RANDOM):
         '''
         Overwrites the contents of this Maze to create a Sidewinder maze.
 
@@ -649,7 +659,7 @@ cdef class Maze(object):
         else:
             raise MazeError('Unknown return value from Maze save function.')
 
-    def save_bitmap(self, filename, kvOn=kvWhite, kvOff=kvBlack):
+    def save_bitmap(self, filename, kvOn=COLOR_WHITE, kvOff=COLOR_BLACK):
         '''
         Saves this Maze object as a bitmap to the given path.
 
