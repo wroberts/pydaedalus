@@ -48,7 +48,7 @@ PYDAEDALUS_EXTENSIONS = [Extension(
         'daedalus/src/draw2.cpp',
     ],
     include_dirs=['daedalus/src'],
-    extra_compile_args=['-std=c++11'],
+    extra_compile_args=['-std=c++11', '-Wno-error=format-security'],
     language="c++")]
 if USE_CYTHON:
     PYDAEDALUS_EXTENSIONS = cythonize(PYDAEDALUS_EXTENSIONS)
