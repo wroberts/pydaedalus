@@ -1,0 +1,14 @@
+language: python
+python:
+  - "2.7"
+  - "3.3"
+  - "3.4"
+  - "3.5"
+  - "3.6"
+before_install:
+  - "pip install pytest-cov coveralls cython"
+# command to install dependencies
+install: "python setup.py build_ext --inplace"
+# command to run tests
+script: py.test --cov=daedalus daedalus
+after_success: coveralls
