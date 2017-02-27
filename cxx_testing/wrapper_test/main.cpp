@@ -19,7 +19,7 @@ int main(int argc, char *argv[])
 
     // create a maze
     CMaz *maze = cpp_Constructor(63, 63);
-    cpp_CreateMazePerfect(maze);
+    cpp_CreateMazePerfect(maze, true, true, true, false, false, epRandom);
 
     // resize to given shape (width, height)
     // this truncates the maze
@@ -27,7 +27,7 @@ int main(int argc, char *argv[])
     // entrance is top left and exit is bottom right
     cpp_Resize(maze, 31, 61);
     // rebuild the maze
-    cpp_CreateMazePerfect(maze);
+    cpp_CreateMazePerfect(maze, true, true, true, false, false, epRandom);
 
     // save the maze to bitmap
     cpp_SaveBitmap(maze, "test.bmp", kvWhite, kvBlack);
