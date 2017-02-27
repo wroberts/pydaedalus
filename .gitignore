@@ -8,12 +8,12 @@
 /cxx_testing/daedalus_test/test
 /cxx_testing/daedalus_test/test.bmp
 /cxx_testing/daedalus_test/test.txt
+/cxx_testing/wrapper_test/main
+/cxx_testing/wrapper_test/test.bmp
+/cxx_testing/wrapper_test/test.txt
 /daedalus/_maze.cpp
 /daedalus/_maze.so
-/daedalus/main
 /daedalus/pdconfig.h
-/daedalus/test.bmp
-/daedalus/test.txt
 /pydaedalus.egg-info/
 /tools/deps.dot
 /tools/deps.dot.pdf
