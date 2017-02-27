@@ -183,6 +183,52 @@ cdef class Maze(object):
         if self._maze is not NULL:
             cpp_Destructor(self._maze)
 
+    def __len__(self):
+        return self.height
+
+    def __getitem__(self, key):
+        if isinstance(key, int):
+            y = key
+            return [int(self.get(x, y)) for x in range(self.width)]
+        else:
+            if not isinstance(key, tuple) and len(key) == 2 and list(set(map(type, key))) == [int]:
+                raise ValueError('key must be an integer or a tuple of two integers')
+            (x,y) = key
+            return self.get(x,y)
+
+    def __contains__(self, value):
+        for v in self:
+            if v == value:
+                return True
+        return False
+
+    def __iter__(self):
+        i = 0
+        try:
+            while True:
+                v = self[i]
+                yield v
+                i += 1
+        except IndexError:
+            return
+
+    def index(self, value):
+        '''
+        S.index(value) -> integer -- return first index of value.  Raises
+        ValueError if the value is not present.
+        '''
+        for i, v in enumerate(self):
+            if v == value:
+                return i
+        raise ValueError
+
+    def count(self, value):
+        '''
+        S.count(value) -> integer -- return number of occurrences of
+        value.
+        '''
+        return sum(1 for v in self if v == value)
+
     @property
     def width(self):
         '''
