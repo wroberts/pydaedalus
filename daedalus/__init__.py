@@ -7,3 +7,6 @@ __init__.py
 
 daedalus module.
 '''
+
+from __future__ import absolute_import
+from ._maze import Maze
