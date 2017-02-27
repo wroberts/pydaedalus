@@ -212,6 +212,12 @@ cdef class Maze(object):
         except IndexError:
             return
 
+    def __str__(self):
+        return '<Maze: {}x{}>'.format(self.width, self.height)
+
+    def __repr__(self):
+        return str(self)
+
     def index(self, value):
         '''
         S.index(value) -> integer -- return first index of value.  Raises
