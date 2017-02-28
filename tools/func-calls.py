@@ -118,7 +118,7 @@ GLOBAL_SETTINGS = {
     'ms.fTiltDiamond': ('bool', 'False'),
     'ms.fTreeRandom': ('bool', 'True'),
     'ms.fTreeWall': ('bool', 'False'),
-    'ms.nEntrancePos': ('int', 'epRandom'),
+    'ms.nEntrancePos': ('int', 'ENTRANCE_RANDOM'),
     'ms.nForsAdd': ('int', '-100'),
     'ms.nForsInit': ('int', '1'),
     'ms.nTiltSize': ('int', '4'),
