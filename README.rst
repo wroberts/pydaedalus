@@ -59,6 +59,12 @@ lists of ints::
     >>> len(maze)
     61
 
+Requirements
+============
+
+- Python 2.7, 3.3, 3.4, 3.5, or 3.6.
+- A C++ compiler with C++11 support (GCC 4.7+, clang 3.3+).
+
 Development Notes
 =================
 
