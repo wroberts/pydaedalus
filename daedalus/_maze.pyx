@@ -173,7 +173,14 @@ class MazeError(Exception):
     pass
 
 cdef class Maze(object):
-    '''A monochrome daedalus Maze object.'''
+    '''
+    A monochrome daedalus Maze object.
+
+    Even-numbered rows and columns in the Maze are walls, and
+    odd-numbered rows and columns are passages.
+
+    Walls are "on" pixels and passages are "off" pixels.
+    '''
 
     cdef CMaz *_maze
     cdef int _xEntrance
@@ -321,9 +328,6 @@ cdef class Maze(object):
 
     def create_perfect(self,
                        fRiver=True,
-                       fRiverEdge=True,
-                       fRiverFlow=True,
-                       fSection=False,
                        fTreeWall=False,
                        nEntrancePos=ENTRANCE_RANDOM):
         '''
@@ -333,19 +337,26 @@ cdef class Maze(object):
         Create a new perfect Maze in the bitmap using the Hunt and
         Kill algorithm, by carving passages.
 
-        :param bool fRiver: defaults to True
-        :param bool fRiverEdge: defaults to True
-        :param bool fRiverFlow: defaults to True
-        :param bool fSection: defaults to False
-        :param bool fTreeWall: defaults to False
-        :param int nEntrancePos: defaults to ENTRANCE_RANDOM
+        :param bool fRiver: If set, creates a Maze with a relatively
+            high "river" factor (with relatively longer passages between
+            junctions and fewer but longer dead ends).  Defaults to True.
+        :param bool fTreeWall: If true, creates the Maze by adding
+            walls; if false, creates the Maze by carving passages.
+            Defaults to False.
+        :param int nEntrancePos: One of ENTRANCE_CORNER (entrance is
+            in the upper-left corner, and the exit in the lower-right),
+            ENTRANCE_MIDDLE (entrance and exit are in the middle of the
+            top and bottom edges), ENTRANCE_BALANCED (entrance and exit
+            are placed randomly, but are horizontally "balanced"),
+            ENTRANCE_RANDOM (entrance and exit are placed randomly).
+            Defaults to ENTRANCE_RANDOM.
         :rtype: None
         '''
         if not cpp_CreateMazePerfect(self._maze,
                                      fRiver,
-                                     fRiverEdge,
-                                     fRiverFlow,
-                                     fSection,
+                                     True,
+                                     True,
+                                     False,
                                      fTreeWall,
                                      nEntrancePos):
             raise MazeError('Could not create Perfect Maze.')
@@ -353,7 +364,6 @@ cdef class Maze(object):
 
     def create_perfect2(self,
                         fRiver=True,
-                        fSection=False,
                         nEntrancePos=ENTRANCE_RANDOM):
         '''
         Overwrites the contents of this Maze to create a Perfect2 maze.
@@ -361,20 +371,26 @@ cdef class Maze(object):
         Create a new perfect Maze in the bitmap using the Hunt and
         Kill algorithm, by adding walls.
 
-        :param bool fRiver: defaults to True
-        :param bool fSection: defaults to False
-        :param int nEntrancePos: defaults to ENTRANCE_RANDOM
+        :param bool fRiver: If set, creates a Maze with a relatively
+            high "river" factor (with relatively longer passages between
+            junctions and fewer but longer dead ends).  Defaults to True.
+        :param int nEntrancePos: One of ENTRANCE_CORNER (entrance is
+            in the upper-left corner, and the exit in the lower-right),
+            ENTRANCE_MIDDLE (entrance and exit are in the middle of the
+            top and bottom edges), ENTRANCE_BALANCED (entrance and exit
+            are placed randomly, but are horizontally "balanced"),
+            ENTRANCE_RANDOM (entrance and exit are placed randomly).
+            Defaults to ENTRANCE_RANDOM.
         :rtype: None
         '''
         if not cpp_CreateMazePerfect2(self._maze,
                                       fRiver,
-                                      fSection,
+                                      False,
                                       nEntrancePos):
             raise MazeError('Could not create Perfect2 Maze.')
         self._store_back_globals()
 
     def create_braid(self,
-                     fSection=False,
                      nEntrancePos=ENTRANCE_RANDOM):
         '''
         Overwrites the contents of this Maze to create a Braid maze.
@@ -382,18 +398,22 @@ cdef class Maze(object):
         Create a new braid Maze in the bitmap, i.e. a Maze without any
         dead ends, using a wall adding algorithm.
 
-        :param bool fSection: defaults to False
-        :param int nEntrancePos: defaults to ENTRANCE_RANDOM
+        :param int nEntrancePos: One of ENTRANCE_CORNER (entrance is
+            in the upper-left corner, and the exit in the lower-right),
+            ENTRANCE_MIDDLE (entrance and exit are in the middle of the
+            top and bottom edges), ENTRANCE_BALANCED (entrance and exit
+            are placed randomly, but are horizontally "balanced"),
+            ENTRANCE_RANDOM (entrance and exit are placed randomly).
+            Defaults to ENTRANCE_RANDOM.
         :rtype: None
         '''
         if not cpp_CreateMazeBraid(self._maze,
-                                   fSection,
+                                   False,
                                    nEntrancePos):
             raise MazeError('Could not create Braid Maze.')
         self._store_back_globals()
 
     def create_braid_tilt(self,
-                          fSection=False,
                           fTiltDiamond=False,
                           nEntrancePos=ENTRANCE_RANDOM):
         '''
@@ -403,13 +423,18 @@ cdef class Maze(object):
         algorithm, i.e.  starting with a template based on the Tilt
         Maze pattern.
 
-        :param bool fSection: defaults to False
         :param bool fTiltDiamond: defaults to False
-        :param int nEntrancePos: defaults to ENTRANCE_RANDOM
+        :param int nEntrancePos: One of ENTRANCE_CORNER (entrance is
+            in the upper-left corner, and the exit in the lower-right),
+            ENTRANCE_MIDDLE (entrance and exit are in the middle of the
+            top and bottom edges), ENTRANCE_BALANCED (entrance and exit
+            are placed randomly, but are horizontally "balanced"),
+            ENTRANCE_RANDOM (entrance and exit are placed randomly).
+            Defaults to ENTRANCE_RANDOM.
         :rtype: None
         '''
         if not cpp_CreateMazeBraidTilt(self._maze,
-                                       fSection,
+                                       False,
                                        fTiltDiamond,
                                        nEntrancePos):
             raise MazeError('Could not create BraidTilt Maze.')
@@ -419,7 +444,6 @@ cdef class Maze(object):
                       cRandomAdd=0,
                       cSpiral=15,
                       cSpiralWall=15,
-                      fSection=False,
                       nEntrancePos=ENTRANCE_RANDOM):
         '''
         Overwrites the contents of this Maze to create a Spiral maze.
@@ -427,25 +451,41 @@ cdef class Maze(object):
         Create a new spiral Maze in the bitmap, formed of interlocking
         spirals.
 
-        :param int cRandomAdd: defaults to 0
-        :param int cSpiral: defaults to 15
-        :param int cSpiralWall: defaults to 15
-        :param bool fSection: defaults to False
-        :param int nEntrancePos: defaults to ENTRANCE_RANDOM
+        :param int cRandomAdd: The number of random walls and passages
+            to add to the maze.  A high number will make the maze more
+            random and less like its base design, while a large negative
+            number will make the maze be its base design with longer
+            passages and dead ends.  Defaults to 0.
+        :param int cSpiral: The maximum number of spirals that can be
+            drawn at once.  Larger numbers make the maze have many
+            smaller spirals; smaller number make the maze have fewer,
+            larger spirals.  Defaults to 15.
+        :param int cSpiralWall: The maximum number of walls that can
+            be drawn at once around each spiral.  Larger numbers make
+            spirals have many passages that rapidly spiral away from
+            the centre, while smaller values make spirals with fewer
+            passages that go around the centre more times. Defaults to
+            15.
+        :param int nEntrancePos: One of ENTRANCE_CORNER (entrance is
+            in the upper-left corner, and the exit in the lower-right),
+            ENTRANCE_MIDDLE (entrance and exit are in the middle of the
+            top and bottom edges), ENTRANCE_BALANCED (entrance and exit
+            are placed randomly, but are horizontally "balanced"),
+            ENTRANCE_RANDOM (entrance and exit are placed randomly).
+            Defaults to ENTRANCE_RANDOM.
         :rtype: None
         '''
         if not cpp_CreateMazeSpiral(self._maze,
                                     cRandomAdd,
                                     cSpiral,
                                     cSpiralWall,
-                                    fSection,
+                                    False,
                                     nEntrancePos):
             raise MazeError('Could not create Spiral Maze.')
         self._store_back_globals()
 
     def create_diagonal(self,
                         cRandomAdd=0,
-                        fSection=False,
                         nEntrancePos=ENTRANCE_RANDOM):
         '''
         Overwrites the contents of this Maze to create a Diagonal maze.
@@ -453,20 +493,28 @@ cdef class Maze(object):
         Create a Maze with a diagonal bias, where many walls look like
         stairs.
 
-        :param int cRandomAdd: defaults to 0
-        :param bool fSection: defaults to False
-        :param int nEntrancePos: defaults to ENTRANCE_RANDOM
+        :param int cRandomAdd: The number of random walls and passages
+            to add to the maze.  A high number will make the maze more
+            random and less like its base design, while a large negative
+            number will make the maze be its base design with longer
+            passages and dead ends.  Defaults to 0.
+        :param int nEntrancePos: One of ENTRANCE_CORNER (entrance is
+            in the upper-left corner, and the exit in the lower-right),
+            ENTRANCE_MIDDLE (entrance and exit are in the middle of the
+            top and bottom edges), ENTRANCE_BALANCED (entrance and exit
+            are placed randomly, but are horizontally "balanced"),
+            ENTRANCE_RANDOM (entrance and exit are placed randomly).
+            Defaults to ENTRANCE_RANDOM.
         :rtype: None
         '''
         if not cpp_CreateMazeDiagonal(self._maze,
                                       cRandomAdd,
-                                      fSection,
+                                      False,
                                       nEntrancePos):
             raise MazeError('Could not create Diagonal Maze.')
         self._store_back_globals()
 
     def create_recursive(self,
-                         fSection=False,
                          nEntrancePos=ENTRANCE_RANDOM):
         '''
         Overwrites the contents of this Maze to create a Recursive maze.
@@ -474,18 +522,22 @@ cdef class Maze(object):
         Create a new perfect Maze in the bitmap using the Recursive
         Backtracking algorithm. This carves passages.
 
-        :param bool fSection: defaults to False
-        :param int nEntrancePos: defaults to ENTRANCE_RANDOM
+        :param int nEntrancePos: One of ENTRANCE_CORNER (entrance is
+            in the upper-left corner, and the exit in the lower-right),
+            ENTRANCE_MIDDLE (entrance and exit are in the middle of the
+            top and bottom edges), ENTRANCE_BALANCED (entrance and exit
+            are placed randomly, but are horizontally "balanced"),
+            ENTRANCE_RANDOM (entrance and exit are placed randomly).
+            Defaults to ENTRANCE_RANDOM.
         :rtype: None
         '''
         if not cpp_CreateMazeRecursive(self._maze,
-                                       fSection,
+                                       False,
                                        nEntrancePos):
             raise MazeError('Could not create Recursive Maze.')
         self._store_back_globals()
 
     def create_prim(self,
-                    fSection=False,
                     fTreeWall=False,
                     nEntrancePos=ENTRANCE_RANDOM):
         '''
@@ -495,20 +547,26 @@ cdef class Maze(object):
         version of Prim's algorithm. This can carve passages or add
         walls.
 
-        :param bool fSection: defaults to False
-        :param bool fTreeWall: defaults to False
-        :param int nEntrancePos: defaults to ENTRANCE_RANDOM
+        :param bool fTreeWall: If true, creates the Maze by adding
+            walls; if false, creates the Maze by carving passages.
+            Defaults to False.
+        :param int nEntrancePos: One of ENTRANCE_CORNER (entrance is
+            in the upper-left corner, and the exit in the lower-right),
+            ENTRANCE_MIDDLE (entrance and exit are in the middle of the
+            top and bottom edges), ENTRANCE_BALANCED (entrance and exit
+            are placed randomly, but are horizontally "balanced"),
+            ENTRANCE_RANDOM (entrance and exit are placed randomly).
+            Defaults to ENTRANCE_RANDOM.
         :rtype: None
         '''
         if not cpp_CreateMazePrim(self._maze,
-                                  fSection,
+                                  False,
                                   fTreeWall,
                                   nEntrancePos):
             raise MazeError('Could not create Prim Maze.')
         self._store_back_globals()
 
     def create_prim2(self,
-                     fSection=False,
                      fTreeRandom=True,
                      fTreeWall=False,
                      nEntrancePos=ENTRANCE_RANDOM):
@@ -519,14 +577,24 @@ cdef class Maze(object):
         simplified versions of Prim's algorithm. This can carve
         passages or add walls.
 
-        :param bool fSection: defaults to False
-        :param bool fTreeRandom: defaults to True
-        :param bool fTreeWall: defaults to False
-        :param int nEntrancePos: defaults to ENTRANCE_RANDOM
+        :param bool fTreeRandom: If False, the algorithm will tend to
+            create Mazes with long and windy solutions; if True, the
+            solution will tend to be shorter and more direct.
+            Defaults to True.
+        :param bool fTreeWall: If true, creates the Maze by adding
+            walls; if false, creates the Maze by carving passages.
+            Defaults to False.
+        :param int nEntrancePos: One of ENTRANCE_CORNER (entrance is
+            in the upper-left corner, and the exit in the lower-right),
+            ENTRANCE_MIDDLE (entrance and exit are in the middle of the
+            top and bottom edges), ENTRANCE_BALANCED (entrance and exit
+            are placed randomly, but are horizontally "balanced"),
+            ENTRANCE_RANDOM (entrance and exit are placed randomly).
+            Defaults to ENTRANCE_RANDOM.
         :rtype: None
         '''
         if not cpp_CreateMazePrim2(self._maze,
-                                   fSection,
+                                   False,
                                    fTreeRandom,
                                    fTreeWall,
                                    nEntrancePos):
@@ -535,7 +603,6 @@ cdef class Maze(object):
 
     def create_kruskal(self, fClear, c2, c3,
                        fKruskalPic=False,
-                       fSection=False,
                        fTreeWall=False,
                        nEntrancePos=ENTRANCE_RANDOM):
         '''
@@ -545,9 +612,16 @@ cdef class Maze(object):
         algorithm. This can carve passages or add walls.
 
         :param bool fKruskalPic: defaults to False
-        :param bool fSection: defaults to False
-        :param bool fTreeWall: defaults to False
-        :param int nEntrancePos: defaults to ENTRANCE_RANDOM
+        :param bool fTreeWall: If true, creates the Maze by adding
+            walls; if false, creates the Maze by carving passages.
+            Defaults to False.
+        :param int nEntrancePos: One of ENTRANCE_CORNER (entrance is
+            in the upper-left corner, and the exit in the lower-right),
+            ENTRANCE_MIDDLE (entrance and exit are in the middle of the
+            top and bottom edges), ENTRANCE_BALANCED (entrance and exit
+            are placed randomly, but are horizontally "balanced"),
+            ENTRANCE_RANDOM (entrance and exit are placed randomly).
+            Defaults to ENTRANCE_RANDOM.
         :rtype: None
         '''
         # TODO
@@ -555,14 +629,13 @@ cdef class Maze(object):
         cdef CCol *cpp_c3 = NULL
         if not cpp_CreateMazeKruskal(self._maze, fClear, cpp_c2, cpp_c3,
                                      fKruskalPic,
-                                     fSection,
+                                     False,
                                      fTreeWall,
                                      nEntrancePos):
             raise MazeError('Could not create Kruskal Maze.')
         self._store_back_globals()
 
     def create_tree(self,
-                    fSection=False,
                     fTreeRandom=True,
                     fTreeWall=False,
                     nEntrancePos=ENTRANCE_RANDOM,
@@ -573,15 +646,29 @@ cdef class Maze(object):
         Create a new perfect Maze in the bitmap using the Growing Tree
         algorithm.  This can carve passages or add walls.
 
-        :param bool fSection: defaults to False
-        :param bool fTreeRandom: defaults to True
-        :param bool fTreeWall: defaults to False
-        :param int nEntrancePos: defaults to ENTRANCE_RANDOM
-        :param int nTreeRiver: defaults to 10
+        :param bool fTreeRandom: If False, the algorithm will tend to
+            create Mazes with long and windy solutions; if True, the
+            solution will tend to be shorter and more direct.
+            Defaults to True.
+        :param bool fTreeWall: If true, creates the Maze by adding
+            walls; if false, creates the Maze by carving passages.
+            Defaults to False.
+        :param int nEntrancePos: One of ENTRANCE_CORNER (entrance is
+            in the upper-left corner, and the exit in the lower-right),
+            ENTRANCE_MIDDLE (entrance and exit are in the middle of the
+            top and bottom edges), ENTRANCE_BALANCED (entrance and exit
+            are placed randomly, but are horizontally "balanced"),
+            ENTRANCE_RANDOM (entrance and exit are placed randomly).
+            Defaults to ENTRANCE_RANDOM.
+        :param int nTreeRiver: with fTreeRandom set to False, this
+            determines how many of the most recent sections to choose
+            from; higher values give less windy solutions.  With
+            fTreeRandom set to True, higher values of this param give
+            more windy solutions.  Defaults to 10.
         :rtype: None
         '''
         if not cpp_CreateMazeTree(self._maze,
-                                  fSection,
+                                  False,
                                   fTreeRandom,
                                   fTreeWall,
                                   nEntrancePos,
@@ -590,8 +677,6 @@ cdef class Maze(object):
         self._store_back_globals()
 
     def create_forest(self, fWall,
-                      fRiverFlow=True,
-                      fSection=False,
                       fTreeRandom=True,
                       fTreeWall=False,
                       nEntrancePos=ENTRANCE_RANDOM,
@@ -607,11 +692,20 @@ cdef class Maze(object):
         The Growing Forest algorithm is basically multiple instances
         of the Growing Tree algorithm running at the same time.
 
-        :param bool fRiverFlow: defaults to True
-        :param bool fSection: defaults to False
-        :param bool fTreeRandom: defaults to True
-        :param bool fTreeWall: defaults to False
-        :param int nEntrancePos: defaults to ENTRANCE_RANDOM
+        :param bool fTreeRandom: If False, the algorithm will tend to
+            create Mazes with long and windy solutions; if True, the
+            solution will tend to be shorter and more direct.
+            Defaults to True.
+        :param bool fTreeWall: If true, creates the Maze by adding
+            walls; if false, creates the Maze by carving passages.
+            Defaults to False.
+        :param int nEntrancePos: One of ENTRANCE_CORNER (entrance is
+            in the upper-left corner, and the exit in the lower-right),
+            ENTRANCE_MIDDLE (entrance and exit are in the middle of the
+            top and bottom edges), ENTRANCE_BALANCED (entrance and exit
+            are placed randomly, but are horizontally "balanced"),
+            ENTRANCE_RANDOM (entrance and exit are placed randomly).
+            Defaults to ENTRANCE_RANDOM.
         :param int nForsAdd: Indicates the number of instances to add
             each time a cell is added to the Maze: If positive, the
             field indicates the exact number of instances to add, and,
@@ -623,12 +717,16 @@ cdef class Maze(object):
             in X cells should start out as instances. Defaults to 1.
             If both nForsInit is 1 and nForsAdd is 0, then this
             function behaves like the Growing Tree algorithm.
-        :param int nTreeRiver: defaults to 10
+        :param int nTreeRiver: with fTreeRandom set to False, this
+            determines how many of the most recent sections to choose
+            from; higher values give less windy solutions.  With
+            fTreeRandom set to True, higher values of this param give
+            more windy solutions.  Defaults to 10.
         :rtype: None
         '''
         if not cpp_CreateMazeForest(self._maze, fWall,
-                                    fRiverFlow,
-                                    fSection,
+                                    True,
+                                    False,
                                     fTreeRandom,
                                     fTreeWall,
                                     nEntrancePos,
@@ -639,7 +737,6 @@ cdef class Maze(object):
         self._store_back_globals()
 
     def create_aldous_broder(self,
-                             fSection=False,
                              fTreeWall=False,
                              nEntrancePos=ENTRANCE_RANDOM):
         '''
@@ -650,20 +747,26 @@ cdef class Maze(object):
         walls. This is the simplest unbiased algorithm for creating
         perfect Mazes.
 
-        :param bool fSection: defaults to False
-        :param bool fTreeWall: defaults to False
-        :param int nEntrancePos: defaults to ENTRANCE_RANDOM
+        :param bool fTreeWall: If true, creates the Maze by adding
+            walls; if false, creates the Maze by carving passages.
+            Defaults to False.
+        :param int nEntrancePos: One of ENTRANCE_CORNER (entrance is
+            in the upper-left corner, and the exit in the lower-right),
+            ENTRANCE_MIDDLE (entrance and exit are in the middle of the
+            top and bottom edges), ENTRANCE_BALANCED (entrance and exit
+            are placed randomly, but are horizontally "balanced"),
+            ENTRANCE_RANDOM (entrance and exit are placed randomly).
+            Defaults to ENTRANCE_RANDOM.
         :rtype: None
         '''
         if not cpp_CreateMazeAldousBroder(self._maze,
-                                          fSection,
+                                          False,
                                           fTreeWall,
                                           nEntrancePos):
             raise MazeError('Could not create AldousBroder Maze.')
         self._store_back_globals()
 
     def create_wilson(self,
-                      fSection=False,
                       fTreeWall=False,
                       nEntrancePos=ENTRANCE_RANDOM):
         '''
@@ -675,20 +778,26 @@ cdef class Maze(object):
         with equal probability, however this runs about five times
         faster on average.
 
-        :param bool fSection: defaults to False
-        :param bool fTreeWall: defaults to False
-        :param int nEntrancePos: defaults to ENTRANCE_RANDOM
+        :param bool fTreeWall: If true, creates the Maze by adding
+            walls; if false, creates the Maze by carving passages.
+            Defaults to False.
+        :param int nEntrancePos: One of ENTRANCE_CORNER (entrance is
+            in the upper-left corner, and the exit in the lower-right),
+            ENTRANCE_MIDDLE (entrance and exit are in the middle of the
+            top and bottom edges), ENTRANCE_BALANCED (entrance and exit
+            are placed randomly, but are horizontally "balanced"),
+            ENTRANCE_RANDOM (entrance and exit are placed randomly).
+            Defaults to ENTRANCE_RANDOM.
         :rtype: None
         '''
         if not cpp_CreateMazeWilson(self._maze,
-                                    fSection,
+                                    False,
                                     fTreeWall,
                                     nEntrancePos):
             raise MazeError('Could not create Wilson Maze.')
         self._store_back_globals()
 
     def create_eller(self,
-                     fSection=False,
                      fTreeWall=False,
                      nEntrancePos=ENTRANCE_RANDOM):
         '''
@@ -699,20 +808,26 @@ cdef class Maze(object):
         fastest algorithm for creating general perfect Mazes, and runs
         over twice as fast as any of the others.
 
-        :param bool fSection: defaults to False
-        :param bool fTreeWall: defaults to False
-        :param int nEntrancePos: defaults to ENTRANCE_RANDOM
+        :param bool fTreeWall: If true, creates the Maze by adding
+            walls; if false, creates the Maze by carving passages.
+            Defaults to False.
+        :param int nEntrancePos: One of ENTRANCE_CORNER (entrance is
+            in the upper-left corner, and the exit in the lower-right),
+            ENTRANCE_MIDDLE (entrance and exit are in the middle of the
+            top and bottom edges), ENTRANCE_BALANCED (entrance and exit
+            are placed randomly, but are horizontally "balanced"),
+            ENTRANCE_RANDOM (entrance and exit are placed randomly).
+            Defaults to ENTRANCE_RANDOM.
         :rtype: None
         '''
         if not cpp_CreateMazeEller(self._maze,
-                                   fSection,
+                                   False,
                                    fTreeWall,
                                    nEntrancePos):
             raise MazeError('Could not create Eller Maze.')
         self._store_back_globals()
 
     def create_braid_eller(self,
-                           fSection=False,
                            nEntrancePos=ENTRANCE_RANDOM):
         '''
         Overwrites the contents of this Maze to create a BraidEller maze.
@@ -720,18 +835,22 @@ cdef class Maze(object):
         Create a new braid Maze in a bitmap using a variation of
         Eller's Algorithm.
 
-        :param bool fSection: defaults to False
-        :param int nEntrancePos: defaults to ENTRANCE_RANDOM
+        :param int nEntrancePos: One of ENTRANCE_CORNER (entrance is
+            in the upper-left corner, and the exit in the lower-right),
+            ENTRANCE_MIDDLE (entrance and exit are in the middle of the
+            top and bottom edges), ENTRANCE_BALANCED (entrance and exit
+            are placed randomly, but are horizontally "balanced"),
+            ENTRANCE_RANDOM (entrance and exit are placed randomly).
+            Defaults to ENTRANCE_RANDOM.
         :rtype: None
         '''
         if not cpp_CreateMazeBraidEller(self._maze,
-                                        fSection,
+                                        False,
                                         nEntrancePos):
             raise MazeError('Could not create BraidEller Maze.')
         self._store_back_globals()
 
     def create_division(self,
-                        fSection=False,
                         nEntrancePos=ENTRANCE_RANDOM):
         '''
         Overwrites the contents of this Maze to create a Division maze.
@@ -740,19 +859,23 @@ cdef class Maze(object):
         division. This always adds walls, recursively dividing the
         Maze into smaller rectangles.
 
-        :param bool fSection: defaults to False
-        :param int nEntrancePos: defaults to ENTRANCE_RANDOM
+        :param int nEntrancePos: One of ENTRANCE_CORNER (entrance is
+            in the upper-left corner, and the exit in the lower-right),
+            ENTRANCE_MIDDLE (entrance and exit are in the middle of the
+            top and bottom edges), ENTRANCE_BALANCED (entrance and exit
+            are placed randomly, but are horizontally "balanced"),
+            ENTRANCE_RANDOM (entrance and exit are placed randomly).
+            Defaults to ENTRANCE_RANDOM.
         :rtype: None
         '''
         if not cpp_CreateMazeDivision(self._maze,
-                                      fSection,
+                                      False,
                                       nEntrancePos):
             raise MazeError('Could not create Division Maze.')
         self._store_back_globals()
 
     def create_binary(self,
                       cRandomAdd=0,
-                      fSection=False,
                       fTreeWall=False,
                       nEntrancePos=ENTRANCE_RANDOM):
         '''
@@ -763,22 +886,32 @@ cdef class Maze(object):
         simplest algorithm of any type for creating perfect
         Mazes.
 
-        :param int cRandomAdd: defaults to 0
-        :param bool fSection: defaults to False
-        :param bool fTreeWall: defaults to False
-        :param int nEntrancePos: defaults to ENTRANCE_RANDOM
+        :param int cRandomAdd: The number of random walls and passages
+            to add to the maze.  A high number will make the maze more
+            random and less like its base design, while a large negative
+            number will make the maze be its base design with longer
+            passages and dead ends.  Defaults to 0.
+        :param bool fTreeWall: If true, creates the Maze by adding
+            walls; if false, creates the Maze by carving passages.
+            Defaults to False.
+        :param int nEntrancePos: One of ENTRANCE_CORNER (entrance is
+            in the upper-left corner, and the exit in the lower-right),
+            ENTRANCE_MIDDLE (entrance and exit are in the middle of the
+            top and bottom edges), ENTRANCE_BALANCED (entrance and exit
+            are placed randomly, but are horizontally "balanced"),
+            ENTRANCE_RANDOM (entrance and exit are placed randomly).
+            Defaults to ENTRANCE_RANDOM.
         :rtype: None
         '''
         if not cpp_CreateMazeBinary(self._maze,
                                     cRandomAdd,
-                                    fSection,
+                                    False,
                                     fTreeWall,
                                     nEntrancePos):
             raise MazeError('Could not create Binary Maze.')
         self._store_back_globals()
 
     def create_sidewinder(self,
-                          fSection=False,
                           fTreeWall=False,
                           nEntrancePos=ENTRANCE_RANDOM):
         '''
@@ -787,13 +920,20 @@ cdef class Maze(object):
         Create a new perfect Maze in the bitmap using the Sidewinder
         algorithm.  This can carve passages or add walls.
 
-        :param bool fSection: defaults to False
-        :param bool fTreeWall: defaults to False
-        :param int nEntrancePos: defaults to ENTRANCE_RANDOM
+        :param bool fTreeWall: If true, creates the Maze by adding
+            walls; if false, creates the Maze by carving passages.
+            Defaults to False.
+        :param int nEntrancePos: One of ENTRANCE_CORNER (entrance is
+            in the upper-left corner, and the exit in the lower-right),
+            ENTRANCE_MIDDLE (entrance and exit are in the middle of the
+            top and bottom edges), ENTRANCE_BALANCED (entrance and exit
+            are placed randomly, but are horizontally "balanced"),
+            ENTRANCE_RANDOM (entrance and exit are placed randomly).
+            Defaults to ENTRANCE_RANDOM.
         :rtype: None
         '''
         if not cpp_CreateMazeSidewinder(self._maze,
-                                        fSection,
+                                        False,
                                         fTreeWall,
                                         nEntrancePos):
             raise MazeError('Could not create Sidewinder Maze.')
@@ -802,9 +942,6 @@ cdef class Maze(object):
     def create_unicursal(self,
                          cRandomAdd=0,
                          fRiver=True,
-                         fRiverEdge=True,
-                         fRiverFlow=True,
-                         fSection=False,
                          fTreeWall=False,
                          nEntrancePos=ENTRANCE_RANDOM):
         '''
@@ -813,21 +950,32 @@ cdef class Maze(object):
         Create a new Unicursal Maze in the bitmap, i.e. a Maze without
         junctions.
 
-        :param int cRandomAdd: defaults to 0
-        :param bool fRiver: defaults to True
-        :param bool fRiverEdge: defaults to True
-        :param bool fRiverFlow: defaults to True
-        :param bool fSection: defaults to False
-        :param bool fTreeWall: defaults to False
-        :param int nEntrancePos: defaults to ENTRANCE_RANDOM
+        :param int cRandomAdd: The number of random walls and passages
+            to add to the maze.  A high number will make the maze more
+            random and less like its base design, while a large negative
+            number will make the maze be its base design with longer
+            passages and dead ends.  Defaults to 0.
+        :param bool fRiver: If set, creates a Maze with a relatively
+            high "river" factor (with relatively longer passages between
+            junctions and fewer but longer dead ends).  Defaults to True.
+        :param bool fTreeWall: If true, creates the Maze by adding
+            walls; if false, creates the Maze by carving passages.
+            Defaults to False.
+        :param int nEntrancePos: One of ENTRANCE_CORNER (entrance is
+            in the upper-left corner, and the exit in the lower-right),
+            ENTRANCE_MIDDLE (entrance and exit are in the middle of the
+            top and bottom edges), ENTRANCE_BALANCED (entrance and exit
+            are placed randomly, but are horizontally "balanced"),
+            ENTRANCE_RANDOM (entrance and exit are placed randomly).
+            Defaults to ENTRANCE_RANDOM.
         :rtype: None
         '''
         if not cpp_CreateMazeUnicursal(self._maze,
                                        cRandomAdd,
                                        fRiver,
-                                       fRiverEdge,
-                                       fRiverFlow,
-                                       fSection,
+                                       True,
+                                       True,
+                                       False,
                                        fTreeWall,
                                        nEntrancePos):
             raise MazeError('Could not create Unicursal Maze.')
@@ -887,9 +1035,12 @@ cdef class Maze(object):
         '''
         Saves this Maze object as a bitmap to the given path.
 
-        :param str filename: the name of the file to write the bitmap to
-        :param int kvOn: defaults to white (COLOR_WHITE)
-        :param int kvOff: defaults to black (COLOR_BLACK)
+        :param str filename: The name of the file to write the bitmap
+            to.
+        :param int kvOn: The colour to draw wall pixels.  Defaults to
+            white (COLOR_WHITE).
+        :param int kvOff: The colour to draw passage pixels.  Defaults
+            to black (COLOR_BLACK).
         :rtype: None
         '''
         retval = cpp_SaveBitmap(self._maze, filename, kvOn, kvOff)
@@ -899,11 +1050,17 @@ cdef class Maze(object):
         '''
         Saves this Maze object formatted in ASCII text to the given path.
 
-        Arguments:
-        :param filename: the name of the file to write the ASCII representation to
-        :param bool fTextClip: defaults to True
-        :param bool fLineChar: defaults to False
-        :param bool fTextTab: defaults to False
+        :param str filename: the name of the file to write the ASCII
+            representation to
+        :param bool fTextClip: If this flag is set, lines in the file
+            will never end with spaces (trailing space characters are
+            dropped). defaults to True
+        :param bool fLineChar: If this flag is set, maze walls are
+            drawn using horizontal (-) and vertical (|) lines, and
+            intersections (+).  If not, walls are drawn using hash
+            characters (#). Defaults to False.
+        :param bool fTextTab: Insert a tab between each
+            character. Defaults to False.
         :rtype: None
         '''
         retval =  cpp_SaveText(self._maze, filename, fTextClip, fLineChar, fTextTab)
