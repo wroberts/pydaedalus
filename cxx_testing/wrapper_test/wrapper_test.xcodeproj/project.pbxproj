@@ -1,0 +1,323 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		BA3C180E1E64A41700191B87 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA3C180D1E64A41700191B87 /* main.cpp */; };
+		BA3C18111E64A42A00191B87 /* wrapper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA3C180F1E64A42A00191B87 /* wrapper.cpp */; };
+		BA3C182A1E64A43C00191B87 /* color.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA3C18121E64A43C00191B87 /* color.cpp */; };
+		BA3C182B1E64A43C00191B87 /* create2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA3C18131E64A43C00191B87 /* create2.cpp */; };
+		BA3C182C1E64A43C00191B87 /* graphics.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA3C18141E64A43C00191B87 /* graphics.cpp */; };
+		BA3C182D1E64A43C00191B87 /* maze.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA3C18151E64A43C00191B87 /* maze.cpp */; };
+		BA3C182E1E64A43C00191B87 /* solve.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA3C18161E64A43C00191B87 /* solve.cpp */; };
+		BA3C182F1E64A43C00191B87 /* create3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA3C18171E64A43C00191B87 /* create3.cpp */; };
+		BA3C18301E64A43C00191B87 /* draw.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA3C18181E64A43C00191B87 /* draw.cpp */; };
+		BA3C18311E64A43C00191B87 /* inside.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA3C18191E64A43C00191B87 /* inside.cpp */; };
+		BA3C18321E64A43C00191B87 /* labyrnth.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA3C181A1E64A43C00191B87 /* labyrnth.cpp */; };
+		BA3C18331E64A43C00191B87 /* command.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA3C181B1E64A43C00191B87 /* command.cpp */; };
+		BA3C18341E64A43C00191B87 /* daedalus.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA3C181C1E64A43C00191B87 /* daedalus.cpp */; };
+		BA3C18351E64A43C00191B87 /* create.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA3C18201E64A43C00191B87 /* create.cpp */; };
+		BA3C18361E64A43C00191B87 /* threed.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA3C18231E64A43C00191B87 /* threed.cpp */; };
+		BA3C18371E64A43C00191B87 /* draw2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA3C18251E64A43C00191B87 /* draw2.cpp */; };
+		BA3C18381E64A43C00191B87 /* solids.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA3C18281E64A43C00191B87 /* solids.cpp */; };
+		BA3C18391E64A43C00191B87 /* util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA3C18291E64A43C00191B87 /* util.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		BA3C18011E64A38800191B87 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		BA3C18031E64A38900191B87 /* wrapper_test */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = wrapper_test; sourceTree = BUILT_PRODUCTS_DIR; };
+		BA3C180D1E64A41700191B87 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		BA3C180F1E64A42A00191B87 /* wrapper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = wrapper.cpp; path = ../../daedalus/wrapper.cpp; sourceTree = "<group>"; };
+		BA3C18101E64A42A00191B87 /* wrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = wrapper.h; path = ../../daedalus/wrapper.h; sourceTree = "<group>"; };
+		BA3C18121E64A43C00191B87 /* color.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = color.cpp; path = ../../daedalus/src/color.cpp; sourceTree = "<group>"; };
+		BA3C18131E64A43C00191B87 /* create2.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = create2.cpp; path = ../../daedalus/src/create2.cpp; sourceTree = "<group>"; };
+		BA3C18141E64A43C00191B87 /* graphics.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = graphics.cpp; path = ../../daedalus/src/graphics.cpp; sourceTree = "<group>"; };
+		BA3C18151E64A43C00191B87 /* maze.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = maze.cpp; path = ../../daedalus/src/maze.cpp; sourceTree = "<group>"; };
+		BA3C18161E64A43C00191B87 /* solve.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = solve.cpp; path = ../../daedalus/src/solve.cpp; sourceTree = "<group>"; };
+		BA3C18171E64A43C00191B87 /* create3.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = create3.cpp; path = ../../daedalus/src/create3.cpp; sourceTree = "<group>"; };
+		BA3C18181E64A43C00191B87 /* draw.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = draw.cpp; path = ../../daedalus/src/draw.cpp; sourceTree = "<group>"; };
+		BA3C18191E64A43C00191B87 /* inside.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = inside.cpp; path = ../../daedalus/src/inside.cpp; sourceTree = "<group>"; };
+		BA3C181A1E64A43C00191B87 /* labyrnth.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = labyrnth.cpp; path = ../../daedalus/src/labyrnth.cpp; sourceTree = "<group>"; };
+		BA3C181B1E64A43C00191B87 /* command.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = command.cpp; path = ../../daedalus/src/command.cpp; sourceTree = "<group>"; };
+		BA3C181C1E64A43C00191B87 /* daedalus.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = daedalus.cpp; path = ../../daedalus/src/daedalus.cpp; sourceTree = "<group>"; };
+		BA3C181D1E64A43C00191B87 /* graphics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = graphics.h; path = ../../daedalus/src/graphics.h; sourceTree = "<group>"; };
+		BA3C181E1E64A43C00191B87 /* color.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = color.h; path = ../../daedalus/src/color.h; sourceTree = "<group>"; };
+		BA3C181F1E64A43C00191B87 /* daedalus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = daedalus.h; path = ../../daedalus/src/daedalus.h; sourceTree = "<group>"; };
+		BA3C18201E64A43C00191B87 /* create.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = create.cpp; path = ../../daedalus/src/create.cpp; sourceTree = "<group>"; };
+		BA3C18211E64A43C00191B87 /* draw.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = draw.h; path = ../../daedalus/src/draw.h; sourceTree = "<group>"; };
+		BA3C18221E64A43C00191B87 /* util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = util.h; path = ../../daedalus/src/util.h; sourceTree = "<group>"; };
+		BA3C18231E64A43C00191B87 /* threed.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = threed.cpp; path = ../../daedalus/src/threed.cpp; sourceTree = "<group>"; };
+		BA3C18241E64A43C00191B87 /* threed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = threed.h; path = ../../daedalus/src/threed.h; sourceTree = "<group>"; };
+		BA3C18251E64A43C00191B87 /* draw2.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = draw2.cpp; path = ../../daedalus/src/draw2.cpp; sourceTree = "<group>"; };
+		BA3C18261E64A43C00191B87 /* maze.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = maze.h; path = ../../daedalus/src/maze.h; sourceTree = "<group>"; };
+		BA3C18271E64A43C00191B87 /* resource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = resource.h; path = ../../daedalus/src/resource.h; sourceTree = "<group>"; };
+		BA3C18281E64A43C00191B87 /* solids.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = solids.cpp; path = ../../daedalus/src/solids.cpp; sourceTree = "<group>"; };
+		BA3C18291E64A43C00191B87 /* util.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = util.cpp; path = ../../daedalus/src/util.cpp; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		BA3C18001E64A38800191B87 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		BA3C17FA1E64A38700191B87 = {
+			isa = PBXGroup;
+			children = (
+				BA3C180D1E64A41700191B87 /* main.cpp */,
+				BA3C18121E64A43C00191B87 /* color.cpp */,
+				BA3C18131E64A43C00191B87 /* create2.cpp */,
+				BA3C18141E64A43C00191B87 /* graphics.cpp */,
+				BA3C18151E64A43C00191B87 /* maze.cpp */,
+				BA3C18161E64A43C00191B87 /* solve.cpp */,
+				BA3C18171E64A43C00191B87 /* create3.cpp */,
+				BA3C18181E64A43C00191B87 /* draw.cpp */,
+				BA3C18191E64A43C00191B87 /* inside.cpp */,
+				BA3C181A1E64A43C00191B87 /* labyrnth.cpp */,
+				BA3C181B1E64A43C00191B87 /* command.cpp */,
+				BA3C181C1E64A43C00191B87 /* daedalus.cpp */,
+				BA3C181D1E64A43C00191B87 /* graphics.h */,
+				BA3C181E1E64A43C00191B87 /* color.h */,
+				BA3C181F1E64A43C00191B87 /* daedalus.h */,
+				BA3C18201E64A43C00191B87 /* create.cpp */,
+				BA3C18211E64A43C00191B87 /* draw.h */,
+				BA3C18221E64A43C00191B87 /* util.h */,
+				BA3C18231E64A43C00191B87 /* threed.cpp */,
+				BA3C18241E64A43C00191B87 /* threed.h */,
+				BA3C18251E64A43C00191B87 /* draw2.cpp */,
+				BA3C18261E64A43C00191B87 /* maze.h */,
+				BA3C18271E64A43C00191B87 /* resource.h */,
+				BA3C18281E64A43C00191B87 /* solids.cpp */,
+				BA3C18291E64A43C00191B87 /* util.cpp */,
+				BA3C180F1E64A42A00191B87 /* wrapper.cpp */,
+				BA3C18101E64A42A00191B87 /* wrapper.h */,
+				BA3C18041E64A38900191B87 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		BA3C18041E64A38900191B87 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BA3C18031E64A38900191B87 /* wrapper_test */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		BA3C18021E64A38800191B87 /* wrapper_test */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BA3C180A1E64A38900191B87 /* Build configuration list for PBXNativeTarget "wrapper_test" */;
+			buildPhases = (
+				BA3C17FF1E64A38800191B87 /* Sources */,
+				BA3C18001E64A38800191B87 /* Frameworks */,
+				BA3C18011E64A38800191B87 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = wrapper_test;
+			productName = wrapper_test;
+			productReference = BA3C18031E64A38900191B87 /* wrapper_test */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BA3C17FB1E64A38700191B87 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0720;
+				ORGANIZATIONNAME = "Will Roberts";
+				TargetAttributes = {
+					BA3C18021E64A38800191B87 = {
+						CreatedOnToolsVersion = 7.2;
+					};
+				};
+			};
+			buildConfigurationList = BA3C17FE1E64A38700191B87 /* Build configuration list for PBXProject "wrapper_test" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = BA3C17FA1E64A38700191B87;
+			productRefGroup = BA3C18041E64A38900191B87 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				BA3C18021E64A38800191B87 /* wrapper_test */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		BA3C17FF1E64A38800191B87 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BA3C182A1E64A43C00191B87 /* color.cpp in Sources */,
+				BA3C180E1E64A41700191B87 /* main.cpp in Sources */,
+				BA3C18301E64A43C00191B87 /* draw.cpp in Sources */,
+				BA3C18341E64A43C00191B87 /* daedalus.cpp in Sources */,
+				BA3C182D1E64A43C00191B87 /* maze.cpp in Sources */,
+				BA3C182F1E64A43C00191B87 /* create3.cpp in Sources */,
+				BA3C182E1E64A43C00191B87 /* solve.cpp in Sources */,
+				BA3C18321E64A43C00191B87 /* labyrnth.cpp in Sources */,
+				BA3C18381E64A43C00191B87 /* solids.cpp in Sources */,
+				BA3C18331E64A43C00191B87 /* command.cpp in Sources */,
+				BA3C18351E64A43C00191B87 /* create.cpp in Sources */,
+				BA3C18391E64A43C00191B87 /* util.cpp in Sources */,
+				BA3C18371E64A43C00191B87 /* draw2.cpp in Sources */,
+				BA3C182B1E64A43C00191B87 /* create2.cpp in Sources */,
+				BA3C18111E64A42A00191B87 /* wrapper.cpp in Sources */,
+				BA3C182C1E64A43C00191B87 /* graphics.cpp in Sources */,
+				BA3C18311E64A43C00191B87 /* inside.cpp in Sources */,
+				BA3C18361E64A43C00191B87 /* threed.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		BA3C18081E64A38900191B87 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		BA3C18091E64A38900191B87 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		BA3C180B1E64A38900191B87 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		BA3C180C1E64A38900191B87 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		BA3C17FE1E64A38700191B87 /* Build configuration list for PBXProject "wrapper_test" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BA3C18081E64A38900191B87 /* Debug */,
+				BA3C18091E64A38900191B87 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BA3C180A1E64A38900191B87 /* Build configuration list for PBXNativeTarget "wrapper_test" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BA3C180B1E64A38900191B87 /* Debug */,
+				BA3C180C1E64A38900191B87 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = BA3C17FB1E64A38700191B87 /* Project object */;
+}
