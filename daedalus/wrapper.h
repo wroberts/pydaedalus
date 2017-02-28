@@ -116,6 +116,14 @@ bool cpp_CreateMazeSidewinder ( CMaz *maze,
                                 bool  fSection,
                                 bool  fTreeWall,
                                 int   nEntrancePos );
+bool cpp_CreateMazeUnicursal ( CMaz *maze,
+                               int   cRandomAdd,
+                               bool  fRiver,
+                               bool  fRiverEdge,
+                               bool  fRiverFlow,
+                               bool  fSection,
+                               bool  fTreeWall,
+                               int   nEntrancePos );
 bool cpp_Resize(CMaz *maze, unsigned width, unsigned height);
 int wrapper_FFileSave(CMaz *maze,
                       int wCmd,

@@ -132,6 +132,14 @@ cdef extern from "wrapper.h":
                                     bool  fSection,
                                     bool  fTreeWall,
                                     int   nEntrancePos )
+    bool cpp_CreateMazeUnicursal ( CMaz *maze,
+                                   int   cRandomAdd,
+                                   bool  fRiver,
+                                   bool  fRiverEdge,
+                                   bool  fRiverFlow,
+                                   bool  fSection,
+                                   bool  fTreeWall,
+                                   int   nEntrancePos )
     bool cpp_Resize(CMaz *maze, unsigned width, unsigned height)
     int cpp_SaveBitmap(CMaz *maze,
                        const char *filename,
@@ -732,6 +740,39 @@ cdef class Maze(object):
                                         fTreeWall,
                                         nEntrancePos):
             raise MazeError('Could not create Sidewinder Maze.')
+
+    def create_unicursal(self,
+                         cRandomAdd=0,
+                         fRiver=True,
+                         fRiverEdge=True,
+                         fRiverFlow=True,
+                         fSection=False,
+                         fTreeWall=False,
+                         nEntrancePos=ENTRANCE_RANDOM):
+        '''
+        Overwrites the contents of this Maze to create a Unicursal maze.
+
+        Create a new Unicursal Maze in the bitmap, i.e. a Maze without
+        junctions.
+
+        :param int cRandomAdd: defaults to 0
+        :param bool fRiver: defaults to True
+        :param bool fRiverEdge: defaults to True
+        :param bool fRiverFlow: defaults to True
+        :param bool fSection: defaults to False
+        :param bool fTreeWall: defaults to False
+        :param int nEntrancePos: defaults to ENTRANCE_RANDOM
+        :rtype: None
+        '''
+        if not cpp_CreateMazeUnicursal(self._maze,
+                                       cRandomAdd,
+                                       fRiver,
+                                       fRiverEdge,
+                                       fRiverFlow,
+                                       fSection,
+                                       fTreeWall,
+                                       nEntrancePos):
+            raise MazeError('Could not create Unicursal Maze.')
 
     def resize(self, width, height):
         '''

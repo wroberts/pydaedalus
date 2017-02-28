@@ -317,6 +317,27 @@ cpp_CreateMazeSidewinder ( CMaz *maze,
 }
 
 bool
+cpp_CreateMazeUnicursal ( CMaz *maze,
+                          int   cRandomAdd,
+                          bool  fRiver,
+                          bool  fRiverEdge,
+                          bool  fRiverFlow,
+                          bool  fSection,
+                          bool  fTreeWall,
+                          int   nEntrancePos )
+{
+    if (!maze) return false;
+    ms.cRandomAdd   = cRandomAdd;
+    ms.fRiver       = fRiver;
+    ms.fRiverEdge   = fRiverEdge;
+    ms.fRiverFlow   = fRiverFlow;
+    ms.fSection     = fSection;
+    ms.fTreeWall    = fTreeWall;
+    ms.nEntrancePos = nEntrancePos;
+    return maze->CreateMazeUnicursal();
+}
+
+bool
 cpp_Resize ( CMaz    *maze,
              unsigned width,
              unsigned height )

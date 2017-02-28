@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+from __future__ import print_function
 import os
 import glob
 
@@ -20,17 +21,9 @@ full_paths = glob.glob('../daedalus/src/*.cpp') + glob.glob('../daedalus/src/*.h
 #tu = index.parse(full_paths[2])
 
 def yield_children(node, pred):
-    #node = tu.cursor
     todo = [(None,node)]
     while todo:
         parent, node = todo.pop(0)
-        #if node.kind == clang.cindex.CursorKind.CXX_METHOD:
-        #if node.kind == clang.cindex.CursorKind.FUNCTION_DECL:
-        #if node.kind == clang.cindex.CursorKind.CALL_EXPR:
-        #if (node.location.file and node.location.file.name == '../daedalus/src/create.cpp' and
-        #    node.location.line == 53):
-            #ref_node = clang.cindex.Cursor_ref(node)
-            #print('expr:', node.spelling, node.location, node.kind)
         if pred(node):
             yield parent, node
         todo.extend([(node,c) for c in node.get_children()])
@@ -128,7 +121,9 @@ GLOBAL_SETTINGS = {
     'ms.nEntrancePos': ('int', 'epRandom'),
     'ms.nForsAdd': ('int', '-100'),
     'ms.nForsInit': ('int', '1'),
-    'ms.nTreeRiver': ('int', '10')
+    'ms.nTiltSize': ('int', '4'),
+    'ms.nTreeRiver': ('int', '10'),
+    'ms.zFractal': ('int', '3'),
 }
 
 # now, for each CreateMaze* function
@@ -169,7 +164,12 @@ for create_method in create_methods:
         print()
         for ref in sorted(closure):
             print('{},'.format(ref.split('.')[-1]))
-        
+        print()
+        for ref in sorted(closure):
+            print(':param {} {}: defaults to {}'.format(GLOBAL_SETTINGS[ref][0],
+                                                        ref.split('.')[-1],
+                                                        GLOBAL_SETTINGS[ref][1]))
+
 # detect class member function definitions (not bare functions):
 # node.kind == clang.cindex.CursorKind.CXX_METHOD
 # all of these have kind.is_declaration() == True
