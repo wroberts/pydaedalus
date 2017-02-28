@@ -27,7 +27,11 @@ currently built against version 3.2 of the Daedalus software.
 Quickstart
 ==========
 
-::
+Install::
+
+    pip install pydaedalus
+
+Getting started::
 
     >>> from daedalus import Maze
     >>> maze = Maze(63, 63)
@@ -37,8 +41,26 @@ Quickstart
     >>> maze.save_bitmap('test.bmp')
     >>> maze.save_text('test.txt')
 
-Notes
-=====
+A Maze can be treated as a 2D array of Bools, or as a container of
+lists of ints::
+
+    >>> maze.width, maze.height
+    (31, 61)
+    >>> maze[0,0]
+    True
+    >>> maze[1,1]
+    False
+    >>> maze[1,2]
+    False
+    >>> maze[1,3]
+    False
+    >>> maze[1]
+    [1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1]
+    >>> len(maze)
+    61
+
+Development Notes
+=================
 
 To compile the Cython extension::
 
