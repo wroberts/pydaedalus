@@ -19,7 +19,8 @@ cdef extern from "pdconfig.h":
 
 cdef extern from "wrapper.h":
     cdef cppclass CMaz:
-        pass
+        int m_x
+        int m_y
     cdef cppclass CCol:
         pass
     ctypedef long KV
@@ -169,8 +170,6 @@ cdef class Maze(object):
     '''A monochrome daedalus Maze object.'''
 
     cdef CMaz *_maze
-    cdef unsigned _width
-    cdef unsigned _height
 
     def __cinit__(self, width, height):
         '''
@@ -187,13 +186,9 @@ cdef class Maze(object):
         #     raise ValueError('width must be odd')
         # if height % 2 != 1:
         #     raise ValueError('height must be odd')
-        self._width = 0
-        self._height = 0
         self._maze = cpp_Constructor(width, height)
         if self._maze is NULL:
             raise MazeError('Could not construct Maze object.')
-        self._width = width
-        self._height = height
 
     def __dealloc__(self):
         '''Destructor.'''
@@ -267,14 +262,18 @@ cdef class Maze(object):
         '''
         Returns this Maze's width.
         '''
-        return self._width
+        if self._maze is NULL:
+            return 0
+        return self._maze.m_x
 
     @property
     def height(self):
         '''
         Returns this Maze's height.
         '''
-        return self._height
+        if self._maze is NULL:
+            return 0
+        return self._maze.m_y
 
     def get(self, x, y):
         '''
@@ -286,9 +285,9 @@ cdef class Maze(object):
         :return: True if the given pixel is on, False if it is off.
         :rtype: bool
         '''
-        if x < 0 or self._width <= x:
+        if x < 0 or self.width <= x:
             raise IndexError('x coordinate out of range')
-        if y < 0 or self._height <= y:
+        if y < 0 or self.height <= y:
             raise IndexError('y coordinate out of range')
         return cpp_Get(self._maze, x, y)
 
@@ -792,8 +791,6 @@ cdef class Maze(object):
         #     raise ValueError('height must be odd')
         if not cpp_Resize(self._maze, width, height):
             raise MazeError('Could not resize the Maze.')
-        self._width = width
-        self._height = height
 
     @staticmethod
     def _handle_save_retval(rv):
