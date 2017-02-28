@@ -223,7 +223,7 @@ typedef uint32_t dword;
 typedef uint64_t qword;
 typedef uint8_t uchar;
 typedef uint16_t ushort;
-typedef uint32_t ulong;
+typedef unsigned long int ulong;
 typedef uint64_t uquad;
 typedef unsigned int uint;
 typedef double real;
