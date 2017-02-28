@@ -24,6 +24,12 @@ cdef extern from "wrapper.h":
     cdef cppclass CCol:
         pass
     ctypedef long KV
+    ctypedef struct MS:
+        int xEntrance
+        int yEntrance
+        int xExit
+        int yExit
+    cdef MS ms
     # enums for return values of save functions
     cdef int SAVE_NO_MAZE_ERROR
     cdef int SAVE_NO_FILENAME_GIVEN_ERROR
@@ -170,6 +176,10 @@ cdef class Maze(object):
     '''A monochrome daedalus Maze object.'''
 
     cdef CMaz *_maze
+    cdef int _xEntrance
+    cdef int _yEntrance
+    cdef int _xExit
+    cdef int _yExit
 
     def __cinit__(self, width, height):
         '''
@@ -186,6 +196,10 @@ cdef class Maze(object):
         #     raise ValueError('width must be odd')
         # if height % 2 != 1:
         #     raise ValueError('height must be odd')
+        self._xEntrance = 0
+        self._yEntrance = 0
+        self._xExit = 0
+        self._yExit = 0
         self._maze = cpp_Constructor(width, height)
         if self._maze is NULL:
             raise MazeError('Could not construct Maze object.')
@@ -275,6 +289,20 @@ cdef class Maze(object):
             return 0
         return self._maze.m_y
 
+    @property
+    def entrance(self):
+        '''
+        Returns this Maze's entrance location as a tuple (x,y).
+        '''
+        return (self._xEntrance, self._yEntrance)
+
+    @property
+    def exit(self):
+        '''
+        Returns this Maze's exit location as a tuple (x,y).
+        '''
+        return (self._xExit, self._yExit)
+
     def get(self, x, y):
         '''
         Gets the monochrome pixel value at the coordinate (x,y) on this
@@ -321,6 +349,7 @@ cdef class Maze(object):
                                      fTreeWall,
                                      nEntrancePos):
             raise MazeError('Could not create Perfect Maze.')
+        self._store_back_globals()
 
     def create_perfect2(self,
                         fRiver=True,
@@ -342,6 +371,7 @@ cdef class Maze(object):
                                       fSection,
                                       nEntrancePos):
             raise MazeError('Could not create Perfect2 Maze.')
+        self._store_back_globals()
 
     def create_braid(self,
                      fSection=False,
@@ -360,6 +390,7 @@ cdef class Maze(object):
                                    fSection,
                                    nEntrancePos):
             raise MazeError('Could not create Braid Maze.')
+        self._store_back_globals()
 
     def create_braid_tilt(self,
                           fSection=False,
@@ -382,6 +413,7 @@ cdef class Maze(object):
                                        fTiltDiamond,
                                        nEntrancePos):
             raise MazeError('Could not create BraidTilt Maze.')
+        self._store_back_globals()
 
     def create_spiral(self,
                       cRandomAdd=0,
@@ -409,6 +441,7 @@ cdef class Maze(object):
                                     fSection,
                                     nEntrancePos):
             raise MazeError('Could not create Spiral Maze.')
+        self._store_back_globals()
 
     def create_diagonal(self,
                         cRandomAdd=0,
@@ -430,6 +463,7 @@ cdef class Maze(object):
                                       fSection,
                                       nEntrancePos):
             raise MazeError('Could not create Diagonal Maze.')
+        self._store_back_globals()
 
     def create_recursive(self,
                          fSection=False,
@@ -448,6 +482,7 @@ cdef class Maze(object):
                                        fSection,
                                        nEntrancePos):
             raise MazeError('Could not create Recursive Maze.')
+        self._store_back_globals()
 
     def create_prim(self,
                     fSection=False,
@@ -470,6 +505,7 @@ cdef class Maze(object):
                                   fTreeWall,
                                   nEntrancePos):
             raise MazeError('Could not create Prim Maze.')
+        self._store_back_globals()
 
     def create_prim2(self,
                      fSection=False,
@@ -495,6 +531,7 @@ cdef class Maze(object):
                                    fTreeWall,
                                    nEntrancePos):
             raise MazeError('Could not create Prim2 Maze.')
+        self._store_back_globals()
 
     def create_kruskal(self, fClear, c2, c3,
                        fKruskalPic=False,
@@ -522,6 +559,7 @@ cdef class Maze(object):
                                      fTreeWall,
                                      nEntrancePos):
             raise MazeError('Could not create Kruskal Maze.')
+        self._store_back_globals()
 
     def create_tree(self,
                     fSection=False,
@@ -549,6 +587,7 @@ cdef class Maze(object):
                                   nEntrancePos,
                                   nTreeRiver):
             raise MazeError('Could not create Tree Maze.')
+        self._store_back_globals()
 
     def create_forest(self, fWall,
                       fRiverFlow=True,
@@ -585,6 +624,7 @@ cdef class Maze(object):
                                     nForsInit,
                                     nTreeRiver):
             raise MazeError('Could not create Forest Maze.')
+        self._store_back_globals()
 
     def create_aldous_broder(self,
                              fSection=False,
@@ -608,6 +648,7 @@ cdef class Maze(object):
                                           fTreeWall,
                                           nEntrancePos):
             raise MazeError('Could not create AldousBroder Maze.')
+        self._store_back_globals()
 
     def create_wilson(self,
                       fSection=False,
@@ -632,6 +673,7 @@ cdef class Maze(object):
                                     fTreeWall,
                                     nEntrancePos):
             raise MazeError('Could not create Wilson Maze.')
+        self._store_back_globals()
 
     def create_eller(self,
                      fSection=False,
@@ -655,6 +697,7 @@ cdef class Maze(object):
                                    fTreeWall,
                                    nEntrancePos):
             raise MazeError('Could not create Eller Maze.')
+        self._store_back_globals()
 
     def create_braid_eller(self,
                            fSection=False,
@@ -673,6 +716,7 @@ cdef class Maze(object):
                                         fSection,
                                         nEntrancePos):
             raise MazeError('Could not create BraidEller Maze.')
+        self._store_back_globals()
 
     def create_division(self,
                         fSection=False,
@@ -692,6 +736,7 @@ cdef class Maze(object):
                                       fSection,
                                       nEntrancePos):
             raise MazeError('Could not create Division Maze.')
+        self._store_back_globals()
 
     def create_binary(self,
                       cRandomAdd=0,
@@ -718,6 +763,7 @@ cdef class Maze(object):
                                     fTreeWall,
                                     nEntrancePos):
             raise MazeError('Could not create Binary Maze.')
+        self._store_back_globals()
 
     def create_sidewinder(self,
                           fSection=False,
@@ -739,6 +785,7 @@ cdef class Maze(object):
                                         fTreeWall,
                                         nEntrancePos):
             raise MazeError('Could not create Sidewinder Maze.')
+        self._store_back_globals()
 
     def create_unicursal(self,
                          cRandomAdd=0,
@@ -772,6 +819,7 @@ cdef class Maze(object):
                                        fTreeWall,
                                        nEntrancePos):
             raise MazeError('Could not create Unicursal Maze.')
+        self._store_back_globals()
 
     def resize(self, width, height):
         '''
@@ -812,6 +860,16 @@ cdef class Maze(object):
             pass
         else:
             raise MazeError('Unknown return value from Maze save function.')
+
+    def _store_back_globals(self):
+        '''
+        Helper function to retrieve global variable values and store them
+        into this instance after creating a maze.
+        '''
+        self._xEntrance = ms.xEntrance
+        self._yEntrance = ms.yEntrance
+        self._xExit     = ms.xExit
+        self._yExit     = ms.yExit
 
     def save_bitmap(self, filename, kvOn=COLOR_WHITE, kvOff=COLOR_BLACK):
         '''
