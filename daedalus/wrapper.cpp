@@ -4,12 +4,20 @@ CMaz*
 cpp_Constructor ( unsigned width,
                   unsigned height )
 {
+    // global initialisation
+    for (int i = 0; i < cColorMain; i++)
+    {
+        int j = i*16 + 15;
+        ws.rgkv[i] = GrayN(j);
+    }
+
     CMaz *maze = new CMaz();
     if (maze)
     {
+        maze->Init();
         if (!maze->FAllocate(width, height, NULL))
         {
-            maze->Destroy();
+            delete maze;
             maze = 0;
         }
     }
@@ -20,7 +28,10 @@ void
 cpp_Destructor ( CMaz *maze )
 {
     if (maze)
+    {
         delete maze;
+        maze = 0;
+    }
 }
 
 bool
