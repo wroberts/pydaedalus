@@ -672,7 +672,7 @@ void DrawOverlay(CMazK &, CMaz &);
 // From command.cpp
 
 char *PchGetParameter(char *, char **, int *, long *, int);
-int DoCommand(int);
+flag DoCommand(int);
 int RunCommandLine(char *, FILE *);
 void RunCommandLines(CONST char *rgsz[]);
 int RunMacro(int);

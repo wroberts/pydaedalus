@@ -30,7 +30,6 @@
 #include <cstdlib>
 #include <cstdint>
 using namespace std;
-#define __int64 long long
 //#define sprintf_s snprintf
 //#define fscanf_s vfscanf
 
@@ -218,18 +217,18 @@ enum _printmode {
 #define OVERRIDE override
 #define INLINE inline
 
-typedef unsigned char byte;
-typedef unsigned short word;
-typedef unsigned long dword;
-typedef unsigned __int64 qword;
-typedef unsigned char uchar;
-typedef unsigned short ushort;
-typedef unsigned long ulong;
-typedef unsigned __int64 uquad;
+typedef uint8_t byte;
+typedef uint16_t word;
+typedef uint32_t dword;
+typedef uint64_t qword;
+typedef uint8_t uchar;
+typedef uint16_t ushort;
+typedef uint32_t ulong;
+typedef uint64_t uquad;
 typedef unsigned int uint;
 typedef double real;
-typedef __int64 quad;
-typedef int flag;
+typedef int64_t quad;
+typedef bool flag;
 typedef short *TRIE;
 
 typedef struct _point {
