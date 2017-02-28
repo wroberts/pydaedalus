@@ -15,7 +15,7 @@
 
 Daedalus source code is copyright (c) 1998-2016 Walter D. Pullen.
 
-Wrapper is copyright (c) 2016 Will Roberts <wildwilhelm@gmail.com>.
+Wrapper is copyright (c) 2017 Will Roberts <wildwilhelm@gmail.com>.
 
 Licensed under the GNU General Public License version 2.
 
