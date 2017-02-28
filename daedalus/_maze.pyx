@@ -604,13 +604,25 @@ cdef class Maze(object):
         Create a new perfect Maze in the bitmap using the Growing
         Forest algorithm.  This can carve passages or add walls.
 
+        The Growing Forest algorithm is basically multiple instances
+        of the Growing Tree algorithm running at the same time.
+
         :param bool fRiverFlow: defaults to True
         :param bool fSection: defaults to False
         :param bool fTreeRandom: defaults to True
         :param bool fTreeWall: defaults to False
         :param int nEntrancePos: defaults to ENTRANCE_RANDOM
-        :param int nForsAdd: defaults to -100
-        :param int nForsInit: defaults to 1
+        :param int nForsAdd: Indicates the number of instances to add
+            each time a cell is added to the Maze: If positive, the
+            field indicates the exact number of instances to add, and,
+            if negative, indicates that one instance should be added
+            every X cells. Defaults to -100.
+        :param int nForsInit: The number of instances to begin with.
+            If positive, the field indicates the exact number of
+            instances, and, if negative, the field indicates that one
+            in X cells should start out as instances. Defaults to 1.
+            If both nForsInit is 1 and nForsAdd is 0, then this
+            function behaves like the Growing Tree algorithm.
         :param int nTreeRiver: defaults to 10
         :rtype: None
         '''
