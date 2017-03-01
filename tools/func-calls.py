@@ -30,15 +30,21 @@ def yield_children(node, pred):
 
 # collect all the CreateMaze* methods in create.cpp
 # there are 19 of these
+def get_create_methods(tu):
+    return [n for (p,n) in yield_children(
+        tu.cursor,
+        # predicate: kind is CXX_METHOD, name starts with "CreateMaze",
+        # and node has a child with type COMPOUND_STMT
+        lambda n: n.kind == clang.cindex.CursorKind.CXX_METHOD and
+        n.spelling.startswith('CreateMaze') and
+        any(c.kind == clang.cindex.CursorKind.COMPOUND_STMT for c in n.get_children()))]
+
 print('Collecting CreateMaze* methods in create.cpp ...')
 tu = index.parse('../daedalus/src/create.cpp')
-create_methods = [n for (p,n) in yield_children(
-    tu.cursor,
-    # predicate: kind is CXX_METHOD, name starts with "CreateMaze",
-    # and node has a child with type COMPOUND_STMT
-    lambda n: n.kind == clang.cindex.CursorKind.CXX_METHOD and
-    n.spelling.startswith('CreateMaze') and
-    any(c.kind == clang.cindex.CursorKind.COMPOUND_STMT for c in n.get_children()))]
+create_methods = get_create_methods(tu)
+print('Collecting CreateMaze* methods in labyrnth.cpp ...')
+tu = index.parse('../daedalus/src/labyrnth.cpp')
+create_methods.extend(get_create_methods(tu))
 
 # collect all references to "ms" inside these methods
 from collections import defaultdict
@@ -104,7 +110,7 @@ INTERESTING_SETTINGS = {'ms.fSection', 'ms.fTeleportEntrance', 'ms.fPoleNoDeadEn
                         'ms.cRandomAdd', 'ms.xFractal', 'ms.yFractal', 'ms.zFractal',
                         'ms.fFractalI', 'ms.fCrackOff', 'ms.nCrackLength', 'ms.nCrackPass',
                         'ms.nCrackSector', 'ms.nSparse', 'ms.fKruskalPic', 'ms.fWeaveCorner',
-                        'ms.fTiltDiamond', 'ms.nTiltSize'}
+                        'ms.fTiltDiamond', 'ms.nTiltSize', 'ms.nRndBias', 'ms.nRndRun'}
 
 GLOBAL_SETTINGS = {
     'ms.cRandomAdd': ('int', '0'),
@@ -121,6 +127,8 @@ GLOBAL_SETTINGS = {
     'ms.nEntrancePos': ('int', 'ENTRANCE_RANDOM'),
     'ms.nForsAdd': ('int', '-100'),
     'ms.nForsInit': ('int', '1'),
+    'ms.nRndBias': ('int', '0'),
+    'ms.nRndRun': ('int', '0'),
     'ms.nTiltSize': ('int', '4'),
     'ms.nTreeRiver': ('int', '10'),
     'ms.zFractal': ('int', '3'),

@@ -57,40 +57,58 @@ cdef extern from "wrapper.h":
                                  bool  fRiverFlow,
                                  bool  fSection,
                                  bool  fTreeWall,
-                                 int   nEntrancePos )
+                                 int   nEntrancePos,
+                                 int   nRndBias,
+                                 int   nRndRun )
     bool cpp_CreateMazePerfect2 ( CMaz *maze,
                                   bool  fRiver,
                                   bool  fSection,
-                                  int   nEntrancePos )
+                                  int   nEntrancePos,
+                                  int   nRndBias,
+                                  int   nRndRun )
     bool cpp_CreateMazeBraid ( CMaz *maze,
                                bool  fSection,
-                               int   nEntrancePos )
+                               int   nEntrancePos,
+                               int   nRndBias,
+                               int   nRndRun )
     bool cpp_CreateMazeBraidTilt ( CMaz *maze,
                                    bool  fSection,
                                    bool  fTiltDiamond,
-                                   int   nEntrancePos )
+                                   int   nEntrancePos,
+                                   int   nRndBias,
+                                   int   nRndRun )
     bool cpp_CreateMazeSpiral ( CMaz *maze,
                                 int   cRandomAdd,
                                 int   cSpiral,
                                 int   cSpiralWall,
                                 bool  fSection,
-                                int   nEntrancePos )
+                                int   nEntrancePos,
+                                int   nRndBias,
+                                int   nRndRun )
     bool cpp_CreateMazeDiagonal ( CMaz *maze,
                                   int   cRandomAdd,
                                   bool  fSection,
-                                  int   nEntrancePos )
+                                  int   nEntrancePos,
+                                  int   nRndBias,
+                                  int   nRndRun )
     bool cpp_CreateMazeRecursive ( CMaz *maze,
                                    bool  fSection,
-                                   int   nEntrancePos )
+                                   int   nEntrancePos,
+                                   int   nRndBias,
+                                   int   nRndRun )
     bool cpp_CreateMazePrim ( CMaz *maze,
                               bool  fSection,
                               bool  fTreeWall,
-                              int   nEntrancePos )
+                              int   nEntrancePos,
+                              int   nRndBias,
+                              int   nRndRun )
     bool cpp_CreateMazePrim2 ( CMaz *maze,
                                bool  fSection,
                                bool  fTreeRandom,
                                bool  fTreeWall,
-                               int   nEntrancePos )
+                               int   nEntrancePos,
+                               int   nRndBias,
+                               int   nRndRun )
     bool cpp_CreateMazeKruskal ( CMaz *maze,
                                  bool  fClear,
                                  CCol *c2,
@@ -98,12 +116,16 @@ cdef extern from "wrapper.h":
                                  bool  fKruskalPic,
                                  bool  fSection,
                                  bool  fTreeWall,
-                                 int   nEntrancePos )
+                                 int   nEntrancePos,
+                                 int   nRndBias,
+                                 int   nRndRun )
     bool cpp_CreateMazeTree ( CMaz *maze,
                               bool  fSection,
                               bool  fTreeRandom,
                               bool  fTreeWall,
                               int   nEntrancePos,
+                              int   nRndBias,
+                              int   nRndRun,
                               int   nTreeRiver )
     bool cpp_CreateMazeForest ( CMaz *maze,
                                 bool  fWall,
@@ -114,34 +136,50 @@ cdef extern from "wrapper.h":
                                 int   nEntrancePos,
                                 int   nForsAdd,
                                 int   nForsInit,
+                                int   nRndBias,
+                                int   nRndRun,
                                 int   nTreeRiver )
     bool cpp_CreateMazeAldousBroder ( CMaz *maze,
                                       bool  fSection,
                                       bool  fTreeWall,
-                                      int   nEntrancePos )
+                                      int   nEntrancePos,
+                                      int   nRndBias,
+                                      int   nRndRun )
     bool cpp_CreateMazeWilson ( CMaz *maze,
                                 bool  fSection,
                                 bool  fTreeWall,
-                                int   nEntrancePos )
+                                int   nEntrancePos,
+                                int   nRndBias,
+                                int   nRndRun )
     bool cpp_CreateMazeEller ( CMaz *maze,
                                bool  fSection,
                                bool  fTreeWall,
-                               int   nEntrancePos )
+                               int   nEntrancePos,
+                               int   nRndBias,
+                               int   nRndRun )
     bool cpp_CreateMazeBraidEller ( CMaz *maze,
                                     bool  fSection,
-                                    int   nEntrancePos )
+                                    int   nEntrancePos,
+                                    int   nRndBias,
+                                    int   nRndRun )
     bool cpp_CreateMazeDivision ( CMaz *maze,
                                   bool  fSection,
-                                  int   nEntrancePos )
+                                  int   nEntrancePos,
+                                  int   nRndBias,
+                                  int   nRndRun )
     bool cpp_CreateMazeBinary ( CMaz *maze,
                                 int   cRandomAdd,
                                 bool  fSection,
                                 bool  fTreeWall,
-                                int   nEntrancePos )
+                                int   nEntrancePos,
+                                int   nRndBias,
+                                int   nRndRun )
     bool cpp_CreateMazeSidewinder ( CMaz *maze,
                                     bool  fSection,
                                     bool  fTreeWall,
-                                    int   nEntrancePos )
+                                    int   nEntrancePos,
+                                    int   nRndBias,
+                                    int   nRndRun )
     bool cpp_CreateMazeUnicursal ( CMaz *maze,
                                    int   cRandomAdd,
                                    bool  fRiver,
@@ -149,7 +187,9 @@ cdef extern from "wrapper.h":
                                    bool  fRiverFlow,
                                    bool  fSection,
                                    bool  fTreeWall,
-                                   int   nEntrancePos )
+                                   int   nEntrancePos,
+                                   int   nRndBias,
+                                   int   nRndRun )
     bool cpp_Resize(CMaz *maze, unsigned width, unsigned height)
     int cpp_SaveBitmap(CMaz *maze,
                        const char *filename,
@@ -346,7 +386,9 @@ cdef class Maze(object):
     def create_perfect(self,
                        fRiver=True,
                        fTreeWall=False,
-                       nEntrancePos=ENTRANCE_RANDOM):
+                       nEntrancePos=ENTRANCE_RANDOM,
+                       nRndBias=0,
+                       nRndRun=0):
         '''
         Overwrites the contents of this Maze to create a perfect maze
         using the Hunt and Kill algorithm.
@@ -367,6 +409,23 @@ cdef class Maze(object):
             are placed randomly, but are horizontally "balanced"),
             ENTRANCE_RANDOM (entrance and exit are placed randomly).
             Defaults to ENTRANCE_RANDOM.
+        :param int nRndBias: This allows most styles of random Mazes
+            created to be passage biased. A biased Maze has
+            straightaways that tend to go along one axis more often
+            than at other angles. When this value is positive, Mazes
+            will be horizontally biased, and when this is negative,
+            Mazes will be vertically biased. The farther the value
+            from zero, the more extreme the bias. A value of zero
+            means no bias.  Defaults to 0.
+        :param int nRndRun: This allows some styles of random Mazes
+            created to have a "run" factor. The run of a Maze means
+            how long straightaways tend to go before forced turnings
+            present themselves. A Maze with a low run won’t have
+            straight passages for more than three or four cells, and
+            will look very random. A Maze with a high run will have
+            long passages going across a good percentage of the Maze,
+            and will look similar to a microchip. The more this value
+            is greater than zero, the higher the run.  Defaults to 0.
         :rtype: None
         '''
         if not cpp_CreateMazePerfect(self._maze,
@@ -375,13 +434,17 @@ cdef class Maze(object):
                                      True,
                                      False,
                                      fTreeWall,
-                                     nEntrancePos):
+                                     nEntrancePos,
+                                     nRndBias,
+                                     nRndRun):
             raise MazeError('Could not create Perfect Maze.')
         self._store_back_globals()
 
     def create_perfect2(self,
                         fRiver=True,
-                        nEntrancePos=ENTRANCE_RANDOM):
+                        nEntrancePos=ENTRANCE_RANDOM,
+                        nRndBias=0,
+                        nRndRun=0):
         '''
         Overwrites the contents of this Maze to create a Perfect2 maze.
 
@@ -398,17 +461,38 @@ cdef class Maze(object):
             are placed randomly, but are horizontally "balanced"),
             ENTRANCE_RANDOM (entrance and exit are placed randomly).
             Defaults to ENTRANCE_RANDOM.
+        :param int nRndBias: This allows most styles of random Mazes
+            created to be passage biased. A biased Maze has
+            straightaways that tend to go along one axis more often
+            than at other angles. When this value is positive, Mazes
+            will be horizontally biased, and when this is negative,
+            Mazes will be vertically biased. The farther the value
+            from zero, the more extreme the bias. A value of zero
+            means no bias.  Defaults to 0.
+        :param int nRndRun: This allows some styles of random Mazes
+            created to have a "run" factor. The run of a Maze means
+            how long straightaways tend to go before forced turnings
+            present themselves. A Maze with a low run won’t have
+            straight passages for more than three or four cells, and
+            will look very random. A Maze with a high run will have
+            long passages going across a good percentage of the Maze,
+            and will look similar to a microchip. The more this value
+            is greater than zero, the higher the run.  Defaults to 0.
         :rtype: None
         '''
         if not cpp_CreateMazePerfect2(self._maze,
                                       fRiver,
                                       False,
-                                      nEntrancePos):
+                                      nEntrancePos,
+                                      nRndBias,
+                                      nRndRun):
             raise MazeError('Could not create Perfect2 Maze.')
         self._store_back_globals()
 
     def create_braid(self,
-                     nEntrancePos=ENTRANCE_RANDOM):
+                     nEntrancePos=ENTRANCE_RANDOM,
+                     nRndBias=0,
+                     nRndRun=0):
         '''
         Overwrites the contents of this Maze to create a Braid maze.
 
@@ -422,17 +506,38 @@ cdef class Maze(object):
             are placed randomly, but are horizontally "balanced"),
             ENTRANCE_RANDOM (entrance and exit are placed randomly).
             Defaults to ENTRANCE_RANDOM.
+        :param int nRndBias: This allows most styles of random Mazes
+            created to be passage biased. A biased Maze has
+            straightaways that tend to go along one axis more often
+            than at other angles. When this value is positive, Mazes
+            will be horizontally biased, and when this is negative,
+            Mazes will be vertically biased. The farther the value
+            from zero, the more extreme the bias. A value of zero
+            means no bias.  Defaults to 0.
+        :param int nRndRun: This allows some styles of random Mazes
+            created to have a "run" factor. The run of a Maze means
+            how long straightaways tend to go before forced turnings
+            present themselves. A Maze with a low run won’t have
+            straight passages for more than three or four cells, and
+            will look very random. A Maze with a high run will have
+            long passages going across a good percentage of the Maze,
+            and will look similar to a microchip. The more this value
+            is greater than zero, the higher the run.  Defaults to 0.
         :rtype: None
         '''
         if not cpp_CreateMazeBraid(self._maze,
                                    False,
-                                   nEntrancePos):
+                                   nEntrancePos,
+                                   nRndBias,
+                                   nRndRun):
             raise MazeError('Could not create Braid Maze.')
         self._store_back_globals()
 
     def create_braid_tilt(self,
                           fTiltDiamond=False,
-                          nEntrancePos=ENTRANCE_RANDOM):
+                          nEntrancePos=ENTRANCE_RANDOM,
+                          nRndBias=0,
+                          nRndRun=0):
         '''
         Overwrites the contents of this Maze to create a BraidTilt maze.
 
@@ -448,12 +553,31 @@ cdef class Maze(object):
             are placed randomly, but are horizontally "balanced"),
             ENTRANCE_RANDOM (entrance and exit are placed randomly).
             Defaults to ENTRANCE_RANDOM.
+        :param int nRndBias: This allows most styles of random Mazes
+            created to be passage biased. A biased Maze has
+            straightaways that tend to go along one axis more often
+            than at other angles. When this value is positive, Mazes
+            will be horizontally biased, and when this is negative,
+            Mazes will be vertically biased. The farther the value
+            from zero, the more extreme the bias. A value of zero
+            means no bias.  Defaults to 0.
+        :param int nRndRun: This allows some styles of random Mazes
+            created to have a "run" factor. The run of a Maze means
+            how long straightaways tend to go before forced turnings
+            present themselves. A Maze with a low run won’t have
+            straight passages for more than three or four cells, and
+            will look very random. A Maze with a high run will have
+            long passages going across a good percentage of the Maze,
+            and will look similar to a microchip. The more this value
+            is greater than zero, the higher the run.  Defaults to 0.
         :rtype: None
         '''
         if not cpp_CreateMazeBraidTilt(self._maze,
                                        False,
                                        fTiltDiamond,
-                                       nEntrancePos):
+                                       nEntrancePos,
+                                       nRndBias,
+                                       nRndRun):
             raise MazeError('Could not create BraidTilt Maze.')
         self._store_back_globals()
 
@@ -461,7 +585,9 @@ cdef class Maze(object):
                       cRandomAdd=0,
                       cSpiral=15,
                       cSpiralWall=15,
-                      nEntrancePos=ENTRANCE_RANDOM):
+                      nEntrancePos=ENTRANCE_RANDOM,
+                      nRndBias=0,
+                      nRndRun=0):
         '''
         Overwrites the contents of this Maze to create a Spiral maze.
 
@@ -490,6 +616,23 @@ cdef class Maze(object):
             are placed randomly, but are horizontally "balanced"),
             ENTRANCE_RANDOM (entrance and exit are placed randomly).
             Defaults to ENTRANCE_RANDOM.
+        :param int nRndBias: This allows most styles of random Mazes
+            created to be passage biased. A biased Maze has
+            straightaways that tend to go along one axis more often
+            than at other angles. When this value is positive, Mazes
+            will be horizontally biased, and when this is negative,
+            Mazes will be vertically biased. The farther the value
+            from zero, the more extreme the bias. A value of zero
+            means no bias.  Defaults to 0.
+        :param int nRndRun: This allows some styles of random Mazes
+            created to have a "run" factor. The run of a Maze means
+            how long straightaways tend to go before forced turnings
+            present themselves. A Maze with a low run won’t have
+            straight passages for more than three or four cells, and
+            will look very random. A Maze with a high run will have
+            long passages going across a good percentage of the Maze,
+            and will look similar to a microchip. The more this value
+            is greater than zero, the higher the run.  Defaults to 0.
         :rtype: None
         '''
         if not cpp_CreateMazeSpiral(self._maze,
@@ -497,13 +640,17 @@ cdef class Maze(object):
                                     cSpiral,
                                     cSpiralWall,
                                     False,
-                                    nEntrancePos):
+                                    nEntrancePos,
+                                    nRndBias,
+                                    nRndRun):
             raise MazeError('Could not create Spiral Maze.')
         self._store_back_globals()
 
     def create_diagonal(self,
                         cRandomAdd=0,
-                        nEntrancePos=ENTRANCE_RANDOM):
+                        nEntrancePos=ENTRANCE_RANDOM,
+                        nRndBias=0,
+                        nRndRun=0):
         '''
         Overwrites the contents of this Maze to create a Diagonal maze.
 
@@ -522,17 +669,38 @@ cdef class Maze(object):
             are placed randomly, but are horizontally "balanced"),
             ENTRANCE_RANDOM (entrance and exit are placed randomly).
             Defaults to ENTRANCE_RANDOM.
+        :param int nRndBias: This allows most styles of random Mazes
+            created to be passage biased. A biased Maze has
+            straightaways that tend to go along one axis more often
+            than at other angles. When this value is positive, Mazes
+            will be horizontally biased, and when this is negative,
+            Mazes will be vertically biased. The farther the value
+            from zero, the more extreme the bias. A value of zero
+            means no bias.  Defaults to 0.
+        :param int nRndRun: This allows some styles of random Mazes
+            created to have a "run" factor. The run of a Maze means
+            how long straightaways tend to go before forced turnings
+            present themselves. A Maze with a low run won’t have
+            straight passages for more than three or four cells, and
+            will look very random. A Maze with a high run will have
+            long passages going across a good percentage of the Maze,
+            and will look similar to a microchip. The more this value
+            is greater than zero, the higher the run.  Defaults to 0.
         :rtype: None
         '''
         if not cpp_CreateMazeDiagonal(self._maze,
                                       cRandomAdd,
                                       False,
-                                      nEntrancePos):
+                                      nEntrancePos,
+                                      nRndBias,
+                                      nRndRun):
             raise MazeError('Could not create Diagonal Maze.')
         self._store_back_globals()
 
     def create_recursive(self,
-                         nEntrancePos=ENTRANCE_RANDOM):
+                         nEntrancePos=ENTRANCE_RANDOM,
+                         nRndBias=0,
+                         nRndRun=0):
         '''
         Overwrites the contents of this Maze to create a Recursive maze.
 
@@ -546,17 +714,38 @@ cdef class Maze(object):
             are placed randomly, but are horizontally "balanced"),
             ENTRANCE_RANDOM (entrance and exit are placed randomly).
             Defaults to ENTRANCE_RANDOM.
+        :param int nRndBias: This allows most styles of random Mazes
+            created to be passage biased. A biased Maze has
+            straightaways that tend to go along one axis more often
+            than at other angles. When this value is positive, Mazes
+            will be horizontally biased, and when this is negative,
+            Mazes will be vertically biased. The farther the value
+            from zero, the more extreme the bias. A value of zero
+            means no bias.  Defaults to 0.
+        :param int nRndRun: This allows some styles of random Mazes
+            created to have a "run" factor. The run of a Maze means
+            how long straightaways tend to go before forced turnings
+            present themselves. A Maze with a low run won’t have
+            straight passages for more than three or four cells, and
+            will look very random. A Maze with a high run will have
+            long passages going across a good percentage of the Maze,
+            and will look similar to a microchip. The more this value
+            is greater than zero, the higher the run.  Defaults to 0.
         :rtype: None
         '''
         if not cpp_CreateMazeRecursive(self._maze,
                                        False,
-                                       nEntrancePos):
+                                       nEntrancePos,
+                                       nRndBias,
+                                       nRndRun):
             raise MazeError('Could not create Recursive Maze.')
         self._store_back_globals()
 
     def create_prim(self,
                     fTreeWall=False,
-                    nEntrancePos=ENTRANCE_RANDOM):
+                    nEntrancePos=ENTRANCE_RANDOM,
+                    nRndBias=0,
+                    nRndRun=0):
         '''
         Overwrites the contents of this Maze to create a Prim maze.
 
@@ -574,19 +763,40 @@ cdef class Maze(object):
             are placed randomly, but are horizontally "balanced"),
             ENTRANCE_RANDOM (entrance and exit are placed randomly).
             Defaults to ENTRANCE_RANDOM.
+        :param int nRndBias: This allows most styles of random Mazes
+            created to be passage biased. A biased Maze has
+            straightaways that tend to go along one axis more often
+            than at other angles. When this value is positive, Mazes
+            will be horizontally biased, and when this is negative,
+            Mazes will be vertically biased. The farther the value
+            from zero, the more extreme the bias. A value of zero
+            means no bias.  Defaults to 0.
+        :param int nRndRun: This allows some styles of random Mazes
+            created to have a "run" factor. The run of a Maze means
+            how long straightaways tend to go before forced turnings
+            present themselves. A Maze with a low run won’t have
+            straight passages for more than three or four cells, and
+            will look very random. A Maze with a high run will have
+            long passages going across a good percentage of the Maze,
+            and will look similar to a microchip. The more this value
+            is greater than zero, the higher the run.  Defaults to 0.
         :rtype: None
         '''
         if not cpp_CreateMazePrim(self._maze,
                                   False,
                                   fTreeWall,
-                                  nEntrancePos):
+                                  nEntrancePos,
+                                  nRndBias,
+                                  nRndRun):
             raise MazeError('Could not create Prim Maze.')
         self._store_back_globals()
 
     def create_prim2(self,
                      fTreeRandom=True,
                      fTreeWall=False,
-                     nEntrancePos=ENTRANCE_RANDOM):
+                     nEntrancePos=ENTRANCE_RANDOM,
+                     nRndBias=0,
+                     nRndRun=0):
         '''
         Overwrites the contents of this Maze to create a Prim2 maze.
 
@@ -608,20 +818,41 @@ cdef class Maze(object):
             are placed randomly, but are horizontally "balanced"),
             ENTRANCE_RANDOM (entrance and exit are placed randomly).
             Defaults to ENTRANCE_RANDOM.
+        :param int nRndBias: This allows most styles of random Mazes
+            created to be passage biased. A biased Maze has
+            straightaways that tend to go along one axis more often
+            than at other angles. When this value is positive, Mazes
+            will be horizontally biased, and when this is negative,
+            Mazes will be vertically biased. The farther the value
+            from zero, the more extreme the bias. A value of zero
+            means no bias.  Defaults to 0.
+        :param int nRndRun: This allows some styles of random Mazes
+            created to have a "run" factor. The run of a Maze means
+            how long straightaways tend to go before forced turnings
+            present themselves. A Maze with a low run won’t have
+            straight passages for more than three or four cells, and
+            will look very random. A Maze with a high run will have
+            long passages going across a good percentage of the Maze,
+            and will look similar to a microchip. The more this value
+            is greater than zero, the higher the run.  Defaults to 0.
         :rtype: None
         '''
         if not cpp_CreateMazePrim2(self._maze,
                                    False,
                                    fTreeRandom,
                                    fTreeWall,
-                                   nEntrancePos):
+                                   nEntrancePos,
+                                   nRndBias,
+                                   nRndRun):
             raise MazeError('Could not create Prim2 Maze.')
         self._store_back_globals()
 
     def create_kruskal(self, fClear, c2, c3,
                        fKruskalPic=False,
                        fTreeWall=False,
-                       nEntrancePos=ENTRANCE_RANDOM):
+                       nEntrancePos=ENTRANCE_RANDOM,
+                       nRndBias=0,
+                       nRndRun=0):
         '''
         Overwrites the contents of this Maze to create a Kruskal maze.
 
@@ -639,6 +870,23 @@ cdef class Maze(object):
             are placed randomly, but are horizontally "balanced"),
             ENTRANCE_RANDOM (entrance and exit are placed randomly).
             Defaults to ENTRANCE_RANDOM.
+        :param int nRndBias: This allows most styles of random Mazes
+            created to be passage biased. A biased Maze has
+            straightaways that tend to go along one axis more often
+            than at other angles. When this value is positive, Mazes
+            will be horizontally biased, and when this is negative,
+            Mazes will be vertically biased. The farther the value
+            from zero, the more extreme the bias. A value of zero
+            means no bias.  Defaults to 0.
+        :param int nRndRun: This allows some styles of random Mazes
+            created to have a "run" factor. The run of a Maze means
+            how long straightaways tend to go before forced turnings
+            present themselves. A Maze with a low run won’t have
+            straight passages for more than three or four cells, and
+            will look very random. A Maze with a high run will have
+            long passages going across a good percentage of the Maze,
+            and will look similar to a microchip. The more this value
+            is greater than zero, the higher the run.  Defaults to 0.
         :rtype: None
         '''
         # TODO
@@ -648,7 +896,9 @@ cdef class Maze(object):
                                      fKruskalPic,
                                      False,
                                      fTreeWall,
-                                     nEntrancePos):
+                                     nEntrancePos,
+                                     nRndBias,
+                                     nRndRun):
             raise MazeError('Could not create Kruskal Maze.')
         self._store_back_globals()
 
@@ -656,6 +906,8 @@ cdef class Maze(object):
                     fTreeRandom=True,
                     fTreeWall=False,
                     nEntrancePos=ENTRANCE_RANDOM,
+                    nRndBias=0,
+                    nRndRun=0,
                     nTreeRiver=10):
         '''
         Overwrites the contents of this Maze to create a Tree maze.
@@ -677,6 +929,23 @@ cdef class Maze(object):
             are placed randomly, but are horizontally "balanced"),
             ENTRANCE_RANDOM (entrance and exit are placed randomly).
             Defaults to ENTRANCE_RANDOM.
+        :param int nRndBias: This allows most styles of random Mazes
+            created to be passage biased. A biased Maze has
+            straightaways that tend to go along one axis more often
+            than at other angles. When this value is positive, Mazes
+            will be horizontally biased, and when this is negative,
+            Mazes will be vertically biased. The farther the value
+            from zero, the more extreme the bias. A value of zero
+            means no bias.  Defaults to 0.
+        :param int nRndRun: This allows some styles of random Mazes
+            created to have a "run" factor. The run of a Maze means
+            how long straightaways tend to go before forced turnings
+            present themselves. A Maze with a low run won’t have
+            straight passages for more than three or four cells, and
+            will look very random. A Maze with a high run will have
+            long passages going across a good percentage of the Maze,
+            and will look similar to a microchip. The more this value
+            is greater than zero, the higher the run.  Defaults to 0.
         :param int nTreeRiver: with fTreeRandom set to False, this
             determines how many of the most recent sections to choose
             from; higher values give less windy solutions.  With
@@ -689,6 +958,8 @@ cdef class Maze(object):
                                   fTreeRandom,
                                   fTreeWall,
                                   nEntrancePos,
+                                  nRndBias,
+                                  nRndRun,
                                   nTreeRiver):
             raise MazeError('Could not create Tree Maze.')
         self._store_back_globals()
@@ -699,6 +970,8 @@ cdef class Maze(object):
                       nEntrancePos=ENTRANCE_RANDOM,
                       nForsAdd=-100,
                       nForsInit=1,
+                      nRndBias=0,
+                      nRndRun=0,
                       nTreeRiver=10):
         '''
         Overwrites the contents of this Maze to create a Forest maze.
@@ -734,6 +1007,23 @@ cdef class Maze(object):
             in X cells should start out as instances. Defaults to 1.
             If both nForsInit is 1 and nForsAdd is 0, then this
             function behaves like the Growing Tree algorithm.
+        :param int nRndBias: This allows most styles of random Mazes
+            created to be passage biased. A biased Maze has
+            straightaways that tend to go along one axis more often
+            than at other angles. When this value is positive, Mazes
+            will be horizontally biased, and when this is negative,
+            Mazes will be vertically biased. The farther the value
+            from zero, the more extreme the bias. A value of zero
+            means no bias.  Defaults to 0.
+        :param int nRndRun: This allows some styles of random Mazes
+            created to have a "run" factor. The run of a Maze means
+            how long straightaways tend to go before forced turnings
+            present themselves. A Maze with a low run won’t have
+            straight passages for more than three or four cells, and
+            will look very random. A Maze with a high run will have
+            long passages going across a good percentage of the Maze,
+            and will look similar to a microchip. The more this value
+            is greater than zero, the higher the run.  Defaults to 0.
         :param int nTreeRiver: with fTreeRandom set to False, this
             determines how many of the most recent sections to choose
             from; higher values give less windy solutions.  With
@@ -749,13 +1039,17 @@ cdef class Maze(object):
                                     nEntrancePos,
                                     nForsAdd,
                                     nForsInit,
+                                    nRndBias,
+                                    nRndRun,
                                     nTreeRiver):
             raise MazeError('Could not create Forest Maze.')
         self._store_back_globals()
 
     def create_aldous_broder(self,
                              fTreeWall=False,
-                             nEntrancePos=ENTRANCE_RANDOM):
+                             nEntrancePos=ENTRANCE_RANDOM,
+                             nRndBias=0,
+                             nRndRun=0):
         '''
         Overwrites the contents of this Maze to create a AldousBroder maze.
 
@@ -774,18 +1068,39 @@ cdef class Maze(object):
             are placed randomly, but are horizontally "balanced"),
             ENTRANCE_RANDOM (entrance and exit are placed randomly).
             Defaults to ENTRANCE_RANDOM.
+        :param int nRndBias: This allows most styles of random Mazes
+            created to be passage biased. A biased Maze has
+            straightaways that tend to go along one axis more often
+            than at other angles. When this value is positive, Mazes
+            will be horizontally biased, and when this is negative,
+            Mazes will be vertically biased. The farther the value
+            from zero, the more extreme the bias. A value of zero
+            means no bias.  Defaults to 0.
+        :param int nRndRun: This allows some styles of random Mazes
+            created to have a "run" factor. The run of a Maze means
+            how long straightaways tend to go before forced turnings
+            present themselves. A Maze with a low run won’t have
+            straight passages for more than three or four cells, and
+            will look very random. A Maze with a high run will have
+            long passages going across a good percentage of the Maze,
+            and will look similar to a microchip. The more this value
+            is greater than zero, the higher the run.  Defaults to 0.
         :rtype: None
         '''
         if not cpp_CreateMazeAldousBroder(self._maze,
                                           False,
                                           fTreeWall,
-                                          nEntrancePos):
+                                          nEntrancePos,
+                                          nRndBias,
+                                          nRndRun):
             raise MazeError('Could not create AldousBroder Maze.')
         self._store_back_globals()
 
     def create_wilson(self,
                       fTreeWall=False,
-                      nEntrancePos=ENTRANCE_RANDOM):
+                      nEntrancePos=ENTRANCE_RANDOM,
+                      nRndBias=0,
+                      nRndRun=0):
         '''
         Overwrites the contents of this Maze to create a Wilson maze.
 
@@ -805,18 +1120,39 @@ cdef class Maze(object):
             are placed randomly, but are horizontally "balanced"),
             ENTRANCE_RANDOM (entrance and exit are placed randomly).
             Defaults to ENTRANCE_RANDOM.
+        :param int nRndBias: This allows most styles of random Mazes
+            created to be passage biased. A biased Maze has
+            straightaways that tend to go along one axis more often
+            than at other angles. When this value is positive, Mazes
+            will be horizontally biased, and when this is negative,
+            Mazes will be vertically biased. The farther the value
+            from zero, the more extreme the bias. A value of zero
+            means no bias.  Defaults to 0.
+        :param int nRndRun: This allows some styles of random Mazes
+            created to have a "run" factor. The run of a Maze means
+            how long straightaways tend to go before forced turnings
+            present themselves. A Maze with a low run won’t have
+            straight passages for more than three or four cells, and
+            will look very random. A Maze with a high run will have
+            long passages going across a good percentage of the Maze,
+            and will look similar to a microchip. The more this value
+            is greater than zero, the higher the run.  Defaults to 0.
         :rtype: None
         '''
         if not cpp_CreateMazeWilson(self._maze,
                                     False,
                                     fTreeWall,
-                                    nEntrancePos):
+                                    nEntrancePos,
+                                    nRndBias,
+                                    nRndRun):
             raise MazeError('Could not create Wilson Maze.')
         self._store_back_globals()
 
     def create_eller(self,
                      fTreeWall=False,
-                     nEntrancePos=ENTRANCE_RANDOM):
+                     nEntrancePos=ENTRANCE_RANDOM,
+                     nRndBias=0,
+                     nRndRun=0):
         '''
         Overwrites the contents of this Maze to create a Eller maze.
 
@@ -835,17 +1171,38 @@ cdef class Maze(object):
             are placed randomly, but are horizontally "balanced"),
             ENTRANCE_RANDOM (entrance and exit are placed randomly).
             Defaults to ENTRANCE_RANDOM.
+        :param int nRndBias: This allows most styles of random Mazes
+            created to be passage biased. A biased Maze has
+            straightaways that tend to go along one axis more often
+            than at other angles. When this value is positive, Mazes
+            will be horizontally biased, and when this is negative,
+            Mazes will be vertically biased. The farther the value
+            from zero, the more extreme the bias. A value of zero
+            means no bias.  Defaults to 0.
+        :param int nRndRun: This allows some styles of random Mazes
+            created to have a "run" factor. The run of a Maze means
+            how long straightaways tend to go before forced turnings
+            present themselves. A Maze with a low run won’t have
+            straight passages for more than three or four cells, and
+            will look very random. A Maze with a high run will have
+            long passages going across a good percentage of the Maze,
+            and will look similar to a microchip. The more this value
+            is greater than zero, the higher the run.  Defaults to 0.
         :rtype: None
         '''
         if not cpp_CreateMazeEller(self._maze,
                                    False,
                                    fTreeWall,
-                                   nEntrancePos):
+                                   nEntrancePos,
+                                   nRndBias,
+                                   nRndRun):
             raise MazeError('Could not create Eller Maze.')
         self._store_back_globals()
 
     def create_braid_eller(self,
-                           nEntrancePos=ENTRANCE_RANDOM):
+                           nEntrancePos=ENTRANCE_RANDOM,
+                           nRndBias=0,
+                           nRndRun=0):
         '''
         Overwrites the contents of this Maze to create a BraidEller maze.
 
@@ -859,16 +1216,37 @@ cdef class Maze(object):
             are placed randomly, but are horizontally "balanced"),
             ENTRANCE_RANDOM (entrance and exit are placed randomly).
             Defaults to ENTRANCE_RANDOM.
+        :param int nRndBias: This allows most styles of random Mazes
+            created to be passage biased. A biased Maze has
+            straightaways that tend to go along one axis more often
+            than at other angles. When this value is positive, Mazes
+            will be horizontally biased, and when this is negative,
+            Mazes will be vertically biased. The farther the value
+            from zero, the more extreme the bias. A value of zero
+            means no bias.  Defaults to 0.
+        :param int nRndRun: This allows some styles of random Mazes
+            created to have a "run" factor. The run of a Maze means
+            how long straightaways tend to go before forced turnings
+            present themselves. A Maze with a low run won’t have
+            straight passages for more than three or four cells, and
+            will look very random. A Maze with a high run will have
+            long passages going across a good percentage of the Maze,
+            and will look similar to a microchip. The more this value
+            is greater than zero, the higher the run.  Defaults to 0.
         :rtype: None
         '''
         if not cpp_CreateMazeBraidEller(self._maze,
                                         False,
-                                        nEntrancePos):
+                                        nEntrancePos,
+                                        nRndBias,
+                                        nRndRun):
             raise MazeError('Could not create BraidEller Maze.')
         self._store_back_globals()
 
     def create_division(self,
-                        nEntrancePos=ENTRANCE_RANDOM):
+                        nEntrancePos=ENTRANCE_RANDOM,
+                        nRndBias=0,
+                        nRndRun=0):
         '''
         Overwrites the contents of this Maze to create a Division maze.
 
@@ -883,18 +1261,39 @@ cdef class Maze(object):
             are placed randomly, but are horizontally "balanced"),
             ENTRANCE_RANDOM (entrance and exit are placed randomly).
             Defaults to ENTRANCE_RANDOM.
+        :param int nRndBias: This allows most styles of random Mazes
+            created to be passage biased. A biased Maze has
+            straightaways that tend to go along one axis more often
+            than at other angles. When this value is positive, Mazes
+            will be horizontally biased, and when this is negative,
+            Mazes will be vertically biased. The farther the value
+            from zero, the more extreme the bias. A value of zero
+            means no bias.  Defaults to 0.
+        :param int nRndRun: This allows some styles of random Mazes
+            created to have a "run" factor. The run of a Maze means
+            how long straightaways tend to go before forced turnings
+            present themselves. A Maze with a low run won’t have
+            straight passages for more than three or four cells, and
+            will look very random. A Maze with a high run will have
+            long passages going across a good percentage of the Maze,
+            and will look similar to a microchip. The more this value
+            is greater than zero, the higher the run.  Defaults to 0.
         :rtype: None
         '''
         if not cpp_CreateMazeDivision(self._maze,
                                       False,
-                                      nEntrancePos):
+                                      nEntrancePos,
+                                      nRndBias,
+                                      nRndRun):
             raise MazeError('Could not create Division Maze.')
         self._store_back_globals()
 
     def create_binary(self,
                       cRandomAdd=0,
                       fTreeWall=False,
-                      nEntrancePos=ENTRANCE_RANDOM):
+                      nEntrancePos=ENTRANCE_RANDOM,
+                      nRndBias=0,
+                      nRndRun=0):
         '''
         Overwrites the contents of this Maze to create a Binary maze.
 
@@ -918,19 +1317,40 @@ cdef class Maze(object):
             are placed randomly, but are horizontally "balanced"),
             ENTRANCE_RANDOM (entrance and exit are placed randomly).
             Defaults to ENTRANCE_RANDOM.
+        :param int nRndBias: This allows most styles of random Mazes
+            created to be passage biased. A biased Maze has
+            straightaways that tend to go along one axis more often
+            than at other angles. When this value is positive, Mazes
+            will be horizontally biased, and when this is negative,
+            Mazes will be vertically biased. The farther the value
+            from zero, the more extreme the bias. A value of zero
+            means no bias.  Defaults to 0.
+        :param int nRndRun: This allows some styles of random Mazes
+            created to have a "run" factor. The run of a Maze means
+            how long straightaways tend to go before forced turnings
+            present themselves. A Maze with a low run won’t have
+            straight passages for more than three or four cells, and
+            will look very random. A Maze with a high run will have
+            long passages going across a good percentage of the Maze,
+            and will look similar to a microchip. The more this value
+            is greater than zero, the higher the run.  Defaults to 0.
         :rtype: None
         '''
         if not cpp_CreateMazeBinary(self._maze,
                                     cRandomAdd,
                                     False,
                                     fTreeWall,
-                                    nEntrancePos):
+                                    nEntrancePos,
+                                    nRndBias,
+                                    nRndRun):
             raise MazeError('Could not create Binary Maze.')
         self._store_back_globals()
 
     def create_sidewinder(self,
                           fTreeWall=False,
-                          nEntrancePos=ENTRANCE_RANDOM):
+                          nEntrancePos=ENTRANCE_RANDOM,
+                          nRndBias=0,
+                          nRndRun=0):
         '''
         Overwrites the contents of this Maze to create a Sidewinder maze.
 
@@ -947,12 +1367,31 @@ cdef class Maze(object):
             are placed randomly, but are horizontally "balanced"),
             ENTRANCE_RANDOM (entrance and exit are placed randomly).
             Defaults to ENTRANCE_RANDOM.
+        :param int nRndBias: This allows most styles of random Mazes
+            created to be passage biased. A biased Maze has
+            straightaways that tend to go along one axis more often
+            than at other angles. When this value is positive, Mazes
+            will be horizontally biased, and when this is negative,
+            Mazes will be vertically biased. The farther the value
+            from zero, the more extreme the bias. A value of zero
+            means no bias.  Defaults to 0.
+        :param int nRndRun: This allows some styles of random Mazes
+            created to have a "run" factor. The run of a Maze means
+            how long straightaways tend to go before forced turnings
+            present themselves. A Maze with a low run won’t have
+            straight passages for more than three or four cells, and
+            will look very random. A Maze with a high run will have
+            long passages going across a good percentage of the Maze,
+            and will look similar to a microchip. The more this value
+            is greater than zero, the higher the run.  Defaults to 0.
         :rtype: None
         '''
         if not cpp_CreateMazeSidewinder(self._maze,
                                         False,
                                         fTreeWall,
-                                        nEntrancePos):
+                                        nEntrancePos,
+                                        nRndBias,
+                                        nRndRun):
             raise MazeError('Could not create Sidewinder Maze.')
         self._store_back_globals()
 
@@ -960,7 +1399,9 @@ cdef class Maze(object):
                          cRandomAdd=0,
                          fRiver=True,
                          fTreeWall=False,
-                         nEntrancePos=ENTRANCE_RANDOM):
+                         nEntrancePos=ENTRANCE_RANDOM,
+                         nRndBias=0,
+                         nRndRun=0):
         '''
         Overwrites the contents of this Maze to create a Unicursal maze.
 
@@ -985,6 +1426,23 @@ cdef class Maze(object):
             are placed randomly, but are horizontally "balanced"),
             ENTRANCE_RANDOM (entrance and exit are placed randomly).
             Defaults to ENTRANCE_RANDOM.
+        :param int nRndBias: This allows most styles of random Mazes
+            created to be passage biased. A biased Maze has
+            straightaways that tend to go along one axis more often
+            than at other angles. When this value is positive, Mazes
+            will be horizontally biased, and when this is negative,
+            Mazes will be vertically biased. The farther the value
+            from zero, the more extreme the bias. A value of zero
+            means no bias.  Defaults to 0.
+        :param int nRndRun: This allows some styles of random Mazes
+            created to have a "run" factor. The run of a Maze means
+            how long straightaways tend to go before forced turnings
+            present themselves. A Maze with a low run won’t have
+            straight passages for more than three or four cells, and
+            will look very random. A Maze with a high run will have
+            long passages going across a good percentage of the Maze,
+            and will look similar to a microchip. The more this value
+            is greater than zero, the higher the run.  Defaults to 0.
         :rtype: None
         '''
         if not cpp_CreateMazeUnicursal(self._maze,
@@ -994,7 +1452,9 @@ cdef class Maze(object):
                                        True,
                                        False,
                                        fTreeWall,
-                                       nEntrancePos):
+                                       nEntrancePos,
+                                       nRndBias,
+                                       nRndRun):
             raise MazeError('Could not create Unicursal Maze.')
         self._store_back_globals()
 

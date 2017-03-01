@@ -56,7 +56,9 @@ cpp_CreateMazePerfect ( CMaz *maze,
                         bool  fRiverFlow,
                         bool  fSection,
                         bool  fTreeWall,
-                        int   nEntrancePos )
+                        int   nEntrancePos,
+                        int   nRndBias,
+                        int   nRndRun )
 {
     if (!maze) return false;
     ms.fRiver       = fRiver;
@@ -65,6 +67,8 @@ cpp_CreateMazePerfect ( CMaz *maze,
     ms.fSection     = fSection;
     ms.fTreeWall    = fTreeWall;
     ms.nEntrancePos = nEntrancePos;
+    ms.nRndBias     = nRndBias;
+    ms.nRndRun      = nRndRun;
     return maze->CreateMazePerfect();
 }
 
@@ -72,23 +76,31 @@ bool
 cpp_CreateMazePerfect2 ( CMaz *maze,
                          bool  fRiver,
                          bool  fSection,
-                         int   nEntrancePos )
+                         int   nEntrancePos,
+                         int   nRndBias,
+                         int   nRndRun )
 {
     if (!maze) return false;
     ms.fRiver       = fRiver;
     ms.fSection     = fSection;
     ms.nEntrancePos = nEntrancePos;
+    ms.nRndBias     = nRndBias;
+    ms.nRndRun      = nRndRun;
     return maze->CreateMazePerfect2();
 }
 
 bool
 cpp_CreateMazeBraid ( CMaz *maze,
                       bool  fSection,
-                      int   nEntrancePos )
+                      int   nEntrancePos,
+                      int   nRndBias,
+                      int   nRndRun )
 {
     if (!maze) return false;
     ms.fSection     = fSection;
     ms.nEntrancePos = nEntrancePos;
+    ms.nRndBias     = nRndBias;
+    ms.nRndRun      = nRndRun;
     return maze->CreateMazeBraid();
 }
 
@@ -96,12 +108,16 @@ bool
 cpp_CreateMazeBraidTilt ( CMaz *maze,
                           bool  fSection,
                           bool  fTiltDiamond,
-                          int   nEntrancePos )
+                          int   nEntrancePos,
+                          int   nRndBias,
+                          int   nRndRun )
 {
     if (!maze) return false;
     ms.fSection     = fSection;
     ms.fTiltDiamond = fTiltDiamond;
     ms.nEntrancePos = nEntrancePos;
+    ms.nRndBias     = nRndBias;
+    ms.nRndRun      = nRndRun;
     return maze->CreateMazeBraidTilt();
 }
 
@@ -111,7 +127,9 @@ cpp_CreateMazeSpiral ( CMaz *maze,
                        int   cSpiral,
                        int   cSpiralWall,
                        bool  fSection,
-                       int   nEntrancePos )
+                       int   nEntrancePos,
+                       int   nRndBias,
+                       int   nRndRun )
 {
     if (!maze) return false;
     ms.cRandomAdd   = cRandomAdd;
@@ -119,6 +137,8 @@ cpp_CreateMazeSpiral ( CMaz *maze,
     ms.cSpiralWall  = cSpiralWall;
     ms.fSection     = fSection;
     ms.nEntrancePos = nEntrancePos;
+    ms.nRndBias     = nRndBias;
+    ms.nRndRun      = nRndRun;
     return maze->CreateMazeSpiral();
 }
 
@@ -126,23 +146,31 @@ bool
 cpp_CreateMazeDiagonal ( CMaz *maze,
                          int   cRandomAdd,
                          bool  fSection,
-                         int   nEntrancePos )
+                         int   nEntrancePos,
+                         int   nRndBias,
+                         int   nRndRun )
 {
     if (!maze) return false;
     ms.cRandomAdd   = cRandomAdd;
     ms.fSection     = fSection;
     ms.nEntrancePos = nEntrancePos;
+    ms.nRndBias     = nRndBias;
+    ms.nRndRun      = nRndRun;
     return maze->CreateMazeDiagonal();
 }
 
 bool
 cpp_CreateMazeRecursive ( CMaz *maze,
                           bool  fSection,
-                          int   nEntrancePos )
+                          int   nEntrancePos,
+                          int   nRndBias,
+                          int   nRndRun )
 {
     if (!maze) return false;
     ms.fSection     = fSection;
     ms.nEntrancePos = nEntrancePos;
+    ms.nRndBias     = nRndBias;
+    ms.nRndRun      = nRndRun;
     return maze->CreateMazeRecursive();
 }
 
@@ -150,12 +178,16 @@ bool
 cpp_CreateMazePrim ( CMaz *maze,
                      bool  fSection,
                      bool  fTreeWall,
-                     int   nEntrancePos )
+                     int   nEntrancePos,
+                     int   nRndBias,
+                     int   nRndRun )
 {
     if (!maze) return false;
     ms.fSection     = fSection;
     ms.fTreeWall    = fTreeWall;
     ms.nEntrancePos = nEntrancePos;
+    ms.nRndBias     = nRndBias;
+    ms.nRndRun      = nRndRun;
     return maze->CreateMazePrim();
 }
 
@@ -164,13 +196,17 @@ cpp_CreateMazePrim2 ( CMaz *maze,
                       bool  fSection,
                       bool  fTreeRandom,
                       bool  fTreeWall,
-                      int   nEntrancePos )
+                      int   nEntrancePos,
+                      int   nRndBias,
+                      int   nRndRun )
 {
     if (!maze) return false;
     ms.fSection     = fSection;
     ms.fTreeRandom  = fTreeRandom;
     ms.fTreeWall    = fTreeWall;
     ms.nEntrancePos = nEntrancePos;
+    ms.nRndBias     = nRndBias;
+    ms.nRndRun      = nRndRun;
     return maze->CreateMazePrim2();
 }
 
@@ -182,13 +218,17 @@ cpp_CreateMazeKruskal ( CMaz *maze,
                         bool  fKruskalPic,
                         bool  fSection,
                         bool  fTreeWall,
-                        int   nEntrancePos )
+                        int   nEntrancePos,
+                        int   nRndBias,
+                        int   nRndRun )
 {
     if (!maze) return false;
     ms.fKruskalPic  = fKruskalPic;
     ms.fSection     = fSection;
     ms.fTreeWall    = fTreeWall;
     ms.nEntrancePos = nEntrancePos;
+    ms.nRndBias     = nRndBias;
+    ms.nRndRun      = nRndRun;
     return maze->CreateMazeKruskal(fClear, c2, c3);
 }
 
@@ -198,6 +238,8 @@ cpp_CreateMazeTree ( CMaz *maze,
                      bool  fTreeRandom,
                      bool  fTreeWall,
                      int   nEntrancePos,
+                     int   nRndBias,
+                     int   nRndRun,
                      int   nTreeRiver )
 {
     if (!maze) return false;
@@ -205,6 +247,8 @@ cpp_CreateMazeTree ( CMaz *maze,
     ms.fTreeRandom  = fTreeRandom;
     ms.fTreeWall    = fTreeWall;
     ms.nEntrancePos = nEntrancePos;
+    ms.nRndBias     = nRndBias;
+    ms.nRndRun      = nRndRun;
     ms.nTreeRiver   = nTreeRiver;
     return maze->CreateMazeTree();
 }
@@ -219,6 +263,8 @@ cpp_CreateMazeForest ( CMaz *maze,
                        int   nEntrancePos,
                        int   nForsAdd,
                        int   nForsInit,
+                       int   nRndBias,
+                       int   nRndRun,
                        int   nTreeRiver )
 {
     if (!maze) return false;
@@ -227,6 +273,8 @@ cpp_CreateMazeForest ( CMaz *maze,
     ms.fTreeRandom  = fTreeRandom;
     ms.fTreeWall    = fTreeWall;
     ms.nEntrancePos = nEntrancePos;
+    ms.nRndBias     = nRndBias;
+    ms.nRndRun      = nRndRun;
     ms.nForsAdd     = nForsAdd;
     ms.nForsInit    = nForsInit;
     ms.nTreeRiver   = nTreeRiver;
@@ -237,12 +285,16 @@ bool
 cpp_CreateMazeAldousBroder ( CMaz *maze,
                              bool  fSection,
                              bool  fTreeWall,
-                             int   nEntrancePos )
+                             int   nEntrancePos,
+                             int   nRndBias,
+                             int   nRndRun )
 {
     if (!maze) return false;
     ms.fSection     = fSection;
     ms.fTreeWall    = fTreeWall;
     ms.nEntrancePos = nEntrancePos;
+    ms.nRndBias     = nRndBias;
+    ms.nRndRun      = nRndRun;
     return maze->CreateMazeAldousBroder();
 }
 
@@ -250,12 +302,16 @@ bool
 cpp_CreateMazeWilson ( CMaz *maze,
                        bool  fSection,
                        bool  fTreeWall,
-                       int   nEntrancePos )
+                       int   nEntrancePos,
+                       int   nRndBias,
+                       int   nRndRun )
 {
     if (!maze) return false;
     ms.fSection     = fSection;
     ms.fTreeWall    = fTreeWall;
     ms.nEntrancePos = nEntrancePos;
+    ms.nRndBias     = nRndBias;
+    ms.nRndRun      = nRndRun;
     return maze->CreateMazeWilson();
 }
 
@@ -263,34 +319,46 @@ bool
 cpp_CreateMazeEller ( CMaz *maze,
                       bool  fSection,
                       bool  fTreeWall,
-                      int   nEntrancePos )
+                      int   nEntrancePos,
+                      int   nRndBias,
+                      int   nRndRun )
 {
     if (!maze) return false;
     ms.fSection     = fSection;
     ms.fTreeWall    = fTreeWall;
     ms.nEntrancePos = nEntrancePos;
+    ms.nRndBias     = nRndBias;
+    ms.nRndRun      = nRndRun;
     return maze->CreateMazeEller();
 }
 
 bool
 cpp_CreateMazeBraidEller ( CMaz *maze,
                            bool  fSection,
-                           int   nEntrancePos )
+                           int   nEntrancePos,
+                           int   nRndBias,
+                           int   nRndRun )
 {
     if (!maze) return false;
     ms.fSection     = fSection;
     ms.nEntrancePos = nEntrancePos;
+    ms.nRndBias     = nRndBias;
+    ms.nRndRun      = nRndRun;
     return maze->CreateMazeBraidEller();
 }
 
 bool
 cpp_CreateMazeDivision ( CMaz *maze,
                          bool  fSection,
-                         int   nEntrancePos )
+                         int   nEntrancePos,
+                         int   nRndBias,
+                         int   nRndRun )
 {
     if (!maze) return false;
     ms.fSection     = fSection;
     ms.nEntrancePos = nEntrancePos;
+    ms.nRndBias     = nRndBias;
+    ms.nRndRun      = nRndRun;
     return maze->CreateMazeDivision();
 }
 
@@ -299,13 +367,17 @@ cpp_CreateMazeBinary ( CMaz *maze,
                        int   cRandomAdd,
                        bool  fSection,
                        bool  fTreeWall,
-                       int   nEntrancePos )
+                       int   nEntrancePos,
+                       int   nRndBias,
+                       int   nRndRun )
 {
     if (!maze) return false;
     ms.cRandomAdd   = cRandomAdd;
     ms.fSection     = fSection;
     ms.fTreeWall    = fTreeWall;
     ms.nEntrancePos = nEntrancePos;
+    ms.nRndBias     = nRndBias;
+    ms.nRndRun      = nRndRun;
     return maze->CreateMazeBinary();
 }
 
@@ -313,12 +385,16 @@ bool
 cpp_CreateMazeSidewinder ( CMaz *maze,
                            bool  fSection,
                            bool  fTreeWall,
-                           int   nEntrancePos )
+                           int   nEntrancePos,
+                           int   nRndBias,
+                           int   nRndRun )
 {
     if (!maze) return false;
     ms.fSection     = fSection;
     ms.fTreeWall    = fTreeWall;
     ms.nEntrancePos = nEntrancePos;
+    ms.nRndBias     = nRndBias;
+    ms.nRndRun      = nRndRun;
     return maze->CreateMazeSidewinder();
 }
 
@@ -330,7 +406,9 @@ cpp_CreateMazeUnicursal ( CMaz *maze,
                           bool  fRiverFlow,
                           bool  fSection,
                           bool  fTreeWall,
-                          int   nEntrancePos )
+                          int   nEntrancePos,
+                          int   nRndBias,
+                          int   nRndRun )
 {
     if (!maze) return false;
     ms.cRandomAdd   = cRandomAdd;
@@ -340,6 +418,8 @@ cpp_CreateMazeUnicursal ( CMaz *maze,
     ms.fSection     = fSection;
     ms.fTreeWall    = fTreeWall;
     ms.nEntrancePos = nEntrancePos;
+    ms.nRndBias     = nRndBias;
+    ms.nRndRun      = nRndRun;
     return maze->CreateMazeUnicursal();
 }
 

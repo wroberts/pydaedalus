@@ -33,40 +33,58 @@ bool cpp_CreateMazePerfect ( CMaz *maze,
                              bool  fRiverFlow,
                              bool  fSection,
                              bool  fTreeWall,
-                             int   nEntrancePos );
+                             int   nEntrancePos,
+                             int   nRndBias,
+                             int   nRndRun );
 bool cpp_CreateMazePerfect2 ( CMaz *maze,
                               bool  fRiver,
                               bool  fSection,
-                              int   nEntrancePos );
+                              int   nEntrancePos,
+                              int   nRndBias,
+                              int   nRndRun );
 bool cpp_CreateMazeBraid ( CMaz *maze,
                            bool  fSection,
-                           int   nEntrancePos );
+                           int   nEntrancePos,
+                           int   nRndBias,
+                           int   nRndRun );
 bool cpp_CreateMazeBraidTilt ( CMaz *maze,
                                bool  fSection,
                                bool  fTiltDiamond,
-                               int   nEntrancePos );
+                               int   nEntrancePos,
+                               int   nRndBias,
+                               int   nRndRun );
 bool cpp_CreateMazeSpiral ( CMaz *maze,
                             int   cRandomAdd,
                             int   cSpiral,
                             int   cSpiralWall,
                             bool  fSection,
-                            int   nEntrancePos );
+                            int   nEntrancePos,
+                            int   nRndBias,
+                            int   nRndRun );
 bool cpp_CreateMazeDiagonal ( CMaz *maze,
                               int   cRandomAdd,
                               bool  fSection,
-                              int   nEntrancePos );
+                              int   nEntrancePos,
+                              int   nRndBias,
+                              int   nRndRun );
 bool cpp_CreateMazeRecursive ( CMaz *maze,
                                bool  fSection,
-                               int   nEntrancePos );
+                               int   nEntrancePos,
+                               int   nRndBias,
+                               int   nRndRun );
 bool cpp_CreateMazePrim ( CMaz *maze,
                           bool  fSection,
                           bool  fTreeWall,
-                          int   nEntrancePos );
+                          int   nEntrancePos,
+                          int   nRndBias,
+                          int   nRndRun );
 bool cpp_CreateMazePrim2 ( CMaz *maze,
                            bool  fSection,
                            bool  fTreeRandom,
                            bool  fTreeWall,
-                           int   nEntrancePos );
+                           int   nEntrancePos,
+                           int   nRndBias,
+                           int   nRndRun );
 bool cpp_CreateMazeKruskal ( CMaz *maze,
                              bool  fClear,
                              CCol *c2,
@@ -74,12 +92,16 @@ bool cpp_CreateMazeKruskal ( CMaz *maze,
                              bool  fKruskalPic,
                              bool  fSection,
                              bool  fTreeWall,
-                             int   nEntrancePos );
+                             int   nEntrancePos,
+                             int   nRndBias,
+                             int   nRndRun );
 bool cpp_CreateMazeTree ( CMaz *maze,
                           bool  fSection,
                           bool  fTreeRandom,
                           bool  fTreeWall,
                           int   nEntrancePos,
+                          int   nRndBias,
+                          int   nRndRun,
                           int   nTreeRiver );
 bool cpp_CreateMazeForest ( CMaz *maze,
                             bool  fWall,
@@ -90,34 +112,50 @@ bool cpp_CreateMazeForest ( CMaz *maze,
                             int   nEntrancePos,
                             int   nForsAdd,
                             int   nForsInit,
+                            int   nRndBias,
+                            int   nRndRun,
                             int   nTreeRiver );
 bool cpp_CreateMazeAldousBroder ( CMaz *maze,
                                   bool  fSection,
                                   bool  fTreeWall,
-                                  int   nEntrancePos );
+                                  int   nEntrancePos,
+                                  int   nRndBias,
+                                  int   nRndRun );
 bool cpp_CreateMazeWilson ( CMaz *maze,
                             bool  fSection,
                             bool  fTreeWall,
-                            int   nEntrancePos );
+                            int   nEntrancePos,
+                            int   nRndBias,
+                            int   nRndRun );
 bool cpp_CreateMazeEller ( CMaz *maze,
                            bool  fSection,
                            bool  fTreeWall,
-                           int   nEntrancePos );
+                           int   nEntrancePos,
+                           int   nRndBias,
+                           int   nRndRun );
 bool cpp_CreateMazeBraidEller ( CMaz *maze,
                                 bool  fSection,
-                                int   nEntrancePos );
+                                int   nEntrancePos,
+                                int   nRndBias,
+                                int   nRndRun );
 bool cpp_CreateMazeDivision ( CMaz *maze,
                               bool  fSection,
-                              int   nEntrancePos );
+                              int   nEntrancePos,
+                              int   nRndBias,
+                              int   nRndRun );
 bool cpp_CreateMazeBinary ( CMaz *maze,
                             int   cRandomAdd,
                             bool  fSection,
                             bool  fTreeWall,
-                            int   nEntrancePos );
+                            int   nEntrancePos,
+                            int   nRndBias,
+                            int   nRndRun );
 bool cpp_CreateMazeSidewinder ( CMaz *maze,
                                 bool  fSection,
                                 bool  fTreeWall,
-                                int   nEntrancePos );
+                                int   nEntrancePos,
+                                int   nRndBias,
+                                int   nRndRun );
 bool cpp_CreateMazeUnicursal ( CMaz *maze,
                                int   cRandomAdd,
                                bool  fRiver,
@@ -125,7 +163,9 @@ bool cpp_CreateMazeUnicursal ( CMaz *maze,
                                bool  fRiverFlow,
                                bool  fSection,
                                bool  fTreeWall,
-                               int   nEntrancePos );
+                               int   nEntrancePos,
+                               int   nRndBias,
+                               int   nRndRun );
 bool cpp_Resize(CMaz *maze, unsigned width, unsigned height);
 int wrapper_FFileSave(CMaz *maze,
                       int wCmd,
