@@ -396,6 +396,17 @@ cdef class Maze(object):
         Create a new perfect Maze in the bitmap using the Hunt and
         Kill algorithm, by carving passages.
 
+        This algorithm creates the Maze by carving passages, where it
+        behaves similarly to Recursive Backtrack. The difference is
+        when it can't add onto the current passage, it will enter
+        "hunting" mode and search over the Maze until an unmade
+        section is found next to an already carved passage. By default
+        this results in Mazes with a high "river" factor, but not as
+        high as Recursive Backtrack. If fRiver is False, the Maze will
+        instead have a low "river" factor, about the same as Kruskal's
+        Algorithm. This method runs slightly slower than Kruskal's
+        Algorithm.
+
         :param bool fRiver: If set, creates a Maze with a relatively
             high "river" factor (with relatively longer passages between
             junctions and fewer but longer dead ends).  Defaults to True.
@@ -420,7 +431,7 @@ cdef class Maze(object):
         :param int nRndRun: This allows some styles of random Mazes
             created to have a "run" factor. The run of a Maze means
             how long straightaways tend to go before forced turnings
-            present themselves. A Maze with a low run won’t have
+            present themselves. A Maze with a low run won't have
             straight passages for more than three or four cells, and
             will look very random. A Maze with a high run will have
             long passages going across a good percentage of the Maze,
@@ -472,7 +483,7 @@ cdef class Maze(object):
         :param int nRndRun: This allows some styles of random Mazes
             created to have a "run" factor. The run of a Maze means
             how long straightaways tend to go before forced turnings
-            present themselves. A Maze with a low run won’t have
+            present themselves. A Maze with a low run won't have
             straight passages for more than three or four cells, and
             will look very random. A Maze with a high run will have
             long passages going across a good percentage of the Maze,
@@ -517,7 +528,7 @@ cdef class Maze(object):
         :param int nRndRun: This allows some styles of random Mazes
             created to have a "run" factor. The run of a Maze means
             how long straightaways tend to go before forced turnings
-            present themselves. A Maze with a low run won’t have
+            present themselves. A Maze with a low run won't have
             straight passages for more than three or four cells, and
             will look very random. A Maze with a high run will have
             long passages going across a good percentage of the Maze,
@@ -567,7 +578,7 @@ cdef class Maze(object):
         :param int nRndRun: This allows some styles of random Mazes
             created to have a "run" factor. The run of a Maze means
             how long straightaways tend to go before forced turnings
-            present themselves. A Maze with a low run won’t have
+            present themselves. A Maze with a low run won't have
             straight passages for more than three or four cells, and
             will look very random. A Maze with a high run will have
             long passages going across a good percentage of the Maze,
@@ -630,7 +641,7 @@ cdef class Maze(object):
         :param int nRndRun: This allows some styles of random Mazes
             created to have a "run" factor. The run of a Maze means
             how long straightaways tend to go before forced turnings
-            present themselves. A Maze with a low run won’t have
+            present themselves. A Maze with a low run won't have
             straight passages for more than three or four cells, and
             will look very random. A Maze with a high run will have
             long passages going across a good percentage of the Maze,
@@ -683,7 +694,7 @@ cdef class Maze(object):
         :param int nRndRun: This allows some styles of random Mazes
             created to have a "run" factor. The run of a Maze means
             how long straightaways tend to go before forced turnings
-            present themselves. A Maze with a low run won’t have
+            present themselves. A Maze with a low run won't have
             straight passages for more than three or four cells, and
             will look very random. A Maze with a high run will have
             long passages going across a good percentage of the Maze,
@@ -710,6 +721,14 @@ cdef class Maze(object):
         Create a new perfect Maze in the bitmap using the Recursive
         Backtracking algorithm. This carves passages.
 
+        This algorithm creates the Maze by carving passages, where it
+        always adds onto the most recently created passage whenever
+        possible, and only "backs up" to create other sections when
+        it's forced to. This results in Mazes with about as high a
+        "river" factor as possible, with fewer but longer dead ends,
+        and usually a very long and twisty solution. This command is
+        fast, although Prim's Algorithm is slightly faster.
+
         :param int nEntrancePos: One of ENTRANCE_CORNER (entrance is
             in the upper-left corner, and the exit in the lower-right),
             ENTRANCE_MIDDLE (entrance and exit are in the middle of the
@@ -728,7 +747,7 @@ cdef class Maze(object):
         :param int nRndRun: This allows some styles of random Mazes
             created to have a "run" factor. The run of a Maze means
             how long straightaways tend to go before forced turnings
-            present themselves. A Maze with a low run won’t have
+            present themselves. A Maze with a low run won't have
             straight passages for more than three or four cells, and
             will look very random. A Maze with a high run will have
             long passages going across a good percentage of the Maze,
@@ -756,6 +775,15 @@ cdef class Maze(object):
         version of Prim's algorithm. This can carve passages or add
         walls.
 
+        This algorithm creates the Maze by carving passages, where it
+        attaches new passage segments onto the created portion of the
+        Maze at random points, and will rarely stay with any single
+        passage for any length of time. This results in Mazes with
+        about as low a "river" factor as possible, with many short
+        dead ends, and the solution is usually pretty direct too. This
+        command is faster than any of the others except Eller's
+        algorithm.
+
         :param bool fTreeWall: If true, creates the Maze by adding
             walls; if false, creates the Maze by carving passages.
             Defaults to False.
@@ -777,7 +805,7 @@ cdef class Maze(object):
         :param int nRndRun: This allows some styles of random Mazes
             created to have a "run" factor. The run of a Maze means
             how long straightaways tend to go before forced turnings
-            present themselves. A Maze with a low run won’t have
+            present themselves. A Maze with a low run won't have
             straight passages for more than three or four cells, and
             will look very random. A Maze with a high run will have
             long passages going across a good percentage of the Maze,
@@ -807,6 +835,17 @@ cdef class Maze(object):
         simplified versions of Prim's algorithm. This can carve
         passages or add walls.
 
+        This is a full implementation of Prim's algorithm involving
+        random edge weights. It will produce a minimum spanning tree
+        like Kruskal's algorithm, and therefore the same random number
+        seed will produce identical Mazes when running these two
+        commands. If fTreeWall is True, then the Maze will be created
+        by adding walls instead of carving passages. If fTreeRandom is
+        True, then all edge weights will be the same instead of
+        uniquely different, resulting in a Maze that's generated
+        faster, however with a lower "river" factor, similar to the
+        Prim's Algorithm method.
+
         :param bool fTreeRandom: If False, the algorithm will tend to
             create Mazes with long and windy solutions; if True, the
             solution will tend to be shorter and more direct.
@@ -832,7 +871,7 @@ cdef class Maze(object):
         :param int nRndRun: This allows some styles of random Mazes
             created to have a "run" factor. The run of a Maze means
             how long straightaways tend to go before forced turnings
-            present themselves. A Maze with a low run won’t have
+            present themselves. A Maze with a low run won't have
             straight passages for more than three or four cells, and
             will look very random. A Maze with a high run will have
             long passages going across a good percentage of the Maze,
@@ -862,6 +901,14 @@ cdef class Maze(object):
         Create a new perfect Maze in the bitmap using Kruskal's
         algorithm. This can carve passages or add walls.
 
+        This algorithm creates the Maze by carving passages, however
+        it doesn't "grow" the Maze like a tree, but rather carves
+        passage segments all over the Maze at random, while still
+        resulting in a perfect Maze when done. This results in Mazes
+        with a low "river" factor, but not as low as Prim's
+        algorithm. This method runs slightly slower than Recursive
+        Backtrack.
+
         :param bool fKruskalPic: defaults to False
         :param bool fTreeWall: If true, creates the Maze by adding
             walls; if false, creates the Maze by carving passages.
@@ -884,7 +931,7 @@ cdef class Maze(object):
         :param int nRndRun: This allows some styles of random Mazes
             created to have a "run" factor. The run of a Maze means
             how long straightaways tend to go before forced turnings
-            present themselves. A Maze with a low run won’t have
+            present themselves. A Maze with a low run won't have
             straight passages for more than three or four cells, and
             will look very random. A Maze with a high run will have
             long passages going across a good percentage of the Maze,
@@ -918,6 +965,13 @@ cdef class Maze(object):
         Create a new perfect Maze in the bitmap using the Growing Tree
         algorithm.  This can carve passages or add walls.
 
+        This algorithm creates a Maze by continually adding onto what
+        has already been generated. The behaviour of determining what
+        section to add onto next is controlled by the parameters
+        fTreeRandom and nTreeRiver. A Tree Maze can have many dead
+        ends or few dead ends, its solution can be direct or windy,
+        and it can be made by carving passages or adding walls.
+
         :param bool fTreeRandom: If False, the algorithm will tend to
             create Mazes with long and windy solutions; if True, the
             solution will tend to be shorter and more direct.
@@ -943,7 +997,7 @@ cdef class Maze(object):
         :param int nRndRun: This allows some styles of random Mazes
             created to have a "run" factor. The run of a Maze means
             how long straightaways tend to go before forced turnings
-            present themselves. A Maze with a low run won’t have
+            present themselves. A Maze with a low run won't have
             straight passages for more than three or four cells, and
             will look very random. A Maze with a high run will have
             long passages going across a good percentage of the Maze,
@@ -1021,7 +1075,7 @@ cdef class Maze(object):
         :param int nRndRun: This allows some styles of random Mazes
             created to have a "run" factor. The run of a Maze means
             how long straightaways tend to go before forced turnings
-            present themselves. A Maze with a low run won’t have
+            present themselves. A Maze with a low run won't have
             straight passages for more than three or four cells, and
             will look very random. A Maze with a high run will have
             long passages going across a good percentage of the Maze,
@@ -1061,6 +1115,13 @@ cdef class Maze(object):
         walls. This is the simplest unbiased algorithm for creating
         perfect Mazes.
 
+        This algorithm creates Mazes with the special property that
+        all possible Mazes of a given size are generated in equal
+        probability. It carves passages by moving the carving point
+        around totally randomly, relying on chance to finish the Maze,
+        hence this is slow. These Mazes have a low "river" factor,
+        only slightly higher than Kruskal's algorithm.
+
         :param bool fTreeWall: If true, creates the Maze by adding
             walls; if false, creates the Maze by carving passages.
             Defaults to False.
@@ -1082,7 +1143,7 @@ cdef class Maze(object):
         :param int nRndRun: This allows some styles of random Mazes
             created to have a "run" factor. The run of a Maze means
             how long straightaways tend to go before forced turnings
-            present themselves. A Maze with a low run won’t have
+            present themselves. A Maze with a low run won't have
             straight passages for more than three or four cells, and
             will look very random. A Maze with a high run will have
             long passages going across a good percentage of the Maze,
@@ -1113,6 +1174,14 @@ cdef class Maze(object):
         with equal probability, however this runs about five times
         faster on average.
 
+        This algorithm is an improved version of Aldous-Broder, in
+        that this also creates all Mazes with equal probability (so
+        Mazes created here are indistinguishable from those created
+        with Aldous-Broder). This carves passages at random too, but
+        jumps to an unfinished location each time the random walk hits
+        a previously carved section, so it quickly attaches passages
+        to the Maze until all parts have been created.
+
         :param bool fTreeWall: If true, creates the Maze by adding
             walls; if false, creates the Maze by carving passages.
             Defaults to False.
@@ -1134,7 +1203,7 @@ cdef class Maze(object):
         :param int nRndRun: This allows some styles of random Mazes
             created to have a "run" factor. The run of a Maze means
             how long straightaways tend to go before forced turnings
-            present themselves. A Maze with a low run won’t have
+            present themselves. A Maze with a low run won't have
             straight passages for more than three or four cells, and
             will look very random. A Maze with a high run will have
             long passages going across a good percentage of the Maze,
@@ -1164,6 +1233,12 @@ cdef class Maze(object):
         fastest algorithm for creating general perfect Mazes, and runs
         over twice as fast as any of the others.
 
+        This algorithm creates Mazes by focusing on one row at a time,
+        keeping track of which paths connect so as to know where to
+        carve and not carve passages. These Mazes have a lowish
+        "river" factor, slightly higher than the Aldous-Broder
+        algorithm.
+
         :param bool fTreeWall: If true, creates the Maze by adding
             walls; if false, creates the Maze by carving passages.
             Defaults to False.
@@ -1185,7 +1260,7 @@ cdef class Maze(object):
         :param int nRndRun: This allows some styles of random Mazes
             created to have a "run" factor. The run of a Maze means
             how long straightaways tend to go before forced turnings
-            present themselves. A Maze with a low run won’t have
+            present themselves. A Maze with a low run won't have
             straight passages for more than three or four cells, and
             will look very random. A Maze with a high run will have
             long passages going across a good percentage of the Maze,
@@ -1230,7 +1305,7 @@ cdef class Maze(object):
         :param int nRndRun: This allows some styles of random Mazes
             created to have a "run" factor. The run of a Maze means
             how long straightaways tend to go before forced turnings
-            present themselves. A Maze with a low run won’t have
+            present themselves. A Maze with a low run won't have
             straight passages for more than three or four cells, and
             will look very random. A Maze with a high run will have
             long passages going across a good percentage of the Maze,
@@ -1257,6 +1332,12 @@ cdef class Maze(object):
         division. This always adds walls, recursively dividing the
         Maze into smaller rectangles.
 
+        The algorithm creates a Maze by adding walls, where the area
+        within the Maze is divided by a randomly positioned horizontal
+        or vertical wall with a passage opening within it. Each
+        subarea is then recursively divided with more walls until all
+        areas are filled.
+
         :param int nEntrancePos: One of ENTRANCE_CORNER (entrance is
             in the upper-left corner, and the exit in the lower-right),
             ENTRANCE_MIDDLE (entrance and exit are in the middle of the
@@ -1275,7 +1356,7 @@ cdef class Maze(object):
         :param int nRndRun: This allows some styles of random Mazes
             created to have a "run" factor. The run of a Maze means
             how long straightaways tend to go before forced turnings
-            present themselves. A Maze with a low run won’t have
+            present themselves. A Maze with a low run won't have
             straight passages for more than three or four cells, and
             will look very random. A Maze with a high run will have
             long passages going across a good percentage of the Maze,
@@ -1305,6 +1386,17 @@ cdef class Maze(object):
         simplest algorithm of any type for creating perfect
         Mazes.
 
+        The algorithm creates Mazes with the special property that
+        each cell has a passage that leads either up or left, but
+        never both or neither. This creates a biased texture, where
+        one can always easily travel diagonally up and to the left
+        without hitting barriers or having to make choices. Moving
+        down and to the right is when the Maze becomes a challenge, so
+        the Maze is hard to solve but easy to solve backwards. The
+        Maze forms a binary tree, with the upper left corner the root,
+        where each node or cell has one or two children, and one
+        unique parent which is the cell above or to the left of it.
+
         :param int cRandomAdd: The number of random walls and passages
             to add to the maze.  A high number will make the maze more
             random and less like its base design, while a large negative
@@ -1331,7 +1423,7 @@ cdef class Maze(object):
         :param int nRndRun: This allows some styles of random Mazes
             created to have a "run" factor. The run of a Maze means
             how long straightaways tend to go before forced turnings
-            present themselves. A Maze with a low run won’t have
+            present themselves. A Maze with a low run won't have
             straight passages for more than three or four cells, and
             will look very random. A Maze with a high run will have
             long passages going across a good percentage of the Maze,
@@ -1360,6 +1452,14 @@ cdef class Maze(object):
         Create a new perfect Maze in the bitmap using the Sidewinder
         algorithm.  This can carve passages or add walls.
 
+        This algorithm creates a Maze with the property that every
+        horizontal passage has exactly one passage leading up from it,
+        resulting in a Maze with no backtracking passages where the
+        solution path just snakes back and forth from entrance to
+        exit. The Maze is just as hard to solve forwards, however it's
+        easy to solve backwards since there's always exactly one way
+        to get to the previous row.
+
         :param bool fTreeWall: If true, creates the Maze by adding
             walls; if false, creates the Maze by carving passages.
             Defaults to False.
@@ -1381,7 +1481,7 @@ cdef class Maze(object):
         :param int nRndRun: This allows some styles of random Mazes
             created to have a "run" factor. The run of a Maze means
             how long straightaways tend to go before forced turnings
-            present themselves. A Maze with a low run won’t have
+            present themselves. A Maze with a low run won't have
             straight passages for more than three or four cells, and
             will look very random. A Maze with a high run will have
             long passages going across a good percentage of the Maze,
@@ -1440,7 +1540,7 @@ cdef class Maze(object):
         :param int nRndRun: This allows some styles of random Mazes
             created to have a "run" factor. The run of a Maze means
             how long straightaways tend to go before forced turnings
-            present themselves. A Maze with a low run won’t have
+            present themselves. A Maze with a low run won't have
             straight passages for more than three or four cells, and
             will look very random. A Maze with a high run will have
             long passages going across a good percentage of the Maze,
