@@ -59,15 +59,15 @@ lists of ints::
     >>> len(maze)
     61
 
-Take a look at `demo.ibpynb`_ to see visualisations of some of the
+Take a look at `demo.ipynb`_ to see visualisations of some of the
 kinds of Mazes Daedalus can create.
 
-.. _`demo.ibpynb`: https://github.com/wroberts/pydaedalus/blob/master/demo.ipynb
+.. _`demo.ipynb`: https://github.com/wroberts/pydaedalus/blob/master/demo.ipynb
 
 Requirements
 ============
 
-- Python 2.7, 3.3, 3.4, 3.5, or 3.6.
+- Python 2.7, or 3.3+,
 - A C++ compiler with C++11 support (GCC 4.7+, clang 3.3+).
 
 Development Notes
