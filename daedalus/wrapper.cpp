@@ -1,8 +1,7 @@
 #include "wrapper.h"
 
-CMaz*
-cpp_Constructor ( unsigned width,
-                  unsigned height )
+void
+cpp_Init()
 {
     // global initialisation
     for (int i = 0; i < cColorMain; i++)
@@ -10,7 +9,14 @@ cpp_Constructor ( unsigned width,
         int j = i*16 + 15;
         ws.rgkv[i] = GrayN(j);
     }
+    // initialise random number generator
+    InitRndL(time(0));
+}
 
+CMaz*
+cpp_Constructor ( unsigned width,
+                  unsigned height )
+{
     CMaz *maze = new CMaz();
     if (maze)
     {

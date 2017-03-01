@@ -44,7 +44,10 @@ cdef extern from "wrapper.h":
     cdef int epMiddle
     cdef int epBalanced
     cdef int epRandom
+    # random number generator
+    void InitRndL(unsigned long int l)
     # wrapping functions
+    void cpp_Init()
     CMaz *cpp_Constructor(unsigned width, unsigned height)
     void cpp_Destructor(CMaz *maze)
     bool cpp_Get(CMaz *maze, unsigned x, unsigned y)
@@ -167,6 +170,20 @@ ENTRANCE_CORNER   = epCorner
 ENTRANCE_MIDDLE   = epMiddle
 ENTRANCE_BALANCED = epBalanced
 ENTRANCE_RANDOM   = epRandom
+
+# global initialisation
+cpp_Init()
+
+def init_random(seed):
+    '''
+    Seeds the random number generator used internally by Daedalus to
+    generate mazes.
+
+    :param int seed: The new seed value for the random number
+        generator.
+    :rtype: None
+    '''
+    InitRndL(seed)
 
 class MazeError(Exception):
     '''An error while performing an action on a Maze object.'''

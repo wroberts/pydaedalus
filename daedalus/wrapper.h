@@ -2,6 +2,7 @@
 #define _WRAPPER_H_
 
 #include <cstdio>
+#include <ctime>
 using namespace std;
 
 #include "util.h"
@@ -22,6 +23,7 @@ enum FFileSaveRVal {
     SAVE_SUCCESS
 };
 
+void cpp_Init();
 CMaz *cpp_Constructor(unsigned width, unsigned height);
 void cpp_Destructor(CMaz *maze);
 bool cpp_Get(CMaz *maze, unsigned x, unsigned y);
