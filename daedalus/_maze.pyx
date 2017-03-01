@@ -545,7 +545,10 @@ cdef class Maze(object):
         algorithm, i.e.  starting with a template based on the Tilt
         Maze pattern.
 
-        :param bool fTiltDiamond: defaults to False
+        :param bool fTiltDiamond: When this is set, there will never
+            be any "diamonds" or places where 2x2 groups of diagonal
+            lines fit together to make a diamond shaped
+            space. Defaults to False.
         :param int nEntrancePos: One of ENTRANCE_CORNER (entrance is
             in the upper-left corner, and the exit in the lower-right),
             ENTRANCE_MIDDLE (entrance and exit are in the middle of the
