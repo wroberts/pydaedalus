@@ -41,8 +41,9 @@ Getting started::
     >>> maze.save_bitmap('test.bmp')
     >>> maze.save_text('test.txt')
 
-A Maze can be treated as a 2D array of Bools, or as a container of
-lists of ints::
+A Maze can be treated as a 2D array of Bools (walls are True and
+passages are False), or as a container of lists of ints (walls are 1
+and passages are 0)::
 
     >>> maze.width, maze.height
     (31, 61)
