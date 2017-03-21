@@ -26,7 +26,6 @@ include daedalus/src/solids.cpp
 include daedalus/src/solve.cpp
 include daedalus/src/threed.cpp
 include daedalus/src/threed.h
-include daedalus/src/unused
 include daedalus/src/util.cpp
 include daedalus/src/util.h
 include daedalus/wrapper.cpp
