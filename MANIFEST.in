@@ -1,4 +1,4 @@
-include LICENSE.md
+include LICENSE
 include README.rst
 include daedalus/VERSION
 include daedalus/_maze.cpp
