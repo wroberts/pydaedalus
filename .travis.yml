@@ -1,5 +1,5 @@
 sudo: required
-dist: trusty
+dist: bionic
 language: python
 python:
   - "2.7"
@@ -19,12 +19,3 @@ install:
 # command to run tests
 script: py.test --cov=daedalus daedalus
 after_success: coveralls
-addons:
-  apt:
-    sources:
-    - ubuntu-toolchain-r-test
-    - llvm-toolchain-precise-3.6
-    packages:
-    - gcc-5
-    - g++-5
-    - clang-3.6
