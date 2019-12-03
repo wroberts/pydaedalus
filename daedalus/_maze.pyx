@@ -14,6 +14,8 @@ maze.save_text('test.txt')
 
 from libcpp cimport bool
 
+from . import compat
+
 cdef extern from "pdconfig.h":
     cdef int PYTHON_VERSION2
 
@@ -1623,6 +1625,7 @@ cdef class Maze(object):
             to black (COLOR_BLACK).
         :rtype: None
         '''
+        filename = compat.py3_str_to_bytes(filename)
         retval = cpp_SaveBitmap(self._maze, filename, kvOn, kvOff)
         self._handle_save_retval(retval)
 
@@ -1643,5 +1646,6 @@ cdef class Maze(object):
             character. Defaults to False.
         :rtype: None
         '''
-        retval =  cpp_SaveText(self._maze, filename, fTextClip, fLineChar, fTextTab)
+        filename = compat.py3_str_to_bytes(filename)
+        retval = cpp_SaveText(self._maze, filename, fTextClip, fLineChar, fTextTab)
         self._handle_save_retval(retval)

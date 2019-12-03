@@ -11,7 +11,7 @@ Tests on the daedalus._maze.Maze object.
 from __future__ import absolute_import
 from .._maze import Maze
 
-def test_maze():
+def test_maze(tmp_path):
     '''
     Simple test of Maze functionality.
     '''
@@ -23,5 +23,5 @@ def test_maze():
     assert maze.width == 31
     assert maze.height == 61
     maze.create_perfect()
-    #maze.save_bitmap("test.bmp")
-    #maze.save_text("test.txt")
+    maze.save_bitmap(str(tmp_path / "test.bmp"))
+    maze.save_text(str(tmp_path / "test.txt"))
